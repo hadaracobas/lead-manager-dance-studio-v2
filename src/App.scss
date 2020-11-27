@@ -1,3 +1,9 @@
+// variables
+$color-primary: #fff;
+$color-secondary: green;
+$color-title: black;
+$color-text: black;
+
 *,
 *:after,
 *:before {
@@ -6,6 +12,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 .app {
-  background-color: yellowgreen;
+  height: 100vh;
 }

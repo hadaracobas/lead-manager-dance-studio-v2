@@ -162,29 +162,7 @@ function Home(props) {
     getRowsUpToRate6();
   }, [filledRowsFromData]);
 
-  return (
-    <div className="home">
-      <h1 className="home__title">Dance Studio Leads Sheet Manager - Demo</h1>
-      <div className="home__content">
-        <div className="home__content--numSummeryContainer">
-          <h4>סך הכל לידים בטבלה</h4>
-          <p>{filledRowsFromData.length}</p>
-        </div>
-        <div className="home__content--numSummeryContainer">
-          <h4>סך הכל לידים החודש</h4>
-          <p>{lastMonthRows.length}</p>
-          <h4>סך הכל לידים השבוע</h4>
-          <p>{lastWeekRows.length}</p>
-          <h4>סך הכל לידים היום</h4>
-          <p>{todayRows.length}</p>
-        </div>
-        <div className="home__content--numSummeryContainer">
-          <h4>סך הכל לידים משתלמים מעל דירוג 6</h4>
-          <p>{rowsUpToRate6.length}</p>
-        </div>
-      </div>
-    </div>
-  );
+  return <div className="home"></div>;
 }
 
 export default Home;

@@ -4,6 +4,15 @@ import axios from "axios";
 
 // import components
 import Home from "./components/Home";
+import Header from "./components/Header";
+
+// import material ui
+import { create } from "jss";
+import rtl from "jss-rtl";
+import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
   const [data, setData] = useState(false);
@@ -26,9 +35,12 @@ function App() {
   }, []);
 */
   return (
-    <div className="app">
-      <Home data={data} />
-    </div>
+    <StylesProvider jss={jss}>
+      <div className="app" dir="rtl">
+        <Header />
+        <Home data={data} />
+      </div>
+    </StylesProvider>
   );
 }
 
