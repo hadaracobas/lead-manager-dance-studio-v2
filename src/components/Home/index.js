@@ -162,7 +162,11 @@ function Home(props) {
     getRowsUpToRate6();
   }, [filledRowsFromData]);
 
-  return <div className="home"></div>;
+  return (
+    <div className="home">
+      <h2>this is home component</h2>
+    </div>
+  );
 }
 
 export default Home;

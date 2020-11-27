@@ -5,11 +5,18 @@ import axios from "axios";
 // import components
 import Home from "./components/Home";
 import Header from "./components/Header";
+import NavDesktop from "./components/NavDesktop";
 
 // import material ui
 import { create } from "jss";
 import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  direction: "rtl", // Both here and <body dir="rtl">
+});
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -37,8 +44,13 @@ function App() {
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
-        <Header />
-        <Home data={data} />
+        <ThemeProvider theme={theme}>
+          <Header />
+          <main className="app__main">
+            <NavDesktop />
+            <Home data={data} />
+          </main>
+        </ThemeProvider>
       </div>
     </StylesProvider>
   );

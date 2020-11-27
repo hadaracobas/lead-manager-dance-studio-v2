@@ -6,12 +6,6 @@ import NavMobile from "../NavMobile";
 import { Button, TextField } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-
-const theme = createMuiTheme({
-  direction: "rtl", // Both here and <body dir="rtl">
-});
-
 function Header() {
   return (
     <header className="header">
@@ -20,15 +14,9 @@ function Header() {
       </div>
       <div className="header__center">
         <div className="header__searchBoxWrapper">
-          <ThemeProvider theme={theme}>
-            <form>
-              <TextField
-                id="standard-basic"
-                label="חיפוש ליד"
-                fullWidth={true}
-              />
-            </form>
-          </ThemeProvider>
+          <form>
+            <TextField id="standard-basic" label="חיפוש ליד" fullWidth={true} />
+          </form>
         </div>
       </div>
       <div className="header__left">

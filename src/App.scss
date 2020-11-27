@@ -1,8 +1,13 @@
 // variables
-$color-primary: #fff;
-$color-secondary: green;
-$color-title: black;
-$color-text: black;
+$color-primary-light: #4dabf5;
+$color-primary-main: #2196f3;
+$color-primary-dark: #1769aa;
+$color-secondary-light: #f73378;
+$color-secondary-main: #f50057;
+$color-secondary-dark: #ab003c;
+$color-text-dark: black;
+$color-text-light: black;
+$white: #fff;
 
 *,
 *:after,
@@ -18,4 +23,13 @@ html {
 
 .app {
   height: 100vh;
+}
+
+@media (min-width: 760px) {
+}
+
+@media (min-width: 1200px) {
+  .app__main {
+    display: flex;
+  }
 }
