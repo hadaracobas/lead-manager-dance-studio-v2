@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
 
+//import components
+import DataCard from "../DataCard";
+import DataChartPie from "../DataChartPie";
+
 function Home(props) {
   const [filledRowsFromData, setFilledRowsFromData] = useState(false);
   const [lastMonthRows, setLastMonthRows] = useState(false);
   const [lastWeekRows, setLastWeekRows] = useState(false);
   const [todayRows, setTodayRows] = useState(false);
   const [rowsUpToRate6, setRowsUpToRate6] = useState(false);
+  const [rowsLeadSourceGeneral, setRowsLeadSourceGeneral] = useState(false);
+  const [rowsLeadSourceTel, setRowsLeadSourceTel] = useState(false);
+  const [rowsLeadSourceWebForm, setRowsLeadSourceWebForm] = useState(false);
+  const [LeadSourceChartArr, setLeadSourceChartArr] = useState(false);
 
   console.log(
     "all filled rows: ",
@@ -18,7 +26,15 @@ function Home(props) {
     " today rows: ",
     todayRows,
     " up to rate 6: ",
-    rowsUpToRate6
+    rowsUpToRate6,
+    " lead source general: ",
+    rowsLeadSourceGeneral,
+    " lead source tel: ",
+    rowsLeadSourceTel,
+    " lead source web form: ",
+    rowsLeadSourceWebForm,
+    " chart lead source arr: ",
+    LeadSourceChartArr
   );
 
   // function to filter, get all filled rows  and store in state
@@ -149,6 +165,56 @@ function Home(props) {
     }
   };
 
+  // function to filter, fet all rows LeadSource כללי
+  const getRowsLeadSourceGeneral = () => {
+    if (filledRowsFromData) {
+      let getReleventRows = filledRowsFromData.filter((ele) => {
+        return ele.LeadSource == "כללי";
+      });
+      setRowsLeadSourceGeneral(getReleventRows);
+    }
+  };
+
+  // function to filter, fet all rows LeadSource ליד טלפוני
+  const getRowsLeadSourceTel = () => {
+    if (filledRowsFromData) {
+      let getReleventRows = filledRowsFromData.filter((ele) => {
+        return ele.LeadSource == "ליד טלפוני";
+      });
+      setRowsLeadSourceTel(getReleventRows);
+    }
+  };
+
+  // function to filter, fet all rows LeadSource דף נחיתה
+  const getRowsLeadSourceWebForm = () => {
+    if (filledRowsFromData) {
+      let getReleventRows = filledRowsFromData.filter((ele) => {
+        return ele.LeadSource == "דף נחיתה";
+      });
+      setRowsLeadSourceWebForm(getReleventRows);
+    }
+  };
+
+  // function to create arr to lead source chart
+  const createArrToLeadSourceChart = () => {
+    if (rowsLeadSourceGeneral && rowsLeadSourceTel && rowsLeadSourceWebForm) {
+      setLeadSourceChartArr([
+        {
+          name: "כללי-הוסף ידנית",
+          value: rowsLeadSourceGeneral.length,
+        },
+        {
+          name: "טלפוני",
+          value: rowsLeadSourceTel.length,
+        },
+        {
+          name: "טופס אתר",
+          value: rowsLeadSourceWebForm.length,
+        },
+      ]);
+    }
+  };
+
   // fire function get all filled rows
   useEffect(() => {
     getFilledRowsFromData();
@@ -160,11 +226,45 @@ function Home(props) {
     getRowsLastWeek();
     getRowsToday();
     getRowsUpToRate6();
+    getRowsLeadSourceGeneral();
+    getRowsLeadSourceTel();
+    getRowsLeadSourceWebForm();
   }, [filledRowsFromData]);
+
+  // fire functions to build chart arrays
+  useEffect(() => {
+    createArrToLeadSourceChart();
+  }, [rowsLeadSourceGeneral, rowsLeadSourceTel, rowsLeadSourceWebForm]);
 
   return (
     <div className="home">
-      <h2>this is home component</h2>
+      <div className="home__top">
+        <div className="home__top--box home__top--box1">
+          <DataCard
+            titleCard='סה"כ לידים בטבלת לידים'
+            num={filledRowsFromData.length}
+          />
+        </div>
+        <div className="home__top--box home__top--box2">
+          <DataCard
+            titleCard="לידים חדשים"
+            num={`החודש ${lastMonthRows.length} | השבוע ${lastWeekRows.length} | היום ${todayRows.length}`}
+          />
+        </div>
+        <div className="home__top--box home__top--box3">
+          <DataCard
+            titleCard='סה"כ לידים משתלמים מעל דירוג 6'
+            num={rowsUpToRate6.length}
+          />
+        </div>
+      </div>
+
+      <div className="home__bottom">
+        <h3 className="home__bottom--sectionTitle"> לידים לפי מקור ליד</h3>
+        <div className="home__bottom--chartPieContainer">
+          <DataChartPie data={LeadSourceChartArr} />
+        </div>
+      </div>
     </div>
   );
 }

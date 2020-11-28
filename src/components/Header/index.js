@@ -22,7 +22,7 @@ function Header() {
       <div className="header__left">
         <div className="header__addLeadWrapper">
           <Button variant="contained" color="secondary">
-            <AddCircleIcon />
+            ליד <AddCircleIcon />
           </Button>
         </div>
 

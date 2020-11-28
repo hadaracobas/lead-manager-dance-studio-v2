@@ -9,6 +9,12 @@ $color-text-dark: black;
 $color-text-light: black;
 $white: #fff;
 
+// mixins
+@mixin sectionTitle {
+  color: $color-primary-dark;
+  padding: 3px 0;
+}
+
 *,
 *:after,
 *:before {

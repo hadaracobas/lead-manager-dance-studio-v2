@@ -1,4 +1,34 @@
+@import "../../App.scss";
+
+.home {
+  padding: 0 2rem;
+  &__top {
+    margin-top: 2rem;
+
+    &--box {
+      //border: 1px solid green;
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__bottom {
+    &--sectionTitle {
+      @include sectionTitle;
+    }
+    &--chartPieContainer {
+      border: 1px solid lightgray;
+      padding: 10px 5px;
+    }
+  }
+}
+
 @media (min-width: 760px) {
+  .home {
+    margin-top: 2.5rem;
+    &__top {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
 }
 
 @media (min-width: 1200px) {
@@ -7,3 +37,5 @@
     //border: 1px solid green;
   }
 }
+
+//sectionTitle
