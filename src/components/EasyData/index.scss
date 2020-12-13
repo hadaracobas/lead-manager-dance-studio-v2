@@ -1,0 +1,45 @@
+@import "../../App.scss";
+
+.easyData {
+  padding: 0 2rem;
+  &__top {
+    margin-top: 2rem;
+
+    &--box {
+      //border: 1px solid green;
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__bottom {
+    &--chartTitle {
+      @include sectionTitle;
+    }
+    &--chartContainer {
+      border: 1px solid lightgray;
+      padding: 10px 5px;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  .easyData {
+    margin-top: 2.5rem;
+    &__top {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__bottom {
+      &--chartsContainer {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .easyData {
+    flex: 0.8;
+    //border: 1px solid green;
+  }
+}

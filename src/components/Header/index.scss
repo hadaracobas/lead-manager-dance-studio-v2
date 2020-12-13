@@ -21,6 +21,10 @@
     // border: 1px solid red;
   }
 
+  &__addLeadWrapper {
+    margin-right: 7px;
+  }
+
   &__logginWrapper {
     margin-right: 7px;
   }
@@ -39,8 +43,8 @@
     justify-content: space-evenly;
 
     &__right {
-      visibility: hidden;
-      opacity: 0;
+      visibility: visible;
+      opacity: 1;
     }
 
     &__center {

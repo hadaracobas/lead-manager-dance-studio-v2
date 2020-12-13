@@ -1,0 +1,9 @@
+.leadSmallDisplay {
+  margin: 7px 3px;
+
+  &__bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

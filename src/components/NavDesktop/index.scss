@@ -6,7 +6,7 @@
 
 @media (min-width: 1200px) {
   .MuiTypography-body1 {
-    font-size: 1.6rem !important;
+    font-size: 1.3rem !important;
     color: gray;
   }
   .navDesktop {
@@ -25,6 +25,7 @@
       align-items: center;
       background-color: $color-primary-dark;
       color: $white;
+      padding: 5px 2px;
 
       &--logoContainer {
         background-color: $white;

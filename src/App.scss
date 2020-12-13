@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
 // variables
 $color-primary-light: #4dabf5;
 $color-primary-main: #2196f3;
@@ -13,6 +15,7 @@ $white: #fff;
 @mixin sectionTitle {
   color: $color-primary-dark;
   padding: 3px 0;
+  margin-bottom: 10px;
 }
 
 *,
@@ -29,6 +32,7 @@ html {
 
 .app {
   height: 100vh;
+  font-family: "Varela Round", sans-serif;
 }
 
 @media (min-width: 760px) {

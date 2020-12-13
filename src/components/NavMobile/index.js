@@ -17,6 +17,12 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import ImportantDevicesIcon from "@material-ui/icons/ImportantDevices";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
+import HomeIcon from "@material-ui/icons/Home";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import FaceIcon from "@material-ui/icons/Face";
+import CardMembershipIcon from "@material-ui/icons/CardMembership";
 
 const StyledMenu = withStyles({
   paper: {
@@ -97,39 +103,40 @@ function NavMobile() {
       >
         <StyledMenuItem>
           <ListItemIcon>
+            <FaceIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText style={menuLiStyles} primary="לידים" />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <CardMembershipIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText style={menuLiStyles} primary="מנויים" />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
             <AssignmentLateIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText style={menuLiStyles} primary="משימות" />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
-            <DateRangeIcon fontSize="small" />
+            <TrendingUpIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="אירועים" />
+          <ListItemText style={menuLiStyles} primary="תמונת מצב" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <MonetizationOnIcon fontSize="small" />
+            <FacebookIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="לקוחות משתלמים" />
+          <ListItemText style={menuLiStyles} primary="פייסבוק" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <ImportantDevicesIcon fontSize="small" />
+            <AccountBoxIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="לידים מטופס האתר" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <TouchAppIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="לידים שהוספו ידנית" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <PhoneInTalkIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="לידים טלפוניים" />
+          <ListItemText style={menuLiStyles} primary="החשבון שלי " />
         </StyledMenuItem>
       </StyledMenu>
     </div>

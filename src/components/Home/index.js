@@ -1,271 +1,211 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
+import { Switch, Route } from "react-router-dom";
+import axios from "axios";
 
-//import components
-import DataCard from "../DataCard";
-import DataChartPie from "../DataChartPie";
+// import components
+import AddNewLead from "../AddNewLead";
+import SearchLead from "../SearchLead";
 
-function Home(props) {
-  const [filledRowsFromData, setFilledRowsFromData] = useState(false);
-  const [lastMonthRows, setLastMonthRows] = useState(false);
-  const [lastWeekRows, setLastWeekRows] = useState(false);
-  const [todayRows, setTodayRows] = useState(false);
-  const [rowsUpToRate6, setRowsUpToRate6] = useState(false);
-  const [rowsLeadSourceGeneral, setRowsLeadSourceGeneral] = useState(false);
-  const [rowsLeadSourceTel, setRowsLeadSourceTel] = useState(false);
-  const [rowsLeadSourceWebForm, setRowsLeadSourceWebForm] = useState(false);
-  const [LeadSourceChartArr, setLeadSourceChartArr] = useState(false);
+function Home() {
+  const [data, setData] = useState(false);
+  const [exampleData, setExampleData] = useState([
+    {
+      ID: "1",
+      addedDate: "13/07/2020",
+      addedHour: "13:04:00",
+      leadSource: "כללי",
+      name: "רונן כהן",
+      email: "ronen@gmail.com",
+      tel: "052-88542036",
+      age: "ג",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpadateDate: "",
+      leadStep: "מתעניין",
+      recommendedSystemMission: "",
+      manualMissionDescription: "",
+      manualTypeMission: "",
+      dateManualMissionCreated: "",
+      DeadlineDateManualMission: "",
+      manualMissionCreateByTeamMember: "",
+      manualMissionAssociatedToTeamMember: "",
+      manualMissionPerformed: "FALSE",
+      DateManualMissionPerformed: "",
+      isTheLeadRelevant: "FALSE",
+      leadPurchased: "TRUE",
+      PurchasedAmount: "₪2,000.00",
+      LeadRate: "8",
+      LeadCost: "₪60.00",
+      event1Interest: "התקשרנו ללא מענה",
+      dateEvent1: "29/5/2020",
+      statusEvent1: "קנה",
+      event2WasTrialLesson: "הגיע לשיעור ניסיון",
+      dateEvent2: "29/5/2020",
+      statusEvent2: "קנה",
+    },
+    {
+      ID: "2",
+      addedDate: "24/11/2020",
+      addedHour: "13:04:00",
+      leadSource: "ליד טלפוני",
+      name: "מיכל לוי",
+      email: "michal@gmail.com",
+      tel: "052-99650402",
+      age: "4",
+      releventBranch: "צורן",
+      relevantDanceType: "מודרני",
+      lastUpadateDate: "",
+      leadStep: "הוזמן לשיעור ניסיון",
+      recommendedSystemMission: "",
+      manualMissionDescription: "",
+      manualTypeMission: "",
+      dateManualMissionCreated: "",
+      DeadlineDateManualMission: "",
+      manualMissionCreateByTeamMember: "",
+      manualMissionAssociatedToTeamMember: "",
+      manualMissionPerformed: "FALSE",
+      DateManualMissionPerformed: "",
+      isTheLeadRelevant: "FALSE",
+      leadPurchased: "FALSE",
+      PurchasedAmount: "",
+      LeadRate: "5",
+      LeadCost: "₪100.00",
+      event1Interest: "התקשרנו ולא רלוונטי",
+      dateEvent1: "20/2/2021",
+      statusEvent1: "מחכה לתיאום פגישה",
+      event2WasTrialLesson: "הגיע לשיעור ניסיון",
+      dateEvent2: "20/2/2021",
+      statusEvent2: "מחכה לתיאום פגישה",
+    },
+    {
+      ID: "3",
+      addedDate: "24/06/2020",
+      addedHour: "13:04:00",
+      leadSource: "ליד טלפוני",
+      name: "קים זינגר",
+      email: "kim_zin@hotmail.com",
+      tel: "050-65893654",
+      age: "ד",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpadateDate: "",
+      leadStep: "היה בשיעור ניסיון",
+      recommendedSystemMission: "",
+      manualMissionDescription: "",
+      manualTypeMission: "",
+      dateManualMissionCreated: "",
+      DeadlineDateManualMission: "",
+      manualMissionCreateByTeamMember: "",
+      manualMissionAssociatedToTeamMember: "",
+      manualMissionPerformed: "FALSE",
+      DateManualMissionPerformed: "",
+      isTheLeadRelevant: "FALSE",
+      leadPurchased: "TRUE",
+      PurchasedAmount: "₪369.00",
+      LeadRate: "8",
+      LeadCost: "₪60.00",
+      event1Interest: "התקשרנו ונקבע שיעור ניסיון",
+      dateEvent1: "2/1/2020",
+      statusEvent1: "חושב",
+      event2WasTrialLesson: "הגיע לשיעור ניסיון מחכה לרישום",
+      dateEvent2: "2/1/2020",
+      statusEvent2: "קנה",
+    },
+    {
+      ID: "4",
+      addedDate: "22/11/2020",
+      addedHour: "13:04:00",
+      leadSource: "דף נחיתה",
+      name: "נמרוד שטיין",
+      email: "nimrod@gmail.com",
+      tel: "054-66892045",
+      age: "י",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpadateDate: "",
+      leadStep: "מתעניין",
+      recommendedSystemMission: "",
+      manualMissionDescription: "",
+      manualTypeMission: "",
+      dateManualMissionCreated: "",
+      DeadlineDateManualMission: "",
+      manualMissionCreateByTeamMember: "",
+      manualMissionAssociatedToTeamMember: "",
+      manualMissionPerformed: "FALSE",
+      DateManualMissionPerformed: "",
+      isTheLeadRelevant: "FALSE",
+      leadPurchased: "FALSE",
+      PurchasedAmount: "",
+      LeadRate: "",
+      LeadCost: "₪45.00",
+      event1Interest: "התקשרנו ללא מענה",
+      dateEvent1: "25/6/2020",
+      statusEvent1: "חושב",
+      event2WasTrialLesson: "הגיע לשיעור ניסיון - לא רלוונטי",
+      dateEvent2: "25/6/2020",
+      statusEvent2: "מתעניין",
+    },
+  ]);
 
-  console.log(
-    "all filled rows: ",
-    filledRowsFromData,
-    " last month: ",
-    lastMonthRows,
-    " last week: ",
-    lastWeekRows,
-    " today rows: ",
-    todayRows,
-    " up to rate 6: ",
-    rowsUpToRate6,
-    " lead source general: ",
-    rowsLeadSourceGeneral,
-    " lead source tel: ",
-    rowsLeadSourceTel,
-    " lead source web form: ",
-    rowsLeadSourceWebForm,
-    " chart lead source arr: ",
-    LeadSourceChartArr
-  );
-
-  // function to filter, get all filled rows  and store in state
-  const getFilledRowsFromData = () => {
-    let storeFilledRows;
-    if (props.data) {
-      storeFilledRows = props.data.filter((row) => {
-        return row.ID !== "";
+  const getDataFromSheet = async () => {
+    const dataSheet = await axios
+      .get("https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setFilledRowsFromData(storeFilledRows);
-    }
   };
 
-  // function return current month full data
-  const getCurrentDate = () => {
-    let d = new Date();
-    let year = d.getFullYear();
-    let month = d.getMonth() + 1;
-    let day = d.getDate();
-    let hour = d.getHours();
-    let minute = d.getMinutes();
-    let second = d.getSeconds();
-    let builtDate =
-      day.toString() + "/" + month.toString() + "/" + year.toString();
-    let builtHour =
-      hour.toString() + ":" + minute.toString() + ":" + second.toString();
-
-    return builtDate;
-  };
-
-  // function return prev month full data
-  const getPrevMonthDate = () => {
-    let d = new Date();
-    let year = d.getFullYear();
-    let month = d.getMonth();
-    let day = d.getDate();
-
-    let prevDate =
-      day.toString() + "/" + month.toString() + "/" + year.toString();
-
-    return prevDate;
-  };
-
-  // function to filter, get all rows from the last month and store in state
-  const getRowsLastMonth = () => {
-    if (filledRowsFromData) {
-      let getRelevantRows = filledRowsFromData.filter((ele) => {
-        let splitedCurrentDate = getCurrentDate().split("/");
-        let curDate = new Date(
-          splitedCurrentDate[2],
-          parseInt(splitedCurrentDate[1]) - 1,
-          splitedCurrentDate[0]
-        );
-
-        let splitedPrevMonthDate = getPrevMonthDate().split("/");
-        let preDate = new Date(
-          splitedPrevMonthDate[2],
-          parseInt(splitedPrevMonthDate[1]) - 1,
-          splitedPrevMonthDate[0]
-        );
-
-        let rowOfSheet = ele.Date.split("/");
-        let rowDate = new Date(
-          rowOfSheet[2],
-          parseInt(rowOfSheet[1]) - 1,
-          rowOfSheet[0]
-        );
-
-        return rowDate >= preDate && rowDate <= curDate;
-      });
-
-      setLastMonthRows(getRelevantRows);
-    }
-  };
-
-  // function to filter, get all rows from the last week and store in state
-  const getRowsLastWeek = () => {
-    if (filledRowsFromData) {
-      let getRelevantRows = filledRowsFromData.filter((ele) => {
-        let splitedCurrentDate = getCurrentDate().split("/");
-        let curDate = new Date(
-          splitedCurrentDate[2],
-          parseInt(splitedCurrentDate[1]) - 1,
-          splitedCurrentDate[0]
-        );
-
-        let splitedPrevWeekDate = getCurrentDate().split("/");
-        let preDate = new Date(
-          splitedPrevWeekDate[2],
-          parseInt(splitedPrevWeekDate[1]) - 1,
-          splitedPrevWeekDate[0] - 7
-        );
-
-        let rowOfSheet = ele.Date.split("/");
-        let rowDate = new Date(
-          rowOfSheet[2],
-          parseInt(rowOfSheet[1]) - 1,
-          rowOfSheet[0]
-        );
-
-        return rowDate >= preDate && rowDate <= curDate;
-      });
-      setLastWeekRows(getRelevantRows);
-    }
-  };
-
-  // function to filter, get all rows from today and store in state
-  const getRowsToday = () => {
-    if (filledRowsFromData) {
-      let getRelevantRows = filledRowsFromData.filter((ele) => {
-        let curDate = getCurrentDate();
-
-        let rowDate = ele.Date;
-
-        return curDate == rowDate;
-      });
-      setTodayRows(getRelevantRows);
-    }
-  };
-
-  // function to filter, get all rows up to rate 6
-  const getRowsUpToRate6 = () => {
-    if (filledRowsFromData) {
-      let getRelevantRows = filledRowsFromData.filter((ele) => {
-        return parseInt(ele.LeadRate) >= 6;
-      });
-      setRowsUpToRate6(getRelevantRows);
-    }
-  };
-
-  // function to filter, fet all rows LeadSource כללי
-  const getRowsLeadSourceGeneral = () => {
-    if (filledRowsFromData) {
-      let getReleventRows = filledRowsFromData.filter((ele) => {
-        return ele.LeadSource == "כללי";
-      });
-      setRowsLeadSourceGeneral(getReleventRows);
-    }
-  };
-
-  // function to filter, fet all rows LeadSource ליד טלפוני
-  const getRowsLeadSourceTel = () => {
-    if (filledRowsFromData) {
-      let getReleventRows = filledRowsFromData.filter((ele) => {
-        return ele.LeadSource == "ליד טלפוני";
-      });
-      setRowsLeadSourceTel(getReleventRows);
-    }
-  };
-
-  // function to filter, fet all rows LeadSource דף נחיתה
-  const getRowsLeadSourceWebForm = () => {
-    if (filledRowsFromData) {
-      let getReleventRows = filledRowsFromData.filter((ele) => {
-        return ele.LeadSource == "דף נחיתה";
-      });
-      setRowsLeadSourceWebForm(getReleventRows);
-    }
-  };
-
-  // function to create arr to lead source chart
-  const createArrToLeadSourceChart = () => {
-    if (rowsLeadSourceGeneral && rowsLeadSourceTel && rowsLeadSourceWebForm) {
-      setLeadSourceChartArr([
-        {
-          name: "כללי-הוסף ידנית",
-          value: rowsLeadSourceGeneral.length,
-        },
-        {
-          name: "טלפוני",
-          value: rowsLeadSourceTel.length,
-        },
-        {
-          name: "טופס אתר",
-          value: rowsLeadSourceWebForm.length,
-        },
-      ]);
-    }
-  };
-
-  // fire function get all filled rows
+  // disable to save cost of request during work
+  /*
   useEffect(() => {
-    getFilledRowsFromData();
-  }, [props.data]);
-
-  // fire function get rows of last month, last week, today and up to rate 6
-  useEffect(() => {
-    getRowsLastMonth();
-    getRowsLastWeek();
-    getRowsToday();
-    getRowsUpToRate6();
-    getRowsLeadSourceGeneral();
-    getRowsLeadSourceTel();
-    getRowsLeadSourceWebForm();
-  }, [filledRowsFromData]);
-
-  // fire functions to build chart arrays
-  useEffect(() => {
-    createArrToLeadSourceChart();
-  }, [rowsLeadSourceGeneral, rowsLeadSourceTel, rowsLeadSourceWebForm]);
-
+    getDataFromSheet();
+  }, []);
+*/
   return (
-    <div className="home">
-      <div className="home__top">
-        <div className="home__top--box home__top--box1">
-          <DataCard
-            titleCard='סה"כ לידים בטבלת לידים'
-            num={filledRowsFromData.length}
-          />
-        </div>
-        <div className="home__top--box home__top--box2">
-          <DataCard
-            titleCard="לידים חדשים"
-            num={`החודש ${lastMonthRows.length} | השבוע ${lastWeekRows.length} | היום ${todayRows.length}`}
-          />
-        </div>
-        <div className="home__top--box home__top--box3">
-          <DataCard
-            titleCard='סה"כ לידים משתלמים מעל דירוג 6'
-            num={rowsUpToRate6.length}
-          />
-        </div>
+    <>
+      {/*
+        <div className="home">
+      <div className="home__1 home__box">
+        <h2 className="home__box--title">מתעניינים</h2>
+        <p className="home__box--totalNum">סה"כ: 256</p>
+        <LeadSmallDisplay />
+        <LeadSmallDisplay />
       </div>
-
-      <div className="home__bottom">
-        <h3 className="home__bottom--sectionTitle"> לידים לפי מקור ליד</h3>
-        <div className="home__bottom--chartPieContainer">
-          <DataChartPie data={LeadSourceChartArr} />
-        </div>
+      <div className="home__2 home__box">
+        <h2 className="home__box--title">הוזמנו לשיעור ניסיון</h2>
+        <p className="home__box--totalNum">סה"כ: 256</p>
+        <LeadSmallDisplay />
+        <LeadSmallDisplay />
+      </div>
+      <div className="home__3 home__box">
+        <h2 className="home__box--title">היו בשיעור ניסיון</h2>
+        <p className="home__box--totalNum">סה"כ: 256</p>
+        <LeadSmallDisplay />
+        <LeadSmallDisplay />
+      </div>
+      <div className="home__4 home__box">
+        <h2 className="home__box--title">משימות קרובות</h2> 
+        <p className="home__box--totalNum">סה"כ: 256</p>
+        <LeadSmallDisplay />
+        <LeadSmallDisplay />
       </div>
     </div>
+    */}
+      <div className="home">
+        <Switch>
+          <Route path="/add-new-lead">
+            <AddNewLead />
+          </Route>
+          <Route path="/search-lead">
+            <SearchLead />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 }
 

@@ -18,6 +18,7 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import ImportantDevicesIcon from "@material-ui/icons/ImportantDevices";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,18 +42,24 @@ function NavDesktop() {
     <div className="navDesktop">
       <div className="navDesktop__top">
         <div className="navDesktop__top--businessNameContainer">
-          <h2>שם עסק</h2>
+          <h2 style={{ padding: "3px 0" }}>שם עסק</h2>
         </div>
         <div className="navDesktop__top--logoContainer">
           <img src={Logo} />
         </div>
         <div className="navDesktop__top--businessSlogenContainer">
-          <p>זהו הסלוגן של העסק</p>
+          <p style={{ padding: "3px 0" }}>זהו הסלוגן של העסק</p>
         </div>
       </div>
       <div className="navDesktop__bottom">
         <div className={classes.root}>
           <List component="nav" aria-label="main mailbox folders">
+            <ListItem button>
+              <ListItemIcon style={iconStyles}>
+                <HomeIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary="ראשי" />
+            </ListItem>
             <ListItem button>
               <ListItemIcon style={iconStyles}>
                 <AssignmentLateIcon fontSize="large" />

@@ -1,0 +1,43 @@
+.addNewLead {
+  &__form {
+    border: 1px solid lightgray;
+    padding: 1rem 1.2rem;
+
+    &--branch {
+      margin-top: 1rem;
+    }
+
+    &--danceType {
+      margin-top: 1rem;
+    }
+
+    &--leadSource {
+      margin-top: 1rem;
+    }
+
+    &--submitBtn {
+      margin-top: 1rem;
+    }
+
+    &--personalDetailsContainer {
+      margin-top: 1.4rem;
+      padding: 1rem;
+    }
+
+    &--leadDetailsContainer {
+      margin-top: 1.4rem;
+      padding: 1rem;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+}
+
+@media (min-width: 1200px) {
+  .addNewLead {
+    &__form {
+      margin: 0 auto;
+    }
+  }
+}
