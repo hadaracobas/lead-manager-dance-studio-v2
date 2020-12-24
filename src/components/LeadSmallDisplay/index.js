@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStylesCard = makeStyles({
   root: {
@@ -25,7 +26,7 @@ const useStylesCard = makeStyles({
   },
 });
 
-export default function LeadSmallDisplay() {
+export default function LeadSmallDisplay(props) {
   const classesCard = useStylesCard();
   const bull = <span className={classesCard.bullet}>•</span>;
 
@@ -33,22 +34,34 @@ export default function LeadSmallDisplay() {
     <div className="leadSmallDisplay">
       <Card className={classesCard.root}>
         <CardContent>
-          <Typography
-            className={classesCard.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            יונתן רגב
-          </Typography>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography
+              className={classesCard.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {props.leadName}
+            </Typography>
+            <Typography
+              className={classesCard.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {props.leadTel}
+            </Typography>
+          </div>
+
           <Typography variant="h5" component="h2">
-            מחכה לתיאום פגישה
+            {props.leadStep}
           </Typography>
         </CardContent>
         <div className="leadSmallDisplay__bottom">
           <CardActions>
-            <Button size="small">כרטיס ליד</Button>
+            <Link style={{ textDecoration: "none" }} to={`/${props.leadId}`}>
+              <Button size="small">כרטיס ליד</Button>
+            </Link>
           </CardActions>
-          <p>דירוג ליד: 6</p>
+          <p>דירוג ליד: {props.leadRate}</p>
         </div>
         {/* end .leadSmallDisplay__bottom */}
       </Card>

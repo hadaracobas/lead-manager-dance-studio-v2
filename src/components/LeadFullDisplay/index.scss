@@ -1,0 +1,85 @@
+/*@import "../../App.scss";
+
+.leadFullDisplay {
+  &__subtitle {
+    text-align: right;
+    text-decoration: underline;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+  &__edit {
+    //border: 1px solid lightgray;
+    text-align: left;
+    margin-top: 1rem;
+    & svg {
+      margin-left: 1rem;
+      color: gray;
+      &:hover {
+        color: $color-secondary-main;
+        cursor: pointer;
+      }
+    }
+  }
+  &__modalInputContainer {
+    //border: 1px solid lightgray;
+    margin: 0.4rem 0;
+  }
+  &__section {
+    border-bottom: 1px solid lightgray;
+  }
+  &__contentContainer {
+    //border: 1px solid red;
+  }
+  &__content {
+    //border: 1px solid green;
+    margin-bottom: 1rem;
+    padding: 0.4rem;
+    &--title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.6rem;
+    }
+    &--text {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  .leadFullDisplay {
+    &__contentContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      &--right {
+        //border: 1px solid yellow;
+        display: flex;
+        justify-content: space-between;
+      }
+      &--left {
+        //border: 1px solid yellow;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    &__content {
+      flex: 1;
+      padding: 1rem 0;
+    }
+  }
+} 
+
+@media (min-width: 1200px) {
+  .leadFullDisplay {
+    width: 100rem;
+    &__subtitle {
+      margin: 2rem 0;
+      color: $color-primary-dark;
+    }
+
+    &__section {
+      padding: 2rem 0;
+    }
+  }
+}
+*/

@@ -26,7 +26,7 @@ const useStylesSelect = makeStyles((theme) => ({
   },
 }));
 
-function AddNewLead() {
+function AddNewLead(props) {
   // name state
   const [name, setName] = useState("");
 
@@ -133,7 +133,7 @@ function AddNewLead() {
     } else if (leadStep === "היה בשיעור ניסיון") {
       setRecommendedMissionByApplication("לרשום כמנוי קבוע");
     } else if (leadStep === "נרשם כמנוי") {
-      setRecommendedMissionByApplication("");
+      setRecommendedMissionByApplication("אין משימה מומלצת לשלב זה");
     }
   };
   useEffect(() => {
@@ -160,11 +160,13 @@ function AddNewLead() {
   };
 
   // Send Date To Database (google sheet)
-  const submitDataToDatabase = () => {
+  const submitDataToDatabase = (e) => {
+    e.preventDefault();
     axios
       .post(
         "https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44",
         {
+          ID: props.data.length + 1,
           addedDate: getCurrentDate(),
           addedHour: getCurrentHour(),
           leadSource: leadSource,
@@ -200,6 +202,7 @@ function AddNewLead() {
       )
       .then(function (response) {
         console.log(response);
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
