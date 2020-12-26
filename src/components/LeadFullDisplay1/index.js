@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./index.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import {
+  convertDateFromDatePickerToNormalDateFormat,
+  getCurrentDate,
+  getCurrentHour,
+} from "../../functions";
 
 // imports material ui
 import EditIcon from "@material-ui/icons/Edit";
@@ -22,6 +27,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Tooltip,
 } from "@material-ui/core";
 
 const useStylesModal = makeStyles((theme) => ({
@@ -36,6 +42,8 @@ const useStylesModal = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    overflow: "auto",
+    height: "90%",
   },
 }));
 
@@ -46,6 +54,29 @@ const useStylesSelect = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+}));
+
+const useStylesDatePicker = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
+
+const useStylesToolTip = makeStyles((theme) => ({
+  fab: {
+    margin: theme.spacing(2),
+  },
+  absolute: {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
   },
 }));
 
@@ -63,6 +94,9 @@ function LeadFullDisplay1(props) {
     setOpenModal(false);
   };
   // ---*** END modal states and functions
+
+  // TOOLTIP FACEBOK ICON
+  const classesToolTip = useStylesToolTip();
 
   // UPDATE NAME
   const [updateName, setUpdateName] = useState("");
@@ -259,36 +293,105 @@ function LeadFullDisplay1(props) {
     setUpdateIsTheLeadRelevant(e.target.checked);
   };
 
-  // UPDATE LAST DATE OF UPDATING
+  // UPDATE - LAST DATE OF UPDATING
   const [lastCurrentUpdateDate, setLastCurrentUpdateDate] = useState("");
   const [lastCurrentUpdateHour, setLastCurrentUpdateHour] = useState("");
 
-  const getCurrentDate = () => {
-    let d = new Date();
-    let day = d.getDate();
-    let month = d.getMonth() + 1;
-    let year = d.getFullYear();
-    let fullCurrentDate = day + "/" + month + "/" + year;
-    return fullCurrentDate;
+  // MANUAL MISSION TYPE OF MISSION
+  const [manualMissionTypeOfMission, setManualMissionTypeOfMission] = useState(
+    ""
+  );
+  const onChangeManualMissionTypeOfMission = (event) => {
+    setManualMissionTypeOfMission(event.target.value);
   };
 
-  const getCurrentHour = () => {
-    let d = new Date();
-    let hour = d.getHours();
-    let minutes = d.getMinutes();
-    let currentHour = hour + ":" + minutes;
-    return currentHour;
+  // MANUAL MISSION - MISSION DESCRIPTION
+  const [manualMissionDescription, setManualMissionDescription] = useState("");
+  const onChangeManualMissionDescription = (event) => {
+    setManualMissionDescription(event.target.value);
   };
 
-  /*const getLastUpdatingDateAndHour = () => {
-    let d = getCurrentDate();
-    let h = getCurrentHour();
-    let dataAndHourString = h + " | " + d;
-    return dataAndHourString;
+  // MANUAL MISSION CREATED BY TEAM MEMBER
+  const [
+    manualMissionCreatedByTeamMember,
+    setManualMissionCreatedByTeamMember,
+  ] = useState("");
+  const onChangeManualMissionCreateByTeamMember = (event) => {
+    setManualMissionCreatedByTeamMember(event.target.value);
   };
-  console.log(getLastUpdatingDateAndHour());*/
 
-  // FILTER DATA ACCORDING TO IS NUMBER
+  // MANUAL MISSION DEADLINE DATE
+  const classesDatePicker = useStylesDatePicker();
+  const [manualMissionDeadlineDate, setManualMissionDeadlineDate] = useState(
+    ""
+  );
+  const [
+    manualMissionDeadlineDateNewFormat,
+    setManualMissionDeadlineDateNewFormat,
+  ] = useState("");
+  const onChangeManualMissionDeadlineDate = (event) => {
+    setManualMissionDeadlineDate(event.target.value);
+  };
+
+  useEffect(() => {
+    convertDateFromDatePickerToNormalDateFormat(
+      manualMissionDeadlineDate,
+      setManualMissionDeadlineDateNewFormat
+    );
+  }, [manualMissionDeadlineDate]);
+
+  // MANUAL MISSION - MISSION PERFORMED?
+  const [manualMissionPerformed, setManualMissionPerformed] = useState(false);
+  const onChangeManualMissionPerformed = (e) => {
+    setManualMissionPerformed(e.target.checked);
+  };
+
+  // MANUAL MISSION PERFORMED DATE
+  const [manualMissionPerformedDate, setManualMissionPerformedDate] = useState(
+    ""
+  );
+  const onchangeManualMissionPerformedDate = (event) => {
+    setManualMissionPerformedDate(event.target.value);
+  };
+  const [
+    manualMissionPerformedDateNewFormat,
+    setManualMissionPerformedDateNewFormat,
+  ] = useState("");
+
+  useEffect(() => {
+    convertDateFromDatePickerToNormalDateFormat(
+      manualMissionPerformedDate,
+      setManualMissionPerformedDateNewFormat
+    );
+  }, [manualMissionPerformedDate]);
+
+  // MANUAL MISSION ASSOCIATED TO TEAM MEMBER
+  const [
+    manualMissionAssociatedToTeamMember,
+    setManualMissionAssociatedToTeamMember,
+  ] = useState("");
+
+  const onChangeManualMissionAssociatedToTeamMember = (event) => {
+    setManualMissionAssociatedToTeamMember(event.target.value);
+  };
+
+  // MANUAL MISSION CREATED DATE
+  const [manulMissionCreatedDate, setManualMissionCreatedDate] = useState("");
+  const onClickResetManualMissionAndSetNewCreatedDate = (e) => {
+    e.preventDefault();
+    setManualMissionTypeOfMission("");
+    setManualMissionDescription("");
+    setManualMissionCreatedByTeamMember("");
+    setManualMissionDeadlineDate("");
+    setManualMissionPerformed(false);
+    setManualMissionPerformedDate("");
+    setManualMissionAssociatedToTeamMember("");
+
+    setManualMissionCreatedDate(getCurrentDate());
+  };
+  console.log(manulMissionCreatedDate);
+
+  // FILTER DATA ACCORDING TO ID NUMBER
   const filterAndGetRelevantLead = () => {
     if (props.data) {
       let filterTheLead = props.data.filter((lead) => lead.ID == id);
@@ -311,6 +414,22 @@ function LeadFullDisplay1(props) {
         setUpdateIsTheLeadRelevant(filterTheLead[0].isTheLeadRelevant);
         setLastCurrentUpdateDate(filterTheLead[0].lastUpdateDate);
         setLastCurrentUpdateHour(filterTheLead[0].lastUpdateHour);
+        setManualMissionCreatedDate(filterTheLead[0].dateManualMissionCreated);
+        setManualMissionTypeOfMission(filterTheLead[0].manualTypeMission);
+        setManualMissionDescription(filterTheLead[0].manualMissionDescription);
+        setManualMissionCreatedByTeamMember(
+          filterTheLead[0].manualMissionCreateByTeamMember
+        );
+        setManualMissionDeadlineDate(
+          filterTheLead[0].DeadlineDateManualMission
+        );
+        setManualMissionPerformed(filterTheLead[0].manualMissionPerformed);
+        setManualMissionPerformedDate(
+          filterTheLead[0].DateManualMissionPerformed
+        );
+        setManualMissionAssociatedToTeamMember(
+          filterTheLead[0].manualMissionAssociatedToTeamMember
+        );
       }
     }
   };
@@ -332,13 +451,21 @@ function LeadFullDisplay1(props) {
           releventBranch: updateRelevantBranch,
           leadSource: updateLeadSource,
           relevantDanceType:
-            updateDanceTypeAfterOnChange == false
+            checkIfOnChangeFuncExecuted == false
               ? updateDanceType
               : updateDanceTypeAfterOnChange,
           leadStep: updateLeadStep,
           isTheLeadRelevant: updateIsTheLeadRelevant,
           lastUpdateDate: getCurrentDate(),
           lastUpdateHour: getCurrentHour(),
+          dateManualMissionCreated: manulMissionCreatedDate,
+          manualTypeMission: manualMissionTypeOfMission,
+          manualMissionDescription: manualMissionDescription,
+          manualMissionCreateByTeamMember: manualMissionCreatedByTeamMember,
+          DeadlineDateManualMission: manualMissionDeadlineDateNewFormat,
+          manualMissionPerformed: manualMissionPerformed,
+          DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
+          manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
         }
       )
       .then((res) => {
@@ -379,7 +506,7 @@ function LeadFullDisplay1(props) {
                 className={classesModal.paper}
                 style={{ textAlign: "right" }}
               >
-                <h2 id="transition-modal-title">עריכת ליד</h2>
+                {/* <h2 id="transition-modal-title">עריכת ליד</h2> */}
                 <div className="leadFullDisplay__modalSection">
                   <div className="leadFullDisplay__modalInputContainer">
                     <h4>פרטים כלליים</h4>
@@ -596,14 +723,137 @@ function LeadFullDisplay1(props) {
                   </div>
                 </div>
                 {/* end .__modalSection */}
-                <div
-                  className="leadFullDisplay__modalInputContainer"
-                  style={{ margin: "1rem 0" }}
-                >
-                  <Button variant="contained" onClick={updateTheLeadReq}>
-                    עדכן
-                  </Button>
+                <div className="leadFullDisplay__modalSection">
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <h4>משימה לליד</h4>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <a
+                      href="#"
+                      style={{ color: "gray" }}
+                      onClick={onClickResetManualMissionAndSetNewCreatedDate}
+                    >
+                      עדכון משימה חדשה
+                    </a>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      className={classesSelect.formControl}
+                      dir="rtl"
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        סוג משימה
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={manualMissionTypeOfMission}
+                        onChange={onChangeManualMissionTypeOfMission}
+                      >
+                        <MenuItem value={"קביעת מועד לשיעור ניסיון"}>
+                          קביעת מועד לשיעור ניסיון
+                        </MenuItem>
+                        <MenuItem value={"תזכורת"}>תזכורת</MenuItem>
+                        <MenuItem value={"רישום ליד כמנוי קבוע"}>
+                          רישום ליד כמנוי קבוע
+                        </MenuItem>
+                        <MenuItem value={"גביית תשלום"}>גביית תשלום</MenuItem>
+                        <MenuItem value={"אחר"}>אחר</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="standard-basic"
+                      label="תיאור משימה"
+                      multiline
+                      rows={4}
+                      fullWidth={true}
+                      dir="rtl"
+                      onChange={onChangeManualMissionDescription}
+                      value={manualMissionDescription}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="standard-basic"
+                      label='משימה נוצרה ע"י איש צוות'
+                      fullWidth={true}
+                      dir="rtl"
+                      onChange={onChangeManualMissionCreateByTeamMember}
+                      value={manualMissionCreatedByTeamMember}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="date"
+                      label="מועד אחרון לביצוע משימה"
+                      type="date"
+                      defaultValue="2020-05-24"
+                      todayLabel="היום"
+                      value={manualMissionDeadlineDate}
+                      onChange={onChangeManualMissionDeadlineDate}
+                      className={classesDatePicker.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <p dir="rtl">משימה בוצעה?</p>
+                    <FormControlLabel
+                      dir="rtl"
+                      control={
+                        <Checkbox
+                          checked={manualMissionPerformed}
+                          color="primary"
+                          name="updateIsTheLeadRelevant"
+                          onChange={onChangeManualMissionPerformed}
+                        />
+                      }
+                      label="בוצעה"
+                    />
+                  </div>
+                  {manualMissionPerformed && (
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך ביצוע משימה"
+                        type="date"
+                        defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={manualMissionPerformedDate}
+                        onChange={onchangeManualMissionPerformedDate}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
+                <div className="leadFullDisplay__modalInputContainer">
+                  <TextField
+                    id="standard-basic"
+                    label="משימה מוטלת על איש צוות"
+                    fullWidth={true}
+                    dir="rtl"
+                    onChange={onChangeManualMissionAssociatedToTeamMember}
+                    value={manualMissionAssociatedToTeamMember}
+                  />
+                </div>
+                {/* end .__modalSection */}
+                <div className="leadFullDisplay__modalSection">
+                  <div
+                    className="leadFullDisplay__modalInputContainer"
+                    style={{ margin: "1rem 0" }}
+                  >
+                    <Button variant="contained" onClick={updateTheLeadReq}>
+                      עדכון
+                    </Button>
+                  </div>
+                </div>
+                {/* end .__modalSection */}
               </div>
             </Fade>
           </Modal>
@@ -665,7 +915,7 @@ function LeadFullDisplay1(props) {
                   ליד התווסף בתאריך
                 </p>
                 <p className="leadFullDisplay__content--text">
-                  {`${addedHour} | ${addedDate}`}
+                  {`${addedHour}  ${addedDate}`}
                 </p>
               </div>
             </div>
@@ -673,7 +923,12 @@ function LeadFullDisplay1(props) {
         </div>
 
         <div className="leadFullDisplay__section">
-          <FacebookIcon style={{ color: "lightgray", margin: ".4rem 0 0 0" }} />
+          <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+            <FacebookIcon
+              style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+            />
+          </Tooltip>
+
           <h3 className="leadFullDisplay__subtitle">שלב ורלוונטיות ליד</h3>
 
           <div className="leadFullDisplay__contentContainer">
@@ -732,61 +987,68 @@ function LeadFullDisplay1(props) {
           <div className="leadFullDisplay__contentContainer">
             <div className="leadFullDisplay__contentContainer--right">
               <div className="leadFullDisplay__content">
-                <p className="leadFullDisplay__content--title">נוצרה בתאריך</p>
+                <p className="leadFullDisplay__content--title">
+                  משימה נוצרה בתאריך
+                </p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].dateManualMissionCreated*/}
+                  {manulMissionCreatedDate}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">סוג משימה</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].manualTypeMission*/}
+                  {manualMissionTypeOfMission}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">תיאור משימה</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].manualMissionDescription*/}
+                  {manualMissionDescription}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">
-                  נוצר ע"י איש צוות
+                  משימה נוצרה ע"י איש צוות
                 </p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].manualMissionCreateByTeamMember*/}
+                  {manualMissionCreatedByTeamMember}
                 </p>
               </div>
             </div>
             <div className="leadFullDisplay__contentContainer--left">
               <div className="leadFullDisplay__content">
-                <p className="leadFullDisplay__content--title">מועד ביצוע</p>
+                <p className="leadFullDisplay__content--title">
+                  דדליין ביצוע משימה
+                </p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].DeadlineDateManualMission*/}
+                  {manualMissionDeadlineDateNewFormat}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">משימה בוצעה?</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    isManualMissionPerformedConvertToString()*/}
+                  {manualMissionPerformed === null
+                    ? "לא (ברירת מחדל)"
+                    : manualMissionPerformed === false
+                    ? "לא (ברירת מחדל)"
+                    : manualMissionPerformed === "FALSE"
+                    ? "לא (ברירת מחדל)"
+                    : manualMissionPerformed === "TRUE"
+                    ? "כן"
+                    : manualMissionPerformed === true
+                    ? "כן"
+                    : updateIsTheLeadRelevant}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">בוצעה בתאריך</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].DateManualMissionPerformed*/}
+                  {manualMissionPerformedDateNewFormat}
                 </p>
               </div>
 
@@ -795,8 +1057,7 @@ function LeadFullDisplay1(props) {
                   משימה מוטלת על איש צוות
                 </p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].manualMissionAssociatedToTeamMember*/}
+                  {manualMissionAssociatedToTeamMember}
                 </p>
               </div>
             </div>
@@ -804,14 +1065,23 @@ function LeadFullDisplay1(props) {
         </div>
 
         <div className="leadFullDisplay__section">
-          <FacebookIcon style={{ color: "lightgray", margin: ".4rem 0 0 0" }} />
+          <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+            <FacebookIcon
+              style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+            />
+          </Tooltip>
           <h3 className="leadFullDisplay__subtitle">אירוע 1</h3>
 
           <div className="leadFullDisplay__contentContainer">
             <div className="leadFullDisplay__contentContainer--right">
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">שם אירוע</p>
-                <p className="leadFullDisplay__content--text">ליד מתעניין</p>
+                <p
+                  className="leadFullDisplay__content--text"
+                  style={{ color: "gray" }}
+                >
+                  ליד מתעניין
+                </p>
               </div>
 
               <div className="leadFullDisplay__content">
@@ -840,14 +1110,21 @@ function LeadFullDisplay1(props) {
         </div>
 
         <div className="leadFullDisplay__section">
-          <FacebookIcon style={{ color: "lightgray", margin: ".4rem 0 0 0" }} />
+          <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+            <FacebookIcon
+              style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+            />
+          </Tooltip>
           <h3 className="leadFullDisplay__subtitle">אירוע 2</h3>
 
           <div className="leadFullDisplay__contentContainer">
             <div className="leadFullDisplay__contentContainer--right">
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">שם אירוע</p>
-                <p className="leadFullDisplay__content--text">
+                <p
+                  className="leadFullDisplay__content--text"
+                  style={{ color: "gray" }}
+                >
                   ליד היה בשיעור ניסיון
                 </p>
               </div>
@@ -879,7 +1156,11 @@ function LeadFullDisplay1(props) {
         </div>
 
         <div className="leadFullDisplay__section">
-          <FacebookIcon style={{ color: "lightgray", margin: ".4rem 0 0 0" }} />
+          <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+            <FacebookIcon
+              style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+            />
+          </Tooltip>
           <h3 className="leadFullDisplay__subtitle">רכישה</h3>
 
           <div className="leadFullDisplay__contentContainer">

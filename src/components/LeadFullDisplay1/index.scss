@@ -43,6 +43,16 @@
       font-size: 1rem;
     }
   }
+
+  &__modalSection {
+    margin: 3.5rem 0;
+  }
+  &__modalInputContainer {
+    h4 {
+      font-size: 1.8rem;
+      color: $color-secondary-dark;
+    }
+  }
 }
 
 @media (min-width: 760px) {
@@ -64,7 +74,7 @@
     }
     &__content {
       flex: 1;
-      padding: 1rem 0;
+      padding: 1rem;
     }
   }
 }

@@ -16,10 +16,14 @@ import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { heIL } from "@material-ui/core/locale";
 
-const theme = createMuiTheme({
-  direction: "rtl", // Both here and <body dir="rtl">
-});
+const theme = createMuiTheme(
+  {
+    direction: "rtl", // Both here and <body dir="rtl">
+  },
+  heIL
+);
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
