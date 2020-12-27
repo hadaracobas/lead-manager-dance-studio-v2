@@ -389,9 +389,88 @@ function LeadFullDisplay1(props) {
 
     setManualMissionCreatedDate(getCurrentDate());
   };
-  console.log(manulMissionCreatedDate);
 
-  // FILTER DATA ACCORDING TO ID NUMBER
+  // UPDATE EVENT 1 ACTION TAKEN
+  const [updateEvent1ActionTaken, setUpdateEvent1ActionTaken] = useState("");
+  const onChangeUpdateEvent1ActionTaken = (event) => {
+    setUpdateEvent1ActionTaken(event.target.value);
+  };
+
+  // UPDATE EVENT 1 DATA OF EVENT
+  const [updateEvent1Date, setUpdateEvent1Date] = useState("");
+  const onChangeUpdateEvent1Date = (event) => {
+    setUpdateEvent1Date(event.target.value);
+  };
+  const [updateEvent1DateNewFormat, setUpdateEvent1DateNewFormat] = useState(
+    ""
+  );
+  useEffect(() => {
+    convertDateFromDatePickerToNormalDateFormat(
+      updateEvent1Date,
+      setUpdateEvent1DateNewFormat
+    );
+  }, [updateEvent1Date]);
+
+  // UPDATE EVENT 1 - STATUS EVENT
+  const [updateEvent1StatsEvent, setUpdateEvent1StatsEvent] = useState("");
+  const onChangeUpdateEvent1StatusEvent = (event) => {
+    setUpdateEvent1StatsEvent(event.target.value);
+  };
+
+  // UPDATE EVENT 2 ACTION TAKEN
+  const [updateEvent2ActionTaken, setUpdateEvent2ActionTaken] = useState("");
+  const onChangeUpdateEvent2ActionTaken = (event) => {
+    setUpdateEvent2ActionTaken(event.target.value);
+  };
+
+  // UPDATE EVENT 2 DATA OF EVENT
+  const [updateEvent2Date, setUpdateEvent2Date] = useState("");
+  const onChangeUpdateEvent2Date = (event) => {
+    setUpdateEvent2Date(event.target.value);
+  };
+  const [updateEvent2DateNewFormat, setUpdateEvent2DateNewFormat] = useState(
+    ""
+  );
+  useEffect(() => {
+    convertDateFromDatePickerToNormalDateFormat(
+      updateEvent2Date,
+      setUpdateEvent2DateNewFormat
+    );
+  }, [updateEvent2Date]);
+
+  // UPDATE EVENT 2 - STATUS EVENT
+  const [updateEvent2StatsEvent, setUpdateEvent2StatsEvent] = useState("");
+  const onChangeUpdateEvent2StatusEvent = (event) => {
+    setUpdateEvent2StatsEvent(event.target.value);
+  };
+
+  // UPDATE LEAD PURCHASED
+  const [updateLeadPurchased, setUpdateLeadPurchased] = useState(false);
+  const onchangeUpdateLeadPurchased = (e) => {
+    setUpdateLeadPurchased(e.target.checked);
+  };
+
+  // UPDATE PURCHASED AMOUNT
+  const [updatePurchasedAmount, setUpdatePurchasedAmount] = useState("");
+  const onChangeUpdatePurchasedAmount = (event) => {
+    setUpdatePurchasedAmount(event.target.value);
+  };
+
+  // UPDATE LEAD COST
+  const [updateLeadCost, setUpdateLeadCost] = useState("");
+  const onChangeUpdateLeadCost = (event) => {
+    setUpdateLeadCost(event.target.value);
+  };
+
+  // UPDATE LEAD RATE
+  const [updateLeadRate, setUpdateLeadRate] = useState("");
+  const onChangeUpdateLeadRate = (event) => {
+    setUpdateLeadRate(event.target.value);
+  };
+
+  console.log(updateLeadRate);
+
+  // FILTER AND GET DATA ACCORDING TO ID NUMBER
   const filterAndGetRelevantLead = () => {
     if (props.data) {
       let filterTheLead = props.data.filter((lead) => lead.ID == id);
@@ -430,6 +509,16 @@ function LeadFullDisplay1(props) {
         setManualMissionAssociatedToTeamMember(
           filterTheLead[0].manualMissionAssociatedToTeamMember
         );
+        setUpdateEvent1ActionTaken(filterTheLead[0].event1Interest);
+        setUpdateEvent1Date(filterTheLead[0].dateEvent1);
+        setUpdateEvent1StatsEvent(filterTheLead[0].statusEvent1);
+        setUpdateEvent2ActionTaken(filterTheLead[0].event2WasTrialLesson);
+        setUpdateEvent2Date(filterTheLead[0].dateEvent2);
+        setUpdateEvent2StatsEvent(filterTheLead[0].statusEvent2);
+        setUpdateLeadPurchased(filterTheLead[0].leadPurchased);
+        setUpdatePurchasedAmount(filterTheLead[0].PurchasedAmount);
+        setUpdateLeadCost(filterTheLead[0].LeadCost);
+        setUpdateLeadRate(filterTheLead[0].LeadRate);
       }
     }
   };
@@ -466,6 +555,16 @@ function LeadFullDisplay1(props) {
           manualMissionPerformed: manualMissionPerformed,
           DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
           manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
+          event1Interest: updateEvent1ActionTaken,
+          dateEvent1: updateEvent1DateNewFormat,
+          statusEvent1: updateEvent1StatsEvent,
+          event2WasTrialLesson: updateEvent2ActionTaken,
+          dateEvent2: updateEvent2DateNewFormat,
+          statusEvent2: updateEvent2StatsEvent,
+          leadPurchased: updateLeadPurchased,
+          PurchasedAmount: updatePurchasedAmount,
+          LeadCost: updateLeadCost,
+          LeadRate: updateLeadRate,
         }
       )
       .then((res) => {
@@ -831,25 +930,255 @@ function LeadFullDisplay1(props) {
                       />
                     </div>
                   )}
-                </div>
-                <div className="leadFullDisplay__modalInputContainer">
-                  <TextField
-                    id="standard-basic"
-                    label="משימה מוטלת על איש צוות"
-                    fullWidth={true}
-                    dir="rtl"
-                    onChange={onChangeManualMissionAssociatedToTeamMember}
-                    value={manualMissionAssociatedToTeamMember}
-                  />
+
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="standard-basic"
+                      label="משימה מוטלת על איש צוות"
+                      fullWidth={true}
+                      dir="rtl"
+                      onChange={onChangeManualMissionAssociatedToTeamMember}
+                      value={manualMissionAssociatedToTeamMember}
+                    />
+                  </div>
                 </div>
                 {/* end .__modalSection */}
+
+                <div className="leadFullDisplay__modalSection">
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <h4>אירוע 1 - ליד מתעניין</h4>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      className={classesSelect.formControl}
+                      dir="rtl"
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        פעולה שהתבצעה
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={updateEvent1ActionTaken}
+                        onChange={onChangeUpdateEvent1ActionTaken}
+                      >
+                        <MenuItem value={"התקשרנו ללא מענה"}>
+                          התקשרנו ללא מענה
+                        </MenuItem>
+                        <MenuItem value={"התקשרנו ונקבע שיעור ניסיון"}>
+                          התקשרנו ונקבע שיעור ניסיון
+                        </MenuItem>
+                        <MenuItem value={"התקשרנו ולא רלוונטי"}>
+                          התקשרנו ולא רלוונטי
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="date"
+                      label="תאריך אירוע"
+                      type="date"
+                      defaultValue="2020-05-24"
+                      todayLabel="היום"
+                      value={updateEvent1Date}
+                      onChange={onChangeUpdateEvent1Date}
+                      className={classesDatePicker.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      className={classesSelect.formControl}
+                      dir="rtl"
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        סטטוס אירוע
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={updateEvent1StatsEvent}
+                        onChange={onChangeUpdateEvent1StatusEvent}
+                      >
+                        <MenuItem value={"קנה"}>קנה</MenuItem>
+                        <MenuItem value={"מחכה לתיאום פגישה"}>
+                          מחכה לתיאום פגישה
+                        </MenuItem>
+                        <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
+                        <MenuItem value={"חושב"}>חושב</MenuItem>
+                        <MenuItem value={"לא מעוניין"}>לא מעוניין</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+                {/* end .__modalSection */}
+                <div className="leadFullDisplay__modalSection">
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <h4>אירוע 2 - ליד היה בשיעור ניסיון</h4>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      className={classesSelect.formControl}
+                      dir="rtl"
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        פעולה שהתבצעה
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={updateEvent2ActionTaken}
+                        onChange={onChangeUpdateEvent2ActionTaken}
+                      >
+                        <MenuItem value={"הגיע לשיעור ניסיון"}>
+                          הגיע לשיעור ניסיון
+                        </MenuItem>
+                        <MenuItem value={"הגיע לשיעור ניסיון - ליצור קשר"}>
+                          הגיע לשיעור ניסיון - ליצור קשר
+                        </MenuItem>
+                        <MenuItem value={"הגיע לשיעור ניסיון - מחכה לרישום"}>
+                          הגיע לשיעור ניסיון - מחכה לרישום
+                        </MenuItem>
+                        <MenuItem value={"הגיע לשיעור ניסיון - לא רלוונטי"}>
+                          הגיע לשיעור ניסיון - לא רלוונטי
+                        </MenuItem>
+                        <MenuItem
+                          value={
+                            "הגיע לשיעור ניסיון - מעוניין בשיעור ניסיון נוסף"
+                          }
+                        >
+                          הגיע לשיעור ניסיון - מעוניין בשיעור ניסיון נוסף
+                        </MenuItem>
+                        <MenuItem value={"מעוניין ביצירת קשר נוספת"}>
+                          מעוניין ביצירת קשר נוספת
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="date"
+                      label="תאריך אירוע"
+                      type="date"
+                      defaultValue="2020-05-24"
+                      todayLabel="היום"
+                      value={updateEvent2Date}
+                      onChange={onChangeUpdateEvent2Date}
+                      className={classesDatePicker.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      className={classesSelect.formControl}
+                      dir="rtl"
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        סטטוס אירוע
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={updateEvent2StatsEvent}
+                        onChange={onChangeUpdateEvent2StatusEvent}
+                      >
+                        <MenuItem value={"קנה"}>קנה</MenuItem>
+                        <MenuItem value={"מחכה לתיאום פגישה"}>
+                          מחכה לתיאום פגישה
+                        </MenuItem>
+                        <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
+                        <MenuItem value={"חושב"}>חושב</MenuItem>
+                        <MenuItem value={"לא מעוניין"}>לא מעוניין</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+                {/* end .__modalSection */}
+                <div className="leadFullDisplay__modalSection">
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <h4>רכישה</h4>
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <p dir="rtl">האם הליד רכש?</p>
+                    <FormControlLabel
+                      dir="rtl"
+                      control={
+                        <Checkbox
+                          checked={updateLeadPurchased}
+                          color="primary"
+                          name="updateIsTheLeadRelevant"
+                          onChange={onchangeUpdateLeadPurchased}
+                        />
+                      }
+                      label="התבצעה רכישה"
+                    />
+                  </div>
+                  {updateLeadPurchased && (
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="standard-basic"
+                        label="סכום רכישה"
+                        fullWidth={true}
+                        dir="rtl"
+                        type="number"
+                        onChange={onChangeUpdatePurchasedAmount}
+                        value={updatePurchasedAmount}
+                      />
+                    </div>
+                  )}
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <TextField
+                      id="standard-basic"
+                      label="עלות ליד"
+                      fullWidth={true}
+                      dir="rtl"
+                      type="number"
+                      onChange={onChangeUpdateLeadCost}
+                      value={updateLeadCost}
+                    />
+                  </div>
+                  <div className="leadFullDisplay__modalInputContainer">
+                    <FormControl
+                      dir="rtl"
+                      className={classesSelect.formControl}
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        דירוג ליד
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={updateLeadRate}
+                        onChange={onChangeUpdateLeadRate}
+                      >
+                        <MenuItem value={"1"}>1</MenuItem>
+                        <MenuItem value={"2"}>2</MenuItem>
+                        <MenuItem value={"3"}>3</MenuItem>
+                        <MenuItem value={"4"}>4</MenuItem>
+                        <MenuItem value={"5"}>5</MenuItem>
+                        <MenuItem value={"6"}>6</MenuItem>
+                        <MenuItem value={"7"}>7</MenuItem>
+                        <MenuItem value={"8"}>8</MenuItem>
+                        <MenuItem value={"9"}>9</MenuItem>
+                        <MenuItem value={"10"}>10</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+                {/* end .__modalSection */}
+
                 <div className="leadFullDisplay__modalSection">
                   <div
                     className="leadFullDisplay__modalInputContainer"
                     style={{ margin: "1rem 0" }}
                   >
                     <Button variant="contained" onClick={updateTheLeadReq}>
-                      עדכון
+                      עדכון ליד
                     </Button>
                   </div>
                 </div>
@@ -1087,21 +1416,21 @@ function LeadFullDisplay1(props) {
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">פעולה שהתבצעה</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].event1Interest*/}
+                  {updateEvent1ActionTaken}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">תאריך אירוע</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].dateEvent1*/}
+                  {updateEvent1DateNewFormat}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">סטטוס אירוע</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].statusEvent1*/}
+                  {updateEvent1StatsEvent}
                 </p>
               </div>
             </div>
@@ -1132,22 +1461,21 @@ function LeadFullDisplay1(props) {
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">פעולה שהתבצעה</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].event2WasTrialLesson*/}
+                  {updateEvent2ActionTaken}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">תאריך אירוע</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].dateEvent2*/}
+                  {updateEvent2DateNewFormat}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">סטטוס אירוע</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].statusEvent2*/}
+                  {updateEvent2StatsEvent}
                 </p>
               </div>
             </div>
@@ -1168,22 +1496,31 @@ function LeadFullDisplay1(props) {
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">ליד רכש?</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && isLeadPurchasedConvertToString()*/}
+                  {updateLeadPurchased === null
+                    ? "לא (ברירת מחדל)"
+                    : updateLeadPurchased === false
+                    ? "לא (ברירת מחדל)"
+                    : updateLeadPurchased === "FALSE"
+                    ? "לא (ברירת מחדל)"
+                    : updateLeadPurchased === "TRUE"
+                    ? "כן"
+                    : updateLeadPurchased === true
+                    ? "כן"
+                    : updateLeadPurchased}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">סכום רכישה</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData &&
-                    relevantObjLeadData[0].PurchasedAmount*/}
+                  {`${updatePurchasedAmount} ש"ח`}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">עלות ליד</p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].LeadCost*/}
+                  {`${updateLeadCost} ש"ח`}
                 </p>
               </div>
 
@@ -1192,7 +1529,7 @@ function LeadFullDisplay1(props) {
                   דירוג ליד 1-10
                 </p>
                 <p className="leadFullDisplay__content--text">
-                  {/*relevantObjLeadData && relevantObjLeadData[0].LeadRate*/}
+                  {updateLeadRate}
                 </p>
               </div>
             </div>
