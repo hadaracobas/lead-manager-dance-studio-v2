@@ -12,9 +12,11 @@ import {
   Select,
   Checkbox,
   FormControlLabel,
+  CircularProgress,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStylesSelect = makeStyles((theme) => ({
   formControl: {
@@ -26,7 +28,37 @@ const useStylesSelect = makeStyles((theme) => ({
   },
 }));
 
+const useStylesLoading = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
+
+const useStylesAlert = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function AddNewLead(props) {
+  // LOADING UPDATE
+  const classesLoading = useStylesLoading();
+  const [showLoadingUpdate, setShowLoadingUpdate] = useState(false);
+
+  // ALERT MESSAGE
+  const classesAlert = useStylesAlert();
+  const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+  const [openAlertError, setOpenAlertError] = useState(false);
+
   // name state
   const [name, setName] = useState("");
 
@@ -159,9 +191,28 @@ function AddNewLead(props) {
     return currentHour;
   };
 
+  // check to which component redirect after submit form
+  const [redirectAfterSubmit, setRedirectAfterSubmit] = useState("");
+  const onClickRedirectAfterSubmitToAddNewLead = () => {
+    setRedirectAfterSubmit("add-new-lead");
+  };
+  const onClickRedirectAfterSubmitToLeadPage = () => {
+    setRedirectAfterSubmit("lead-page");
+  };
+  const redirectToPageFunc = () => {
+    if (redirectAfterSubmit === "add-new-lead") {
+      window.location.href = "/add-new-lead";
+    } else if (redirectAfterSubmit === "lead-page") {
+      window.location.href = `/${props.data.length + 1}`;
+    } else {
+      window.location.href = "/add-new-lead";
+    }
+  };
+
   // Send Date To Database (google sheet)
   const submitDataToDatabase = (e) => {
     e.preventDefault();
+    setShowLoadingUpdate(true);
     axios
       .post(
         "https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44",
@@ -202,10 +253,24 @@ function AddNewLead(props) {
       )
       .then(function (response) {
         console.log(response);
-        window.location.reload();
+        setShowLoadingUpdate(false);
+        setOpenAlertSuccess(true);
+
+        setTimeout(function () {
+          setOpenAlertSuccess(false);
+          redirectToPageFunc();
+          setRedirectAfterSubmit("");
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
+        setShowLoadingUpdate(false);
+        setOpenAlertError(true);
+
+        setTimeout(function () {
+          setOpenAlertError(false);
+          setRedirectAfterSubmit("");
+        }, 1000);
       });
   };
 
@@ -374,11 +439,38 @@ function AddNewLead(props) {
         </div>
         {/* end --leadDetailsContainer */}
 
-        <div className="addNewLead__form--submitBtn">
-          <Button type="submit" variant="contained">
-            הוסף ליד
-          </Button>
-        </div>
+        {showLoadingUpdate ? (
+          <div style={{ margin: "1rem 0" }}>
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <div className="addNewLead__form--submitBtn">
+            <Button
+              onClick={onClickRedirectAfterSubmitToLeadPage}
+              type="submit"
+              variant="contained"
+            >
+              הוסף ליד והמשך לעמוד ליד
+            </Button>
+            <Button
+              onClick={onClickRedirectAfterSubmitToAddNewLead}
+              type="submit"
+              variant="contained"
+            >
+              הוסף ליד והמשך להוספת ליד נוסף
+            </Button>
+          </div>
+        )}
+        {openAlertSuccess && (
+          <Alert dir="rtl" severity="success">
+            הליד הוסף בהצלחה!
+          </Alert>
+        )}
+        {openAlertError && (
+          <Alert dir="rtl" severity="error">
+            שגיאה. לא הצלחנו להוסיף את הליד. אנא נסה שנית.
+          </Alert>
+        )}
       </form>
     </div>
   );

@@ -23,6 +23,7 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FaceIcon from "@material-ui/icons/Face";
 import CardMembershipIcon from "@material-ui/icons/CardMembership";
+import Link from "@material-ui/core/Link";
 
 const StyledMenu = withStyles({
   paper: {

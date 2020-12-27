@@ -16,7 +16,9 @@
     }
 
     &--submitBtn {
-      margin-top: 1rem;
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: space-around;
     }
 
     &--personalDetailsContainer {

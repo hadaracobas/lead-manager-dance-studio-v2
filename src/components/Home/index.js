@@ -8,6 +8,7 @@ import AddNewLead from "../AddNewLead";
 import SearchLead from "../SearchLead";
 import LeadFullDisplay from "../LeadFullDisplay";
 import LeadFullDisplay1 from "../LeadFullDisplay1";
+import GeneralLeadsList from "../GeneralLeadsList";
 
 function Home() {
   const [data, setData] = useState(false);
@@ -30,7 +31,7 @@ function Home() {
       manualMissionDescription: "להתקשר בשבוע הבא על מנת לקחת פרטי כרטיס אשראי",
       manualTypeMission: "תזכורת",
       dateManualMissionCreated: "18/12/2020",
-      DeadlineDateManualMission: "2020-05-24",
+      DeadlineDateManualMission: "29/12/2020",
       manualMissionCreateByTeamMember: "רועי כהן",
       manualMissionAssociatedToTeamMember: "לירון לוי",
       manualMissionPerformed: "TRUE",
@@ -62,10 +63,10 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "מתעניין",
       recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
-      manualMissionDescription: null,
+      manualMissionDescription: " משימה לדוגמא תיאור משימה לדוגמא תיאור",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "31/12/2020",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -97,10 +98,10 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "לרשום כמנוי קבוע",
-      manualMissionDescription: null,
+      manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "1/1/2021",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -308,6 +309,9 @@ function Home() {
     */}
       <div className="home">
         <Switch>
+          <Route exact path="/">
+            <GeneralLeadsList data={exampleData} />
+          </Route>
           <Route path="/add-new-lead">
             <AddNewLead data={exampleData} />
           </Route>

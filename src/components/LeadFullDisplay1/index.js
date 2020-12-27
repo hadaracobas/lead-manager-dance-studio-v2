@@ -28,7 +28,9 @@ import {
   Select,
   MenuItem,
   Tooltip,
+  CircularProgress,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStylesModal = makeStyles((theme) => ({
   modal: {
@@ -80,6 +82,27 @@ const useStylesToolTip = makeStyles((theme) => ({
   },
 }));
 
+const useStylesLoading = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
+
+const useStylesAlert = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function LeadFullDisplay1(props) {
   const { id } = useParams();
   // --- START modal states and functions
@@ -97,6 +120,15 @@ function LeadFullDisplay1(props) {
 
   // TOOLTIP FACEBOK ICON
   const classesToolTip = useStylesToolTip();
+
+  // LOADING UPDATE
+  const classesLoading = useStylesLoading();
+  const [showLoadingUpdate, setShowLoadingUpdate] = useState(false);
+
+  // ALERT MESSAGE
+  const classesAlert = useStylesAlert();
+  const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+  const [openAlertError, setOpenAlertError] = useState(false);
 
   // UPDATE NAME
   const [updateName, setUpdateName] = useState("");
@@ -388,6 +420,7 @@ function LeadFullDisplay1(props) {
     setManualMissionAssociatedToTeamMember("");
 
     setManualMissionCreatedDate(getCurrentDate());
+    alert("תאריך יצירת משימה התעדכן לתאריך של היום");
   };
 
   // UPDATE EVENT 1 ACTION TAKEN
@@ -528,6 +561,7 @@ function LeadFullDisplay1(props) {
 
   // API UPDATE REQUEST FUNCTION
   const updateTheLeadReq = async () => {
+    setShowLoadingUpdate(true);
     const updateDataSheet = await axios
       .patch(
         `https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44/${
@@ -569,14 +603,25 @@ function LeadFullDisplay1(props) {
       )
       .then((res) => {
         console.log(res);
+        setShowLoadingUpdate(false);
+        setOpenAlertSuccess(true);
+
         setLastCurrentUpdateDate(getCurrentDate());
         setLastCurrentUpdateHour(getCurrentHour());
-        alert("lead is updated,  thanks! (;");
-        handleCloseModal();
-        //window.location.reload();
+
+        setTimeout(function () {
+          setOpenAlertSuccess(false);
+          handleCloseModal();
+        }, 1200);
       })
       .catch((err) => {
         console.log(err);
+        setShowLoadingUpdate(false);
+        setOpenAlertError(true);
+        setTimeout(function () {
+          setOpenAlertError(false);
+          handleCloseModal();
+        }, 1200);
       });
   };
 
@@ -832,7 +877,7 @@ function LeadFullDisplay1(props) {
                       style={{ color: "gray" }}
                       onClick={onClickResetManualMissionAndSetNewCreatedDate}
                     >
-                      עדכון משימה חדשה
+                      לחץ כאן לפני יצירת משימה חדשה
                     </a>
                   </div>
                   <div className="leadFullDisplay__modalInputContainer">
@@ -1173,14 +1218,33 @@ function LeadFullDisplay1(props) {
                 {/* end .__modalSection */}
 
                 <div className="leadFullDisplay__modalSection">
-                  <div
-                    className="leadFullDisplay__modalInputContainer"
-                    style={{ margin: "1rem 0" }}
-                  >
-                    <Button variant="contained" onClick={updateTheLeadReq}>
-                      עדכון ליד
-                    </Button>
-                  </div>
+                  {showLoadingUpdate ? (
+                    <div
+                      className="leadFullDisplay__modalInputContainer"
+                      style={{ margin: "1rem 0" }}
+                    >
+                      <CircularProgress color="secondary" />
+                    </div>
+                  ) : (
+                    <div
+                      className="leadFullDisplay__modalInputContainer"
+                      style={{ margin: "1rem 0" }}
+                    >
+                      <Button variant="contained" onClick={updateTheLeadReq}>
+                        עדכון ליד
+                      </Button>
+                    </div>
+                  )}
+                  {openAlertSuccess && (
+                    <Alert dir="rtl" severity="success">
+                      הליד עודכן בהצלחה!
+                    </Alert>
+                  )}
+                  {openAlertError && (
+                    <Alert dir="rtl" severity="error">
+                      שגיאה. היד לא עודכן, אנא נסה שנית.
+                    </Alert>
+                  )}
                 </div>
                 {/* end .__modalSection */}
               </div>
