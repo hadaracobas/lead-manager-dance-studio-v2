@@ -31,6 +31,17 @@
   }
 }
 
+#generalLeadsList__missionBox {
+  background-color: #fff;
+  border: 1px solid #eee;
+  //background-color: lighten(#000, 20%);
+
+  .generalLeadsList__box--title,
+  .generalLeadsList__box--totalNum {
+    //color: #fff;
+  }
+}
+
 @media (min-width: 760px) {
 }
 
@@ -39,12 +50,13 @@
     //border: 1px solid black;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     overflow: auto;
     margin: 1.5rem 0 0 0;
 
     &__box {
-      height: 47rem;
+      height: 45rem;
+      width: 30.1rem;
     }
   }
 }

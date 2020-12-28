@@ -146,10 +146,14 @@ function SearchLead(props) {
             <LeadSmallDisplay
               key={index}
               leadName={lead.name}
-              leadStep={lead.leadStep}
-              leadRate={lead.leadRate}
               leadTel={lead.tel}
+              leadStep={lead.leadStep}
+              leadRate={lead.LeadRate}
               leadId={lead.ID}
+              leadManualMissionDescription={lead.manualMissionDescription}
+              manualMissionPerformed={lead.manualMissionPerformed}
+              DeadlineDateManualMission={lead.DeadlineDateManualMission}
+              DateManualMissionPerformed={lead.DateManualMissionPerformed}
             />
           ))}
       </div>

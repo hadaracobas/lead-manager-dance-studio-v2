@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import AssignmentLateIcon from "@material-ui/icons/AssignmentLate";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import PanoramaWideAngleIcon from "@material-ui/icons/PanoramaWideAngle";
+
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Tooltip,
+} from "@material-ui/core";
 
 const useStylesCard = makeStyles({
   root: {
@@ -26,9 +33,43 @@ const useStylesCard = makeStyles({
   },
 });
 
+const useStylesToolTip = makeStyles((theme) => ({
+  fab: {
+    margin: theme.spacing(2),
+  },
+  absolute: {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+}));
+
 export default function LeadSmallDisplay(props) {
   const classesCard = useStylesCard();
   const bull = <span className={classesCard.bullet}>•</span>;
+
+  const [
+    checkIfLeadWithManualMission,
+    setCheckIfLeadWithManualMission,
+  ] = useState("");
+  const checkIfLeadWithManualMissionFunc = () => {
+    if (
+      props.manualMissionPerformed === "TRUE" ||
+      props.manualMissionPerformed === true
+    ) {
+      setCheckIfLeadWithManualMission("mission-performed");
+    } else if (props.leadManualMissionDescription === null) {
+      setCheckIfLeadWithManualMission("no-mission");
+    } else {
+      setCheckIfLeadWithManualMission("mission-is-open");
+    }
+  };
+  useEffect(() => {
+    checkIfLeadWithManualMissionFunc();
+  }, [props.manualMissionPerformed, props.leadManualMissionDescription]);
+
+  // TOOLTIP
+  const classesToolTip = useStylesToolTip();
 
   return (
     <div className="leadSmallDisplay">
@@ -62,6 +103,25 @@ export default function LeadSmallDisplay(props) {
             </Link>
           </CardActions>
           <p>דירוג ליד: {props.leadRate}</p>
+          <div>
+            {checkIfLeadWithManualMission === "no-mission" ? (
+              <Tooltip title="אין משימה">
+                <PanoramaWideAngleIcon />
+              </Tooltip>
+            ) : checkIfLeadWithManualMission === "mission-is-open" ? (
+              <Tooltip
+                title={`משימה פתוחה: ${props.leadManualMissionDescription} | דדליין: ${props.DeadlineDateManualMission}`}
+              >
+                <AssignmentLateIcon />
+              </Tooltip>
+            ) : checkIfLeadWithManualMission === "mission-performed" ? (
+              <Tooltip
+                title={`משימה בוצעה: ${props.leadManualMissionDescription} | תאריך ביצוע: ${props.DateManualMissionPerformed}`}
+              >
+                <AssignmentTurnedInIcon />
+              </Tooltip>
+            ) : null}
+          </div>
         </div>
         {/* end .leadSmallDisplay__bottom */}
       </Card>

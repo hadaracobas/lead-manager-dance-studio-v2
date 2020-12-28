@@ -1,49 +1,5 @@
 @import "../../App.scss";
 
-/*
-.home {
-  &__box {
-    margin: 1rem 0.3rem;
-    background-color: #eee;
-    padding: 5px;
-    // border: 1px solid lightgray;
-
-    &--title {
-      @include sectionTitle;
-    }
-    &--totalNum {
-      font-size: 1.4rem;
-    }
-  }
-  &__1 {
-    // border: 1px solid red;
-  }
-  &__2 {
-    // border: 1px solid yellow;
-  }
-  &__3 {
-    //  border: 1px solid green;
-  }
-  &__4 {
-    // border: 1px solid orange;
-  }
-}
-
-@media (min-width: 760px) {
-}
-
-@media (min-width: 1200px) {
-  .home {
-    //border: 1px solid black;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    overflow: auto;
-    margin: 1.5rem 0 0 0;
-  }
-}
-*/
-
 .home {
   padding: 1.2rem;
 }

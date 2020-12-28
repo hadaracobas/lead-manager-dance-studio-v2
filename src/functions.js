@@ -41,21 +41,21 @@ export const getCurrentHour = () => {
 
 // return all the leads that are in step "מתעניין"
 export const filterAllLeadsInStep1 = (data) => {
-  let step1Leads = data.filter((lead) => lead.leadStep === "מתעניין");
+  let step1Leads = data && data.filter((lead) => lead.leadStep === "מתעניין");
   return step1Leads;
 };
 
 // return all the leads that are in step "הוזמן לשיעור ניסיון"
 export const filterAllLeadsInStep2 = (data) => {
-  let step2Leads = data.filter(
-    (lead) => lead.leadStep === "הוזמן לשיעור ניסיון"
-  );
+  let step2Leads =
+    data && data.filter((lead) => lead.leadStep === "הוזמן לשיעור ניסיון");
   return step2Leads;
 };
 
 // return all the leads that are in step "היה בשיעור ניסיון"
 export const filterAllLeadsInStep3 = (data) => {
-  let step3Leads = data.filter((lead) => lead.leadStep === "היה בשיעור ניסיון");
+  let step3Leads =
+    data && data.filter((lead) => lead.leadStep === "היה בשיעור ניסיון");
   return step3Leads;
 };
 
@@ -85,18 +85,20 @@ export const filterAllManualMissionWithDeadlineSoon = (data) => {
   let todayMs = today.getTime();
   let dateIn5DaysMs = dateIn5Days.getTime();
 
-  let filterAllMissionWithDeadlineSoon = data.filter((lead) => {
-    let missionDateJsFormat = convertDateBackInJsFormat(
-      lead.DeadlineDateManualMission
-    );
-    let missionDate = new Date(missionDateJsFormat);
-    let missionDateMs = missionDate.getTime();
-    return (
-      missionDateMs > todayMs &&
-      missionDateMs < dateIn5DaysMs &&
-      lead.manualMissionPerformed === null
-    );
-  });
+  let filterAllMissionWithDeadlineSoon =
+    data &&
+    data.filter((lead) => {
+      let missionDateJsFormat = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let missionDate = new Date(missionDateJsFormat);
+      let missionDateMs = missionDate.getTime();
+      return (
+        missionDateMs > todayMs &&
+        missionDateMs < dateIn5DaysMs &&
+        lead.manualMissionPerformed === null
+      );
+    });
 
   return filterAllMissionWithDeadlineSoon;
 };

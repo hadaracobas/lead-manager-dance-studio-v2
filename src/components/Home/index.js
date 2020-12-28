@@ -9,9 +9,20 @@ import SearchLead from "../SearchLead";
 import LeadFullDisplay from "../LeadFullDisplay";
 import LeadFullDisplay1 from "../LeadFullDisplay1";
 import GeneralLeadsList from "../GeneralLeadsList";
+import { CircularProgress } from "@material-ui/core";
+
+/*const useStylesLoading = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));*/
 
 function Home() {
   const [data, setData] = useState(false);
+
   const [exampleData, setExampleData] = useState([
     {
       ID: "1",
@@ -35,7 +46,7 @@ function Home() {
       manualMissionCreateByTeamMember: "רועי כהן",
       manualMissionAssociatedToTeamMember: "לירון לוי",
       manualMissionPerformed: "TRUE",
-      DateManualMissionPerformed: "2020-06-27",
+      DateManualMissionPerformed: "27/6/2020",
       isTheLeadRelevant: "TRUE",
       leadPurchased: "TRUE",
       PurchasedAmount: "2200",
@@ -203,13 +214,13 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "הוזמן לשיעור ניסיון",
       recommendedSystemMission: "לתזכר שיעור ניסיון",
-      manualMissionDescription: null,
+      manualMissionDescription: "להתקשר פעם נוספת בעוד יומיים",
       manualTypeMission: null,
       dateManualMissionCreated: null,
       DeadlineDateManualMission: null,
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
-      manualMissionPerformed: null,
+      manualMissionPerformed: "TRUE",
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
@@ -273,44 +284,21 @@ function Home() {
 
   // disable to save cost of request during work
 
-  /*useEffect(() => {
+  /* useEffect(() => {
     getDataFromSheet();
   }, []);*/
   //console.log("data from sheet: ", data);
   return (
     <>
-      {/*
-        <div className="home">
-      <div className="home__1 home__box">
-        <h2 className="home__box--title">מתעניינים</h2>
-        <p className="home__box--totalNum">סה"כ: 256</p>
-        <LeadSmallDisplay />
-        <LeadSmallDisplay />
-      </div>
-      <div className="home__2 home__box">
-        <h2 className="home__box--title">הוזמנו לשיעור ניסיון</h2>
-        <p className="home__box--totalNum">סה"כ: 256</p>
-        <LeadSmallDisplay />
-        <LeadSmallDisplay />
-      </div>
-      <div className="home__3 home__box">
-        <h2 className="home__box--title">היו בשיעור ניסיון</h2>
-        <p className="home__box--totalNum">סה"כ: 256</p>
-        <LeadSmallDisplay />
-        <LeadSmallDisplay />
-      </div>
-      <div className="home__4 home__box">
-        <h2 className="home__box--title">משימות קרובות</h2> 
-        <p className="home__box--totalNum">סה"כ: 256</p>
-        <LeadSmallDisplay />
-        <LeadSmallDisplay />
-      </div>
-    </div> 
-    */}
+      {/* <CircularProgress color="secondary" /> */}
       <div className="home">
         <Switch>
           <Route exact path="/">
-            <GeneralLeadsList data={exampleData} />
+            {exampleData ? (
+              <GeneralLeadsList data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Route>
           <Route path="/add-new-lead">
             <AddNewLead data={exampleData} />

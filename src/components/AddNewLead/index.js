@@ -217,7 +217,6 @@ function AddNewLead(props) {
       .post(
         "https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44",
         {
-          ID: props.data.length + 1,
           addedDate: getCurrentDate(),
           addedHour: getCurrentHour(),
           leadSource: leadSource,

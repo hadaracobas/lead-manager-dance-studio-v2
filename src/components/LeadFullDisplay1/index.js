@@ -49,6 +49,21 @@ const useStylesModal = makeStyles((theme) => ({
   },
 }));
 
+const useStylesModalDelete = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    direction: "rtl",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 const useStylesSelect = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -104,8 +119,10 @@ function Alert(props) {
 }
 
 function LeadFullDisplay1(props) {
+  // GET ID OF LEAD
   const { id } = useParams();
-  // --- START modal states and functions
+
+  // MODAL
   const classesModal = useStylesModal();
   const [openModal, setOpenModal] = useState(false);
 
@@ -116,9 +133,56 @@ function LeadFullDisplay1(props) {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  // ---*** END modal states and functions
 
-  // TOOLTIP FACEBOK ICON
+  //MODAL DELETE
+  const classesModalDelete = useStylesModalDelete();
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const handleOpenModalDelete = () => {
+    setOpenModalDelete(true);
+  };
+  const handleCloseModalDelete = () => {
+    setOpenModalDelete(false);
+  };
+
+  // LOADING DELETE
+  const [showLoadingDelete, setShowLoadingDelete] = useState(false);
+
+  // ALERT MESSAGE DELETE
+  const [openAlertSuccessDelete, setOpenAlertSuccessDelete] = useState(false);
+  const [openAlertErrorDelete, setOpenAlertErrorDelete] = useState(false);
+
+  // API DELETE FUNCTION REQUEST
+  const deleteTheLeadReq = async () => {
+    setShowLoadingDelete(true);
+    const deleteRowInDataSheet = await axios
+      .delete(
+        `https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44/${
+          id - 1
+        }`
+      )
+      .then((res) => {
+        console.log(res);
+        setShowLoadingDelete(false);
+        setOpenAlertSuccessDelete(true);
+
+        setTimeout(function () {
+          setOpenAlertSuccessDelete(false);
+          handleCloseModalDelete();
+          window.location.href = "/";
+        }, 1200);
+      })
+      .catch((err) => {
+        console.log(err);
+        setShowLoadingDelete(false);
+        setOpenAlertErrorDelete(true);
+        setTimeout(function () {
+          setOpenAlertErrorDelete(false);
+          handleCloseModalDelete();
+        }, 1200);
+      });
+  };
+
+  // TOOLTIP
   const classesToolTip = useStylesToolTip();
 
   // LOADING UPDATE
@@ -630,8 +694,72 @@ function LeadFullDisplay1(props) {
       <div className="leadFullDisplay">
         <div className="leadFullDisplay__edit">
           <EditIcon onClick={handleOpenModal} />
-          <DeleteIcon />
+          <DeleteIcon onClick={handleOpenModalDelete} />
         </div>
+
+        <div className="leadFullDisplay__modalDeleteContainer">
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classesModalDelete.modal}
+            open={openModalDelete}
+            onClose={handleCloseModalDelete}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={openModalDelete}>
+              <div
+                className={classesModalDelete.paper}
+                style={{ textAlign: "right" }}
+                dir="rtl"
+              >
+                <div className="leadFullDisplay__modalDeleteSection">
+                  <div className="leadFullDisplay__modalDeleteInputContainer">
+                    <h2>האם אתה בטוח שאתה רוצה למחוק ליד זה?</h2>
+                    <span>לאחר המחיקה לא יהיה ניתן לשחזר את הליד</span>
+                  </div>
+                </div>
+                {/* end .__modalDeleteSection */}
+
+                <div className="leadFullDisplay__modalDeleteSection">
+                  {showLoadingDelete ? (
+                    <div
+                      className="leadFullDisplay__modalDeleteInputContainer"
+                      style={{ margin: "1rem 0" }}
+                    >
+                      <CircularProgress color="secondary" />
+                    </div>
+                  ) : (
+                    <div
+                      className="leadFullDisplay__modalDeleteInputContainer"
+                      style={{ margin: "1rem 0" }}
+                    >
+                      <Button variant="contained" onClick={deleteTheLeadReq}>
+                        זה בסדר, מחק את הליד!
+                      </Button>
+                    </div>
+                  )}
+                  {openAlertSuccessDelete && (
+                    <Alert dir="rtl" severity="success">
+                      הליד נמחק בהצלחה!
+                    </Alert>
+                  )}
+                  {openAlertErrorDelete && (
+                    <Alert dir="rtl" severity="error">
+                      שגיאה. היד לא נמחק, אנא נסה שנית.
+                    </Alert>
+                  )}
+                </div>
+                {/* end .__modalDeleteSection */}
+              </div>
+            </Fade>
+          </Modal>
+        </div>
+        {/* end __modalDeleteContainer */}
+
         <div className="leadFullDisplay__modalContainer">
           <Modal
             aria-labelledby="transition-modal-title"

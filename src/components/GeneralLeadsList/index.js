@@ -44,6 +44,10 @@ function GeneralLeadsList(props) {
               leadStep={lead.leadStep}
               leadRate={lead.LeadRate}
               leadId={lead.ID}
+              leadManualMissionDescription={lead.manualMissionDescription}
+              manualMissionPerformed={lead.manualMissionPerformed}
+              DeadlineDateManualMission={lead.DeadlineDateManualMission}
+              DateManualMissionPerformed={lead.DateManualMissionPerformed}
             />
           ))}
       </div>
@@ -61,6 +65,10 @@ function GeneralLeadsList(props) {
               leadStep={lead.leadStep}
               leadRate={lead.LeadRate}
               leadId={lead.ID}
+              leadManualMissionDescription={lead.manualMissionDescription}
+              manualMissionPerformed={lead.manualMissionPerformed}
+              DeadlineDateManualMission={lead.DeadlineDateManualMission}
+              DateManualMissionPerformed={lead.DateManualMissionPerformed}
             />
           ))}
       </div>
@@ -78,11 +86,20 @@ function GeneralLeadsList(props) {
               leadStep={lead.leadStep}
               leadRate={lead.LeadRate}
               leadId={lead.ID}
+              leadManualMissionDescription={lead.manualMissionDescription}
+              manualMissionPerformed={lead.manualMissionPerformed}
+              DeadlineDateManualMission={lead.DeadlineDateManualMission}
+              DateManualMissionPerformed={lead.DateManualMissionPerformed}
             />
           ))}
       </div>
-      <div className="generalLeadsList__4 generalLeadsList__box">
-        <h2 className="generalLeadsList__box--title">לידים עם משימות קרובות</h2>
+      <div
+        className="generalLeadsList__4 generalLeadsList__box"
+        id="generalLeadsList__missionBox"
+      >
+        <h2 className="generalLeadsList__box--title">
+          לידים עם משימות פתוחות ל5 ימים הבאים
+        </h2>
         <p className="generalLeadsList__box--totalNum">
           סה"כ: {allLeadsWithManualMissionDeadlineSoon.length}
         </p>
@@ -95,6 +112,10 @@ function GeneralLeadsList(props) {
               leadStep={lead.leadStep}
               leadRate={lead.LeadRate}
               leadId={lead.ID}
+              leadManualMissionDescription={lead.manualMissionDescription}
+              manualMissionPerformed={lead.manualMissionPerformed}
+              DeadlineDateManualMission={lead.DeadlineDateManualMission}
+              DateManualMissionPerformed={lead.DateManualMissionPerformed}
             />
           ))}
       </div>
