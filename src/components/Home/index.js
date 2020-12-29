@@ -9,6 +9,7 @@ import SearchLead from "../SearchLead";
 import LeadFullDisplay from "../LeadFullDisplay";
 import LeadFullDisplay1 from "../LeadFullDisplay1";
 import GeneralLeadsList from "../GeneralLeadsList";
+import ActiveSubscribers from "../ActiveSubscribers";
 import { CircularProgress } from "@material-ui/core";
 
 /*const useStylesLoading = makeStyles((theme) => ({
@@ -84,9 +85,9 @@ function Home() {
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
-      PurchasedAmount: null,
+      PurchasedAmount: "223",
       LeadRate: null,
-      LeadCost: null,
+      LeadCost: "44",
       event1Interest: null,
       dateEvent1: null,
       statusEvent1: null,
@@ -269,6 +270,76 @@ function Home() {
       dateEvent2: null,
       statusEvent2: null,
     },
+    {
+      ID: "8",
+      addedDate: "18/12/2020",
+      addedHour: "16:13",
+      leadSource: "אתר",
+      name: "עמית לוי",
+      email: "cobi.sason@gmail.com",
+      tel: "054-9986363",
+      age: "ז",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpdateDate: "18/12/2020",
+      lastUpdateHour: "",
+      leadStep: "נרשם כמנוי",
+      recommendedSystemMission: "לרשום כמנוי קבוע",
+      manualMissionDescription: null,
+      manualTypeMission: null,
+      dateManualMissionCreated: null,
+      DeadlineDateManualMission: null,
+      manualMissionCreateByTeamMember: null,
+      manualMissionAssociatedToTeamMember: null,
+      manualMissionPerformed: "TRUE",
+      DateManualMissionPerformed: null,
+      isTheLeadRelevant: null,
+      leadPurchased: null,
+      PurchasedAmount: "250",
+      LeadRate: null,
+      LeadCost: "80",
+      event1Interest: null,
+      dateEvent1: null,
+      statusEvent1: null,
+      event2WasTrialLesson: null,
+      dateEvent2: null,
+      statusEvent2: null,
+    },
+    {
+      ID: "9",
+      addedDate: "18/12/2020",
+      addedHour: "16:13",
+      leadSource: "אתר",
+      name: "יואב שמולי",
+      email: "cobi.sason@gmail.com",
+      tel: "054-9986363",
+      age: "ז",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpdateDate: "18/12/2020",
+      lastUpdateHour: "",
+      leadStep: "נרשם כמנוי",
+      recommendedSystemMission: "לרשום כמנוי קבוע",
+      manualMissionDescription: null,
+      manualTypeMission: null,
+      dateManualMissionCreated: null,
+      DeadlineDateManualMission: null,
+      manualMissionCreateByTeamMember: null,
+      manualMissionAssociatedToTeamMember: null,
+      manualMissionPerformed: "TRUE",
+      DateManualMissionPerformed: null,
+      isTheLeadRelevant: null,
+      leadPurchased: null,
+      PurchasedAmount: "340",
+      LeadRate: null,
+      LeadCost: "60",
+      event1Interest: null,
+      dateEvent1: null,
+      statusEvent1: null,
+      event2WasTrialLesson: null,
+      dateEvent2: null,
+      statusEvent2: null,
+    },
   ]);
 
   const getDataFromSheet = () => {
@@ -299,6 +370,9 @@ function Home() {
             ) : (
               <CircularProgress color="secondary" />
             )}
+          </Route>
+          <Route path="/active-subscribers">
+            <ActiveSubscribers data={exampleData} />
           </Route>
           <Route path="/add-new-lead">
             <AddNewLead data={exampleData} />

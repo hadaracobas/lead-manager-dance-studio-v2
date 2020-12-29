@@ -1705,14 +1705,18 @@ function LeadFullDisplay1(props) {
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">סכום רכישה</p>
                 <p className="leadFullDisplay__content--text">
-                  {`${updatePurchasedAmount} ש"ח`}
+                  {updatePurchasedAmount === null
+                    ? ""
+                    : `${updatePurchasedAmount} ש"ח`}
+                  {/*`${updatePurchasedAmount} ש"ח`*/}
                 </p>
               </div>
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">עלות ליד</p>
                 <p className="leadFullDisplay__content--text">
-                  {`${updateLeadCost} ש"ח`}
+                  {updateLeadCost === null ? "" : `${updateLeadCost} ש"ח`}
+                  {/*`${updateLeadCost} ש"ח`*/}
                 </p>
               </div>
 

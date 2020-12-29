@@ -59,6 +59,13 @@ export const filterAllLeadsInStep3 = (data) => {
   return step3Leads;
 };
 
+// return all the leads that are in step "נרשם כמנוי"
+export const filterAllLeadsInStep4 = (data) => {
+  let step4Leads =
+    data && data.filter((lead) => lead.leadStep === "נרשם כמנוי");
+  return step4Leads;
+};
+
 // convert user date format back to js date format
 export const convertDateBackInJsFormat = (dateUserFormat) => {
   if (dateUserFormat !== null) {

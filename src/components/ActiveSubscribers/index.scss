@@ -1,0 +1,22 @@
+.activeSubscribers {
+  &__title {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+  }
+  &__amount {
+    margin: 0.8rem 0;
+  }
+  &__table {
+    height: 36rem;
+    overflow: auto;
+    &Row {
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+}
+
+@media (min-width: 1200px) {
+}
