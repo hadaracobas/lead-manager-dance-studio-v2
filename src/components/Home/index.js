@@ -10,6 +10,9 @@ import LeadFullDisplay from "../LeadFullDisplay";
 import LeadFullDisplay1 from "../LeadFullDisplay1";
 import GeneralLeadsList from "../GeneralLeadsList";
 import ActiveSubscribers from "../ActiveSubscribers";
+import ManualMissions from "../ManualMissions";
+import Statistics from "../Statistics";
+//import EasyData from "../EasyData";
 import { CircularProgress } from "@material-ui/core";
 
 /*const useStylesLoading = makeStyles((theme) => ({
@@ -27,7 +30,7 @@ function Home() {
   const [exampleData, setExampleData] = useState([
     {
       ID: "1",
-      addedDate: "13/12/2020",
+      addedDate: "29/12/2020",
       addedHour: "15:9",
       leadSource: "טלפוני",
       name: "הדר אקובס",
@@ -62,7 +65,7 @@ function Home() {
     },
     {
       ID: "2",
-      addedDate: "13/12/2020",
+      addedDate: "29/11/2020",
       addedHour: "15:12",
       leadSource: "אתר",
       name: "julia piringer  levi acobas",
@@ -73,7 +76,7 @@ function Home() {
       relevantDanceType: "היפ הופ,מודרני",
       lastUpdateDate: "13/12/2020",
       lastUpdateHour: "",
-      leadStep: "מתעניין",
+      leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
       manualMissionDescription: " משימה לדוגמא תיאור משימה לדוגמא תיאור",
       manualTypeMission: null,
@@ -81,7 +84,7 @@ function Home() {
       DeadlineDateManualMission: "31/12/2020",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
-      manualMissionPerformed: null,
+      manualMissionPerformed: "TRUE",
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
@@ -97,7 +100,7 @@ function Home() {
     },
     {
       ID: "3",
-      addedDate: "13/12/2020",
+      addedDate: "23/12/2020",
       addedHour: "15:14",
       leadSource: "אחר",
       name: "רונן שלורנטיין 2",
@@ -132,7 +135,7 @@ function Home() {
     },
     {
       ID: "4",
-      addedDate: "18/12/2020",
+      addedDate: "28/12/2020",
       addedHour: "15:33",
       leadSource: "אתר",
       name: "יורם ארבל",
@@ -145,10 +148,11 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "מתעניין",
       recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
-      manualMissionDescription: null,
+      manualMissionDescription:
+        "להתקשר שוב פעם מחר בערב על מנת לקבל פרטי כרטיס אשראי",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "4/1/2021",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -180,10 +184,10 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "הוזמן לשיעור ניסיון",
       recommendedSystemMission: "לתזכר שיעור ניסיון",
-      manualMissionDescription: null,
+      manualMissionDescription: "להתקשר שוב שבוע הבא - מקבל תשלום בשיקים",
       manualTypeMission: null,
       dateManualMissionCreated: "18/12/2020",
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "2/1/2021",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -218,10 +222,10 @@ function Home() {
       manualMissionDescription: "להתקשר פעם נוספת בעוד יומיים",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "30/12/2020",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
-      manualMissionPerformed: "TRUE",
+      manualMissionPerformed: null,
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
@@ -250,10 +254,10 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "לרשום כמנוי קבוע",
-      manualMissionDescription: null,
+      manualMissionDescription: "להתקשר שוב שבוע הבא",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "29/12/2020",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -285,13 +289,13 @@ function Home() {
       lastUpdateHour: "",
       leadStep: "נרשם כמנוי",
       recommendedSystemMission: "לרשום כמנוי קבוע",
-      manualMissionDescription: null,
+      manualMissionDescription: "משימה לדוגמא",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "18/2/2021",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
-      manualMissionPerformed: "TRUE",
+      manualMissionPerformed: null,
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
@@ -355,7 +359,7 @@ function Home() {
 
   // disable to save cost of request during work
 
-  /* useEffect(() => {
+  /*useEffect(() => {
     getDataFromSheet();
   }, []);*/
   //console.log("data from sheet: ", data);
@@ -372,16 +376,46 @@ function Home() {
             )}
           </Route>
           <Route path="/active-subscribers">
-            <ActiveSubscribers data={exampleData} />
+            {exampleData ? (
+              <ActiveSubscribers data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
+          </Route>
+          <Route path="/manual-missions">
+            {exampleData ? (
+              <ManualMissions data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
+          </Route>
+          <Route path="/statistics">
+            {exampleData ? (
+              <Statistics data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Route>
           <Route path="/add-new-lead">
-            <AddNewLead data={exampleData} />
+            {exampleData ? (
+              <AddNewLead data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Route>
           <Route path="/search-lead">
-            <SearchLead data={exampleData} />
+            {exampleData ? (
+              <SearchLead data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Route>
           <Route path="/:id">
-            <LeadFullDisplay1 data={exampleData} />
+            {exampleData ? (
+              <LeadFullDisplay1 data={exampleData} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
           </Route>
         </Switch>
       </div>

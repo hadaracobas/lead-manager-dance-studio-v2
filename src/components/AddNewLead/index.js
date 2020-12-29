@@ -285,12 +285,14 @@ function AddNewLead(props) {
               id="standard-basic"
               label="שם מלא"
               fullWidth={true}
+              required
             />
             <TextField
               onChange={(e) => setEmail(e.target.value)}
               id="standard-basic"
               label="כתובת אימייל"
               fullWidth={true}
+              required
             />
             <TextField
               onChange={(e) => setTel(e.target.value)}
@@ -422,6 +424,7 @@ function AddNewLead(props) {
                 id="demo-simple-select"
                 value={leadStep}
                 onChange={handleChangeSelectLeadStep}
+                required
               >
                 <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
                 <MenuItem value={"הוזמן לשיעור ניסיון"}>

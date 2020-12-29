@@ -1,0 +1,29 @@
+.statistics {
+  &__title {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  &__cards {
+    margin: 1rem 0;
+    //border: 1px solid red;
+  }
+  &__card {
+    margin: 1.5rem 0;
+    // border: 1px solid green;
+  }
+}
+
+@media (min-width: 760px) {
+}
+
+@media (min-width: 1200px) {
+  .statistics {
+    &__cards {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__card {
+      margin: 1.5rem 1rem;
+    }
+  }
+}
