@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./index.scss";
 
+import { Link } from "react-router-dom";
+
 // material ui imports
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -23,7 +25,7 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FaceIcon from "@material-ui/icons/Face";
 import CardMembershipIcon from "@material-ui/icons/CardMembership";
-import Link from "@material-ui/core/Link";
+//import Link from "@material-ui/core/Link";
 
 const StyledMenu = withStyles({
   paper: {
@@ -102,43 +104,56 @@ function NavMobile() {
         open={Boolean(anchorEl)}
         onClose={handleClickMenuButtonClose}
       >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <FaceIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="לידים" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <CardMembershipIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="מנויים" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <AssignmentLateIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="משימות" />
-        </StyledMenuItem>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <FaceIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="לידים" />
+          </StyledMenuItem>
+        </Link>
+        <Link
+          to="/active-subscribers"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <CardMembershipIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="מנויים" />
+          </StyledMenuItem>
+        </Link>
 
-        <StyledMenuItem>
-          <ListItemIcon>
-            <TrendingUpIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="תמונת מצב" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <FacebookIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="פייסבוק" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <AccountBoxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText style={menuLiStyles} primary="החשבון שלי " />
-        </StyledMenuItem>
+        <Link
+          to="/manual-missions"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <AssignmentLateIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="משימות" />
+          </StyledMenuItem>
+        </Link>
+
+        <Link
+          to="/statistics"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <TrendingUpIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="תמונת מצב" />
+          </StyledMenuItem>
+        </Link>
       </StyledMenu>
     </div>
   );

@@ -1,0 +1,21 @@
+.page404 {
+  text-align: center;
+  &__title {
+    margin-top: 12rem;
+    font-size: 6rem;
+  }
+  &__desc {
+    font-size: 2rem;
+  }
+  &__btns {
+    //border: 1px solid blue;
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page404 {
+  }
+}

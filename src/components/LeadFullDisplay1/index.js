@@ -565,15 +565,13 @@ function LeadFullDisplay1(props) {
     setUpdateLeadRate(event.target.value);
   };
 
-  console.log(updateLeadRate);
-
   // FILTER AND GET DATA ACCORDING TO ID NUMBER
   const filterAndGetRelevantLead = () => {
     if (props.data) {
       let filterTheLead = props.data.filter((lead) => lead.ID == id);
       if (filterTheLead[0] == undefined) {
-        alert("הליד לא קיים בבסיס הנתונים, אתה מועבר לדף הבית");
-        window.location.href = "/";
+        // alert("הליד לא קיים בבסיס הנתונים, אתה מועבר לדף הבית");
+        window.location.href = "/error-page-404";
       } else {
         // set all updated state with filterd array of lead
         setUpdateName(filterTheLead[0].name);

@@ -12,7 +12,8 @@ import GeneralLeadsList from "../GeneralLeadsList";
 import ActiveSubscribers from "../ActiveSubscribers";
 import ManualMissions from "../ManualMissions";
 import Statistics from "../Statistics";
-//import EasyData from "../EasyData";
+
+import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
 
 /*const useStylesLoading = makeStyles((theme) => ({
@@ -394,9 +395,9 @@ function Home() {
 
   // disable to save cost of request during work
 
-  useEffect(() => {
+  /*useEffect(() => {
     getDataFromSheet();
-  }, []);
+  }, []);*/
   //console.log("data from sheet: ", data);
   return (
     <>
@@ -404,50 +405,53 @@ function Home() {
       <div className="home">
         <Switch>
           <Route exact path="/">
-            {data ? (
-              <GeneralLeadsList data={data} />
+            {exampleData ? (
+              <GeneralLeadsList data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
-            {data ? (
-              <ActiveSubscribers data={data} />
+            {exampleData ? (
+              <ActiveSubscribers data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/manual-missions">
-            {data ? (
-              <ManualMissions data={data} />
+            {exampleData ? (
+              <ManualMissions data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/statistics">
-            {data ? (
-              <Statistics data={data} />
+            {exampleData ? (
+              <Statistics data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/add-new-lead">
-            {data ? (
-              <AddNewLead data={data} />
+            {exampleData ? (
+              <AddNewLead data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/search-lead">
-            {data ? (
-              <SearchLead data={data} />
+            {exampleData ? (
+              <SearchLead data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
+          <Route path="/error-page-404">
+            {exampleData ? <Page404 /> : <CircularProgress color="secondary" />}
+          </Route>
           <Route path="/:id">
-            {data ? (
-              <LeadFullDisplay1 data={data} />
+            {exampleData ? (
+              <LeadFullDisplay1 data={exampleData} />
             ) : (
               <CircularProgress color="secondary" />
             )}
