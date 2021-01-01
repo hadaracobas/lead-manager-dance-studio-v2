@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+/*import React, { PureComponent } from "react";
 import "./index.scss";
 import { PieChart, Pie, Sector, Cell } from "recharts";
 
@@ -87,3 +87,4 @@ export default class DataChartPie extends PureComponent {
     );
   }
 }
+*/

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+/*import React, { PureComponent } from "react";
 import {
   AreaChart,
   Area,
@@ -78,3 +78,4 @@ export default class DataAreaChart extends PureComponent {
     );
   }
 }
+*/

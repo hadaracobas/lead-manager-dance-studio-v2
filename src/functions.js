@@ -79,6 +79,24 @@ export const filterAllLeadsInStep4 = (data) => {
   return step4Leads;
 };
 
+// return all the leads according to leadSource "טלפוני"
+export const filterAllLeadsAccoordingToLeadSourceTel = (data) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource == "טלפוני");
+  return filterLeads;
+};
+
+// return all the leads according to leadSource "אתר"
+export const filterAllLeadsAccoordingToLeadSourceWeb = (data) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource == "אתר");
+  return filterLeads;
+};
+
+// return all the leads according to leadSource "אחר"
+export const filterAllLeadsAccoordingToLeadSourceDifferent = (data) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource == "אחר");
+  return filterLeads;
+};
+
 // return all the leads with open manual missions
 export const filterAllLeadsWithOpenMissions = (data) => {
   let LeadsWithOpenMissions =
@@ -135,6 +153,114 @@ export const filterAllManualMissionWithDeadlineSoon = (data) => {
   return filterAllMissionWithDeadlineSoon;
 };
 
+const exampleData = [
+  {
+    ID: "1",
+    addedDate: "29/1/2020",
+    addedHour: "15:9",
+    leadSource: "טלפוני",
+    name: "הדר אקובס",
+    email: "hadarsites1@gmail.com",
+    tel: "054-889756365",
+    age: "ב",
+    releventBranch: "הדר עם, צורן",
+    relevantDanceType: "היפ הופ,מודרני,בלט",
+    lastUpdateDate: "24/12/2020",
+    lastUpdateHour: "16:33",
+    leadStep: "מתעניין",
+    recommendedSystemMission: "לרשום כמנוי קבוע",
+    manualMissionDescription: "להתקשר בשבוע הבא על מנת לקחת פרטי כרטיס אשראי",
+    manualTypeMission: "תזכורת",
+    dateManualMissionCreated: "18/12/2020",
+    DeadlineDateManualMission: "29/12/2020",
+    manualMissionCreateByTeamMember: "רועי כהן",
+    manualMissionAssociatedToTeamMember: "לירון לוי",
+    manualMissionPerformed: "TRUE",
+    DateManualMissionPerformed: "27/6/2020",
+    isTheLeadRelevant: "TRUE",
+    leadPurchased: "TRUE",
+    PurchasedAmount: "2200",
+    LeadRate: "10",
+    LeadCost: "44",
+    event1Interest: "התקשרנו ונקבע שיעור ניסיון",
+    dateEvent1: "2020-05-24",
+    statusEvent1: "קנה",
+    event2WasTrialLesson: "הגיע לשיעור ניסיון",
+    dateEvent2: null,
+    statusEvent2: null,
+  },
+  {
+    ID: "2",
+    addedDate: "29/1/2020",
+    addedHour: "15:12",
+    leadSource: "אתר",
+    name: "julia piringer  levi acobas",
+    email: "julia@gmail.com",
+    tel: "547896985",
+    age: "5",
+    releventBranch: "הדר עם",
+    relevantDanceType: "היפ הופ,מודרני",
+    lastUpdateDate: "13/12/2020",
+    lastUpdateHour: "",
+    leadStep: "היה בשיעור ניסיון",
+    recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
+    manualMissionDescription: " משימה לדוגמא תיאור משימה לדוגמא תיאור",
+    manualTypeMission: null,
+    dateManualMissionCreated: null,
+    DeadlineDateManualMission: "31/12/2020",
+    manualMissionCreateByTeamMember: null,
+    manualMissionAssociatedToTeamMember: null,
+    manualMissionPerformed: "TRUE",
+    DateManualMissionPerformed: null,
+    isTheLeadRelevant: null,
+    leadPurchased: null,
+    PurchasedAmount: "223",
+    LeadRate: null,
+    LeadCost: "44",
+    event1Interest: null,
+    dateEvent1: null,
+    statusEvent1: null,
+    event2WasTrialLesson: null,
+    dateEvent2: null,
+    statusEvent2: null,
+  },
+  {
+    ID: "3",
+    addedDate: "1/2/2020",
+    addedHour: "15:14",
+    leadSource: "אחר",
+    name: "רונן שלורנטיין 2",
+    email: "ronen@gmail.com",
+    tel: "5475545",
+    age: "ב",
+    releventBranch: "הדר עם",
+    relevantDanceType: "היפ הופ,בלט",
+    lastUpdateDate: "13/12/2020",
+    lastUpdateHour: "",
+    leadStep: "היה בשיעור ניסיון",
+    recommendedSystemMission: "לרשום כמנוי קבוע",
+    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
+    manualTypeMission: null,
+    dateManualMissionCreated: null,
+    DeadlineDateManualMission: "1/1/2021",
+    manualMissionCreateByTeamMember: null,
+    manualMissionAssociatedToTeamMember: null,
+    manualMissionPerformed: null,
+    DateManualMissionPerformed: null,
+    isTheLeadRelevant: null,
+    leadPurchased: null,
+    PurchasedAmount: null,
+    LeadRate: null,
+    LeadCost: null,
+    event1Interest: null,
+    dateEvent1: null,
+    statusEvent1: null,
+    event2WasTrialLesson: null,
+    dateEvent2: null,
+    statusEvent2: null,
+  },
+];
+
 // return all new lead - joined before number of days
 export const filterAllNewLeadsPerTime = (data, numOfDaysAgo) => {
   if (data) {
@@ -155,6 +281,84 @@ export const filterAllNewLeadsPerTime = (data, numOfDaysAgo) => {
       );
     });
 
+    return filterLeads;
+  }
+};
+
+// return all leads joined 1 year ago
+export const filterLeadsJoinedOneYearAgo = (data) => {
+  if (data) {
+    let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+    let today = new Date(getTodayDate);
+    let dateOfYearAgo = new Date(today);
+    dateOfYearAgo.setFullYear(dateOfYearAgo.getFullYear() - 1);
+
+    let todayMs = today.getTime();
+    let dateOfYearAgoMs = dateOfYearAgo.getTime();
+
+    let filterLeads = data.filter((lead) => {
+      let leadAddedDate = convertDateBackInJsFormat(lead.addedDate);
+      let leadAddedDateJs = new Date(leadAddedDate);
+      let leadAddedDateJsMs = leadAddedDateJs.getTime();
+      return (
+        leadAddedDateJsMs <= todayMs && leadAddedDateJsMs >= dateOfYearAgoMs
+      );
+    });
+
+    return filterLeads;
+  }
+};
+
+// return all leads joined before specific month of current or prev year
+export const filterLeadsJoinedBeforeSpecificMonthAndYear = (
+  data,
+  monthNum,
+  whichYear
+) => {
+  if (data) {
+    let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+    let today = new Date(getTodayDate);
+    let todayYear = today.getFullYear();
+    let prevYear = todayYear - 1;
+
+    // get date and time ms in js format
+    let todayYearMonthNumJs = new Date(`${monthNum}/1/${todayYear}`);
+    let todayYearMonthNumJsMs = todayYearMonthNumJs.getTime();
+    let prevYearMonthNumJs = new Date(`${monthNum}/1/${prevYear}`);
+    let prevYearMonthNumJsMs = prevYearMonthNumJs.getTime();
+
+    // filtet data according to month and year
+    let filterLeads;
+
+    if (whichYear == "current year") {
+      filterLeads = data.filter((lead) => {
+        let leadAddedDate = convertDateBackInJsFormat(lead.addedDate);
+        let leadAddedDateJs = new Date(leadAddedDate);
+        let leadAddedDateJsMs = leadAddedDateJs.getTime();
+        return leadAddedDateJsMs < todayYearMonthNumJsMs;
+      });
+    } else if (whichYear == "prev year") {
+      filterLeads = data.filter((lead) => {
+        let leadAddedDate = convertDateBackInJsFormat(lead.addedDate);
+        let leadAddedDateJs = new Date(leadAddedDate);
+        let leadAddedDateJsMs = leadAddedDateJs.getTime();
+        return leadAddedDateJsMs < prevYearMonthNumJsMs;
+      });
+    }
+
+    return filterLeads;
+  }
+};
+
+// return leads joined on specific Month
+export const filterLeadsJoinedOnSpecificMonth = (data, monthNum) => {
+  if (data) {
+    let filterLeads = data.filter((lead) => {
+      let leadAddedDate = convertDateBackInJsFormat(lead.addedDate);
+      let leadAddedDateJs = new Date(leadAddedDate);
+      let leadAddedDateJsGetMonth = leadAddedDateJs.getMonth() + 1;
+      return leadAddedDateJsGetMonth == monthNum;
+    });
     return filterLeads;
   }
 };

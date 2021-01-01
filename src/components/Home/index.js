@@ -30,7 +30,7 @@ function Home() {
   const [exampleData, setExampleData] = useState([
     {
       ID: "1",
-      addedDate: "29/12/2020",
+      addedDate: "26/3/2020",
       addedHour: "15:9",
       leadSource: "טלפוני",
       name: "הדר אקובס",
@@ -65,7 +65,7 @@ function Home() {
     },
     {
       ID: "2",
-      addedDate: "29/11/2020",
+      addedDate: "29/1/2020",
       addedHour: "15:12",
       leadSource: "אתר",
       name: "julia piringer  levi acobas",
@@ -100,7 +100,7 @@ function Home() {
     },
     {
       ID: "3",
-      addedDate: "23/12/2020",
+      addedDate: "23/1/2020",
       addedHour: "15:14",
       leadSource: "אחר",
       name: "רונן שלורנטיין 2",
@@ -135,7 +135,7 @@ function Home() {
     },
     {
       ID: "4",
-      addedDate: "28/12/2020",
+      addedDate: "28/9/2020",
       addedHour: "15:33",
       leadSource: "אתר",
       name: "יורם ארבל",
@@ -146,7 +146,7 @@ function Home() {
       relevantDanceType: "היפ הופ,מודרני",
       lastUpdateDate: "18/12/2020",
       lastUpdateHour: "",
-      leadStep: "מתעניין",
+      leadStep: "הוזמן לשיעור ניסיון",
       recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
       manualMissionDescription:
         "להתקשר שוב פעם מחר בערב על מנת לקבל פרטי כרטיס אשראי",
@@ -171,7 +171,7 @@ function Home() {
     },
     {
       ID: "5",
-      addedDate: "18/12/2020",
+      addedDate: "18/1/2020",
       addedHour: "15:34",
       leadSource: "טלפוני",
       name: "יואב מיכאלי",
@@ -206,9 +206,9 @@ function Home() {
     },
     {
       ID: "6",
-      addedDate: "18/12/2020",
+      addedDate: "18/1/2020",
       addedHour: "15:37",
-      leadSource: "טלפוני",
+      leadSource: "אחר",
       name: "יוליה סלב",
       email: "juliagmail.com",
       tel: "052-9836446",
@@ -217,7 +217,7 @@ function Home() {
       relevantDanceType: "היפ הופ",
       lastUpdateDate: "18/12/2020",
       lastUpdateHour: "",
-      leadStep: "הוזמן לשיעור ניסיון",
+      leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "לתזכר שיעור ניסיון",
       manualMissionDescription: "להתקשר פעם נוספת בעוד יומיים",
       manualTypeMission: null,
@@ -243,7 +243,7 @@ function Home() {
       ID: "7",
       addedDate: "18/12/2020",
       addedHour: "16:13",
-      leadSource: "אתר",
+      leadSource: "טלפוני",
       name: "קובי ששון",
       email: "cobi.sason@gmail.com",
       tel: "054-9986363",
@@ -276,7 +276,7 @@ function Home() {
     },
     {
       ID: "8",
-      addedDate: "18/12/2020",
+      addedDate: "31/12/2019",
       addedHour: "16:13",
       leadSource: "אתר",
       name: "עמית לוי",
@@ -322,6 +322,41 @@ function Home() {
       relevantDanceType: "היפ הופ",
       lastUpdateDate: "18/12/2020",
       lastUpdateHour: "",
+      leadStep: "הוזמן לשיעור ניסיון",
+      recommendedSystemMission: "לרשום כמנוי קבוע",
+      manualMissionDescription: null,
+      manualTypeMission: null,
+      dateManualMissionCreated: null,
+      DeadlineDateManualMission: null,
+      manualMissionCreateByTeamMember: null,
+      manualMissionAssociatedToTeamMember: null,
+      manualMissionPerformed: "TRUE",
+      DateManualMissionPerformed: null,
+      isTheLeadRelevant: null,
+      leadPurchased: null,
+      PurchasedAmount: "340",
+      LeadRate: null,
+      LeadCost: "60",
+      event1Interest: null,
+      dateEvent1: null,
+      statusEvent1: null,
+      event2WasTrialLesson: null,
+      dateEvent2: null,
+      statusEvent2: null,
+    },
+    {
+      ID: "10",
+      addedDate: "18/4/2020",
+      addedHour: "16:13",
+      leadSource: "אתר",
+      name: "1יואב שמולי",
+      email: "cobi.sason@gmail.com",
+      tel: "054-9986363",
+      age: "ז",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpdateDate: "18/12/2020",
+      lastUpdateHour: "",
       leadStep: "נרשם כמנוי",
       recommendedSystemMission: "לרשום כמנוי קבוע",
       manualMissionDescription: null,
@@ -359,9 +394,9 @@ function Home() {
 
   // disable to save cost of request during work
 
-  /*useEffect(() => {
+  useEffect(() => {
     getDataFromSheet();
-  }, []);*/
+  }, []);
   //console.log("data from sheet: ", data);
   return (
     <>
@@ -369,50 +404,50 @@ function Home() {
       <div className="home">
         <Switch>
           <Route exact path="/">
-            {exampleData ? (
-              <GeneralLeadsList data={exampleData} />
+            {data ? (
+              <GeneralLeadsList data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
-            {exampleData ? (
-              <ActiveSubscribers data={exampleData} />
+            {data ? (
+              <ActiveSubscribers data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/manual-missions">
-            {exampleData ? (
-              <ManualMissions data={exampleData} />
+            {data ? (
+              <ManualMissions data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/statistics">
-            {exampleData ? (
-              <Statistics data={exampleData} />
+            {data ? (
+              <Statistics data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/add-new-lead">
-            {exampleData ? (
-              <AddNewLead data={exampleData} />
+            {data ? (
+              <AddNewLead data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/search-lead">
-            {exampleData ? (
-              <SearchLead data={exampleData} />
+            {data ? (
+              <SearchLead data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/:id">
-            {exampleData ? (
-              <LeadFullDisplay1 data={exampleData} />
+            {data ? (
+              <LeadFullDisplay1 data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}

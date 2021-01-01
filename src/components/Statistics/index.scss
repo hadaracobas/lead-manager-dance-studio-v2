@@ -4,12 +4,31 @@
     margin: 1rem 0;
   }
   &__cards {
-    margin: 1rem 0;
+    margin: 1rem 0 5rem 0;
     //border: 1px solid red;
   }
   &__card {
     margin: 1.5rem 0;
     // border: 1px solid green;
+  }
+  &__charts {
+    //border: 1px solid red;
+  }
+  &__chart {
+    margin: 4.6rem 0;
+    // border: 1px solid lightgray;
+
+    &Desc {
+      padding: 1rem 0;
+      margin-bottom: 1.4rem;
+    }
+    &Btns {
+      // border: 1px solid greenyellow;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -24,6 +43,16 @@
     }
     &__card {
       margin: 1.5rem 1rem;
+    }
+    &__charts {
+      padding: 1rem;
+    }
+    &__chart {
+      margin: 5.6rem 0;
+
+      &Desc {
+        max-width: 60%;
+      }
     }
   }
 }
