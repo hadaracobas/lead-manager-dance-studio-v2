@@ -6,6 +6,7 @@ import AssignmentLateIcon from "@material-ui/icons/AssignmentLate";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import PanoramaWideAngleIcon from "@material-ui/icons/PanoramaWideAngle";
 
+import { checkIfAddedDateLast3Days } from "../../functions";
 import {
   Card,
   CardActions,
@@ -71,9 +72,41 @@ export default function LeadSmallDisplay(props) {
   // TOOLTIP
   const classesToolTip = useStylesToolTip();
 
+  //check if added date - before 3 days
+  const [leadAddedBefore3Days, setLeadAddedBefore3Days] = useState(false);
+  useEffect(() => {
+    if (checkIfAddedDateLast3Days(props.addedDate)) {
+      setLeadAddedBefore3Days(true);
+    } else {
+      setLeadAddedBefore3Days(false);
+    }
+  }, [props.addedDate]);
+
   return (
     <div className="leadSmallDisplay">
       <Card className={classesCard.root}>
+        <div className="leadSmallDisplay__topContent">
+          {leadAddedBefore3Days ? (
+            <p
+              className="leadSmallDisplay__topContent--right"
+              style={{ color: "#f50057" }}
+            >
+              התווסף: {props.addedDate} (3 ימים אחרונים)
+            </p>
+          ) : (
+            <p
+              className="leadSmallDisplay__topContent--right"
+              style={{ color: "lightgray" }}
+            >
+              {" "}
+              התווסף: {props.addedDate}
+            </p>
+          )}
+          <p className="leadSmallDisplay__topContent--left">
+            מקור: {props.leadSource}
+          </p>
+        </div>
+
         <CardContent>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Typography

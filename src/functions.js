@@ -97,6 +97,13 @@ export const filterAllLeadsAccoordingToLeadSourceDifferent = (data) => {
   return filterLeads;
 };
 
+// return all the relevant leads
+export const filterRelevantLeads = (data) => {
+  let filterLeads =
+    data && data.filter((lead) => lead.isTheLeadRelevant == "TRUE");
+  return filterLeads;
+};
+
 // return all the leads with open manual missions
 export const filterAllLeadsWithOpenMissions = (data) => {
   let LeadsWithOpenMissions =
@@ -153,10 +160,32 @@ export const filterAllManualMissionWithDeadlineSoon = (data) => {
   return filterAllMissionWithDeadlineSoon;
 };
 
+// check if added date 3 last days - return boolean value
+export const checkIfAddedDateLast3Days = (addedDate) => {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+
+  let today = new Date(getTodayDate);
+  let dateBefore3Days = new Date(today);
+  dateBefore3Days.setDate(dateBefore3Days.getDate() - 3);
+
+  let todayMs = today.getTime();
+  let dateBefore3DaysMs = dateBefore3Days.getTime();
+
+  let addedDateJsFormat = new Date(convertDateBackInJsFormat(addedDate));
+  let addedDateJsFormatMs = addedDateJsFormat.getTime();
+
+  if (addedDateJsFormatMs <= todayMs && addedDateJsFormatMs > dateBefore3Days) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/*
 const exampleData = [
   {
     ID: "1",
-    addedDate: "29/1/2020",
+    addedDate: "1/1/2021",
     addedHour: "15:9",
     leadSource: "טלפוני",
     name: "הדר אקובס",
@@ -191,7 +220,7 @@ const exampleData = [
   },
   {
     ID: "2",
-    addedDate: "29/1/2020",
+    addedDate: "2/1/2021",
     addedHour: "15:12",
     leadSource: "אתר",
     name: "julia piringer  levi acobas",
@@ -226,7 +255,77 @@ const exampleData = [
   },
   {
     ID: "3",
-    addedDate: "1/2/2020",
+    addedDate: "9/8/2020",
+    addedHour: "15:14",
+    leadSource: "אחר",
+    name: "רונן שלורנטיין 2",
+    email: "ronen@gmail.com",
+    tel: "5475545",
+    age: "ב",
+    releventBranch: "הדר עם",
+    relevantDanceType: "היפ הופ,בלט",
+    lastUpdateDate: "13/12/2020",
+    lastUpdateHour: "",
+    leadStep: "היה בשיעור ניסיון",
+    recommendedSystemMission: "לרשום כמנוי קבוע",
+    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
+    manualTypeMission: null,
+    dateManualMissionCreated: null,
+    DeadlineDateManualMission: "1/1/2021",
+    manualMissionCreateByTeamMember: null,
+    manualMissionAssociatedToTeamMember: null,
+    manualMissionPerformed: null,
+    DateManualMissionPerformed: null,
+    isTheLeadRelevant: null,
+    leadPurchased: null,
+    PurchasedAmount: null,
+    LeadRate: null,
+    LeadCost: null,
+    event1Interest: null,
+    dateEvent1: null,
+    statusEvent1: null,
+    event2WasTrialLesson: null,
+    dateEvent2: null,
+    statusEvent2: null,
+  },
+  {
+    ID: "4",
+    addedDate: "2/1/2021",
+    addedHour: "15:14",
+    leadSource: "אחר",
+    name: "רונן שלורנטיין 2",
+    email: "ronen@gmail.com",
+    tel: "5475545",
+    age: "ב",
+    releventBranch: "הדר עם",
+    relevantDanceType: "היפ הופ,בלט",
+    lastUpdateDate: "13/12/2020",
+    lastUpdateHour: "",
+    leadStep: "היה בשיעור ניסיון",
+    recommendedSystemMission: "לרשום כמנוי קבוע",
+    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
+    manualTypeMission: null,
+    dateManualMissionCreated: null,
+    DeadlineDateManualMission: "1/1/2021",
+    manualMissionCreateByTeamMember: null,
+    manualMissionAssociatedToTeamMember: null,
+    manualMissionPerformed: null,
+    DateManualMissionPerformed: null,
+    isTheLeadRelevant: null,
+    leadPurchased: null,
+    PurchasedAmount: null,
+    LeadRate: null,
+    LeadCost: null,
+    event1Interest: null,
+    dateEvent1: null,
+    statusEvent1: null,
+    event2WasTrialLesson: null,
+    dateEvent2: null,
+    statusEvent2: null,
+  },
+  {
+    ID: "5",
+    addedDate: "3/1/2021",
     addedHour: "15:14",
     leadSource: "אחר",
     name: "רונן שלורנטיין 2",
@@ -260,7 +359,7 @@ const exampleData = [
     statusEvent2: null,
   },
 ];
-
+*/
 // return all new lead - joined before number of days
 export const filterAllNewLeadsPerTime = (data, numOfDaysAgo) => {
   if (data) {
@@ -412,4 +511,45 @@ export const sortManualMissionAccordingToDeadlineDate = (data) => {
   }
 
   return sortedManualMissionArr;
+};
+
+// sort leads according to added date
+export const sortLeadsAccordingToAddedDate = (data) => {
+  let sortedAddedDateArr;
+  if (data) {
+    sortedAddedDateArr = data.slice();
+
+    // sort num according to num
+    function compareDates(a, b) {
+      if (a.addedDate > b.addedDate) {
+        return -1;
+      }
+      if (a.addedDate < b.addedDate) {
+        return 1;
+      }
+      return 0;
+    } // end compareDates func
+
+    // loop change to js format and sort
+    for (let i = 0; i < sortedAddedDateArr.length; i++) {
+      sortedAddedDateArr[i].addedDate = convertDateBackInJsFormat(
+        sortedAddedDateArr[i].addedDate
+      );
+      sortedAddedDateArr[i].addedDate = new Date(
+        sortedAddedDateArr[i].addedDate
+      ).getTime();
+    }
+    sortedAddedDateArr.sort(compareDates);
+
+    // loop and convert back to date user format
+    for (let i = 0; i < sortedAddedDateArr.length; i++) {
+      let day = new Date(sortedAddedDateArr[i].addedDate).getDate();
+      let month = new Date(sortedAddedDateArr[i].addedDate).getMonth() + 1;
+      let year = new Date(sortedAddedDateArr[i].addedDate).getFullYear();
+
+      sortedAddedDateArr[i].addedDate = day + "/" + month + "/" + year;
+    }
+
+    return sortedAddedDateArr;
+  } // end condition
 };

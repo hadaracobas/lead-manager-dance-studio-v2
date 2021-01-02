@@ -154,6 +154,8 @@ function SearchLead(props) {
               manualMissionPerformed={lead.manualMissionPerformed}
               DeadlineDateManualMission={lead.DeadlineDateManualMission}
               DateManualMissionPerformed={lead.DateManualMissionPerformed}
+              addedDate={lead.addedDate}
+              leadSource={lead.leadSource}
             />
           ))}
       </div>

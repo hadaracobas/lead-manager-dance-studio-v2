@@ -12,6 +12,7 @@ import GeneralLeadsList from "../GeneralLeadsList";
 import ActiveSubscribers from "../ActiveSubscribers";
 import ManualMissions from "../ManualMissions";
 import Statistics from "../Statistics";
+import LogInPage from "../LogInPage";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -261,7 +262,7 @@ function Home() {
       DeadlineDateManualMission: "29/12/2020",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
-      manualMissionPerformed: null,
+      manualMissionPerformed: "TRUE",
       DateManualMissionPerformed: null,
       isTheLeadRelevant: null,
       leadPurchased: null,
@@ -333,7 +334,7 @@ function Home() {
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: "TRUE",
       DateManualMissionPerformed: null,
-      isTheLeadRelevant: null,
+      isTheLeadRelevant: "TRUE",
       leadPurchased: null,
       PurchasedAmount: "340",
       LeadRate: null,
@@ -347,7 +348,42 @@ function Home() {
     },
     {
       ID: "10",
-      addedDate: "18/4/2020",
+      addedDate: "31/12/2020",
+      addedHour: "16:13",
+      leadSource: "אתר",
+      name: "1יואב שמולי",
+      email: "cobi.sason@gmail.com",
+      tel: "054-9986363",
+      age: "ז",
+      releventBranch: "הדר עם",
+      relevantDanceType: "היפ הופ",
+      lastUpdateDate: "30/12/2020",
+      lastUpdateHour: "",
+      leadStep: "מתעניין",
+      recommendedSystemMission: "לרשום כמנוי קבוע",
+      manualMissionDescription: null,
+      manualTypeMission: null,
+      dateManualMissionCreated: null,
+      DeadlineDateManualMission: null,
+      manualMissionCreateByTeamMember: null,
+      manualMissionAssociatedToTeamMember: null,
+      manualMissionPerformed: "TRUE",
+      DateManualMissionPerformed: null,
+      isTheLeadRelevant: "TRUE",
+      leadPurchased: null,
+      PurchasedAmount: "340",
+      LeadRate: null,
+      LeadCost: "60",
+      event1Interest: null,
+      dateEvent1: null,
+      statusEvent1: null,
+      event2WasTrialLesson: null,
+      dateEvent2: null,
+      statusEvent2: null,
+    },
+    {
+      ID: "11",
+      addedDate: "1/1/2021",
       addedHour: "16:13",
       leadSource: "אתר",
       name: "1יואב שמולי",
@@ -358,7 +394,7 @@ function Home() {
       relevantDanceType: "היפ הופ",
       lastUpdateDate: "18/12/2020",
       lastUpdateHour: "",
-      leadStep: "נרשם כמנוי",
+      leadStep: "הוזמן לשיעור ניסיון",
       recommendedSystemMission: "לרשום כמנוי קבוע",
       manualMissionDescription: null,
       manualTypeMission: null,
@@ -447,7 +483,10 @@ function Home() {
             )}
           </Route>
           <Route path="/error-page-404">
-            {exampleData ? <Page404 /> : <CircularProgress color="secondary" />}
+            <Page404 />
+          </Route>
+          <Route path="/log-in">
+            <LogInPage />
           </Route>
           <Route path="/:id">
             {exampleData ? (

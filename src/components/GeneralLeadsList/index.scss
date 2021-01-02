@@ -49,14 +49,26 @@
   .generalLeadsList {
     //border: 1px solid black;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+
     overflow: auto;
     margin: 1.5rem 0 0 0;
+
+    &__boxes {
+      display: flex;
+      justify-content: space-between;
+    }
 
     &__box {
       height: 45rem;
       width: 30.1rem;
+    }
+
+    &__radioForm {
+      margin-right: 1rem;
+    }
+    &__radioBtns {
+      display: flex;
+      flex-direction: row !important;
     }
   }
 }

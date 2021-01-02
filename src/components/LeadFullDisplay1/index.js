@@ -1060,7 +1060,7 @@ function LeadFullDisplay1(props) {
                       id="date"
                       label="מועד אחרון לביצוע משימה"
                       type="date"
-                      defaultValue="2020-05-24"
+                      defaultValue="2021-01-1"
                       todayLabel="היום"
                       value={manualMissionDeadlineDate}
                       onChange={onChangeManualMissionDeadlineDate}

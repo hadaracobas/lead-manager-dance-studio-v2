@@ -1,5 +1,17 @@
 .leadSmallDisplay {
   margin: 7px 3px;
+  &__topContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: lightgray;
+    &--right {
+      margin: 0.2rem 0.2rem 0 0;
+    }
+    &--left {
+      margin: 0.2rem 0 0 0.2rem;
+    }
+  }
 
   &__bottom {
     display: flex;
