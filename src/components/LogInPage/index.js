@@ -15,6 +15,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -62,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LogInPage() {
+  const { loginWithRedirect } = useAuth0();
   const classes = useStyles();
   return (
     <div className="loginPage">
@@ -74,43 +77,25 @@ function LogInPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              התחברות
+              מערכת לניהול לידים - סטודיו לריקוד
             </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="כתובת אימייל או שם משתמש"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="סיסמא"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+            <div style={{ textAlign: "center", marginTop: "20px" }}>
+              <h3>פרטי כניסה למערכת הדמו</h3>
+              <p>שם משתמש: hadarsites1@gmail.com</p>
+              <p>סיסמא: demo1234$</p>
+            </div>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                התחבר
-              </Button>
-              <Grid container></Grid>
-            </form>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => loginWithRedirect()}
+            >
+              התחבר
+            </Button>
+            <Grid container></Grid>
           </div>
         </Grid>
       </Grid>

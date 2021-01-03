@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // import components
 import EasyData from "./components/EasyData";
@@ -9,6 +10,8 @@ import EasyData from "./components/EasyData";
 //import LeadSmallDisplay from "./components/LeadSmallDisplay";
 import Header from "./components/Header";
 import Home from "./components/Home";
+
+import LogInPage from "./components/LogInPage";
 
 // import material ui
 import { create } from "jss";
@@ -29,17 +32,25 @@ const theme = createMuiTheme(
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user != undefined && isAuthenticated);
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
-        <Router>
-          <ThemeProvider theme={theme}>
-            <Header />
-            <main className="app__main">
-              <Home />
-            </main>
-          </ThemeProvider>
-        </Router>
+        {isAuthenticated ? (
+          <div className="app__appAfterAuth">
+            <Router>
+              <ThemeProvider theme={theme}>
+                <Header />
+                <main className="app__main">
+                  <Home />
+                </main>
+              </ThemeProvider>
+            </Router>
+          </div>
+        ) : (
+          <LogInPage />
+        )}
       </div>
     </StylesProvider>
   );

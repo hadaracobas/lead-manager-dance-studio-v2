@@ -13,6 +13,7 @@ import ActiveSubscribers from "../ActiveSubscribers";
 import ManualMissions from "../ManualMissions";
 import Statistics from "../Statistics";
 import LogInPage from "../LogInPage";
+import Header from "../Header";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -485,9 +486,11 @@ function Home() {
           <Route path="/error-page-404">
             <Page404 />
           </Route>
-          <Route path="/log-in">
+
+          <Route path="/login">
             <LogInPage />
           </Route>
+
           <Route path="/:id">
             {exampleData ? (
               <LeadFullDisplay1 data={exampleData} />
