@@ -203,7 +203,7 @@ function AddNewLead(props) {
     if (redirectAfterSubmit === "add-new-lead") {
       window.location.href = "/add-new-lead";
     } else if (redirectAfterSubmit === "lead-page") {
-      window.location.href = `/${props.data.length + 1}`;
+      window.location.href = `/${props.data.length + 2}`;
     } else {
       window.location.href = "/add-new-lead";
     }
