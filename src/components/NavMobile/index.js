@@ -25,6 +25,7 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FaceIcon from "@material-ui/icons/Face";
 import CardMembershipIcon from "@material-ui/icons/CardMembership";
+import SettingsIcon from "@material-ui/icons/Settings";
 //import Link from "@material-ui/core/Link";
 
 const StyledMenu = withStyles({
@@ -152,6 +153,18 @@ function NavMobile() {
               <TrendingUpIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="תמונת מצב" />
+          </StyledMenuItem>
+        </Link>
+        <Link
+          to="/my-account"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <AccountBoxIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="חשבון" />
           </StyledMenuItem>
         </Link>
       </StyledMenu>

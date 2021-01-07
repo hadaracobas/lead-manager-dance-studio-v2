@@ -1,0 +1,36 @@
+.account {
+  text-align: center;
+
+  &__title {
+    margin-bottom: 2.5rem;
+  }
+
+  &__details {
+    // border: 1px solid lightgray;
+    text-align: right;
+    font-size: 1.5rem;
+
+    &--img {
+      margin-bottom: 0.5rem;
+    }
+
+    &--img img {
+      width: 50px;
+    }
+
+    p {
+      padding: 5px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .account {
+    &__title {
+      margin-bottom: 4.5rem;
+    }
+    &__details {
+      text-align: center;
+    }
+  }
+}

@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 // import components
-import EasyData from "./components/EasyData";
-//import NavDesktop from "./components/NavDesktop";
-//import GeneralLeadsList from "./components/GeneralLeadsList";
-//import LeadSmallDisplay from "./components/LeadSmallDisplay";
 import Header from "./components/Header";
 import Home from "./components/Home";
 
@@ -21,6 +18,13 @@ import { StylesProvider, jssPreset } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { heIL } from "@material-ui/core/locale";
 
+const {
+  REACT_APP_API_URL_DEMO1,
+  REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1,
+  REACT_APP_API_URL_DEMO2,
+  REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2,
+} = process.env;
+
 const theme = createMuiTheme(
   {
     direction: "rtl", // Both here and <body dir="rtl">
@@ -32,8 +36,36 @@ const theme = createMuiTheme(
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
-  const { user, isAuthenticated } = useAuth0();
-  console.log(user != undefined && isAuthenticated);
+  // GET RELEVANT DATA (API URL) ACCORDING TO ACCOUNT
+  const [relApiUrlForCrud, setRelApiUrlForCrud] = useState(false);
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1) {
+        setRelApiUrlForCrud(REACT_APP_API_URL_DEMO1);
+      } else if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2) {
+        setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
+      }
+    } // end parent condition
+  }, [user]);
+
+  // DYNAMIC STATES ACCORDING TO ACCOUNT
+  const [
+    relBranchesAccordingToAccount,
+    setRelBranchesAccordingToAccount,
+  ] = useState(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1) {
+        setRelBranchesAccordingToAccount("הדר עם, צורן");
+      } else if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2) {
+        setRelBranchesAccordingToAccount("רמת השרון, פתח תקווה, כפר סבא");
+      }
+    } // end parent condition
+  }, [user]);
+
+  if (isLoading) return <div>loading..</div>;
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
@@ -43,7 +75,13 @@ function App() {
               <ThemeProvider theme={theme}>
                 <Header />
                 <main className="app__main">
-                  <Home />
+                  <Home
+                    relBranchesAccordingToAccount={
+                      relBranchesAccordingToAccount
+                    }
+                    relCrudApiUrl={relApiUrlForCrud}
+                    user={user}
+                  />
                 </main>
               </ThemeProvider>
             </Router>

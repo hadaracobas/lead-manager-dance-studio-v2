@@ -49,19 +49,24 @@ function SearchLead(props) {
 
   // function to filter leads by name
   const searchLeadNameFunc = () => {
-    let filtered = filteredLeadType.filter(
-      (l) => l.name.indexOf(searchTextInput) !== -1
-    );
+    let filtered = filteredLeadType.filter((l) => {
+      if (l.name !== null) {
+        return l.name.indexOf(searchTextInput) !== -1;
+      }
+    });
     setResultsSearch(filtered);
   };
 
   // function to filter leads by tel
   const searchLeadTelFunc = () => {
-    let filtered = filteredLeadType.filter(
-      (l) =>
-        l.tel.replace("-", "").indexOf(searchTextInput) !== -1 ||
-        l.tel.indexOf(searchTextInput) !== -1
-    );
+    let filtered = filteredLeadType.filter((l) => {
+      if (l.tel !== null) {
+        return (
+          l.tel.replace("-", "").indexOf(searchTextInput) !== -1 ||
+          l.tel.indexOf(searchTextInput) !== -1
+        );
+      }
+    });
     setResultsSearch(filtered);
   };
 

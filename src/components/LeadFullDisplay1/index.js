@@ -155,11 +155,7 @@ function LeadFullDisplay1(props) {
   const deleteTheLeadReq = async () => {
     setShowLoadingDelete(true);
     const deleteRowInDataSheet = await axios
-      .delete(
-        `https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44/${
-          id - 1
-        }`
-      )
+      .delete(`${props.relCrudApiUrl && props.relCrudApiUrl}/${id - 1}`)
       .then((res) => {
         console.log(res);
         setShowLoadingDelete(false);
@@ -625,45 +621,40 @@ function LeadFullDisplay1(props) {
   const updateTheLeadReq = async () => {
     setShowLoadingUpdate(true);
     const updateDataSheet = await axios
-      .patch(
-        `https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44/${
-          id - 1
-        }`,
-        {
-          ID: null,
-          name: updateName,
-          email: updateEmail,
-          tel: updateTel,
-          releventBranch: updateRelevantBranch,
-          leadSource: updateLeadSource,
-          relevantDanceType:
-            checkIfOnChangeFuncExecuted == false
-              ? updateDanceType
-              : updateDanceTypeAfterOnChange,
-          leadStep: updateLeadStep,
-          isTheLeadRelevant: updateIsTheLeadRelevant,
-          lastUpdateDate: getCurrentDate(),
-          lastUpdateHour: getCurrentHour(),
-          dateManualMissionCreated: manulMissionCreatedDate,
-          manualTypeMission: manualMissionTypeOfMission,
-          manualMissionDescription: manualMissionDescription,
-          manualMissionCreateByTeamMember: manualMissionCreatedByTeamMember,
-          DeadlineDateManualMission: manualMissionDeadlineDateNewFormat,
-          manualMissionPerformed: manualMissionPerformed,
-          DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
-          manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
-          event1Interest: updateEvent1ActionTaken,
-          dateEvent1: updateEvent1DateNewFormat,
-          statusEvent1: updateEvent1StatsEvent,
-          event2WasTrialLesson: updateEvent2ActionTaken,
-          dateEvent2: updateEvent2DateNewFormat,
-          statusEvent2: updateEvent2StatsEvent,
-          leadPurchased: updateLeadPurchased,
-          PurchasedAmount: updatePurchasedAmount,
-          LeadCost: updateLeadCost,
-          LeadRate: updateLeadRate,
-        }
-      )
+      .patch(`${props.relCrudApiUrl && props.relCrudApiUrl}/${id - 1}`, {
+        ID: id == 1 ? "=ARRAYFORMULA(ROW(A2:A)-1)" : null,
+        name: updateName,
+        email: updateEmail,
+        tel: updateTel,
+        releventBranch: updateRelevantBranch,
+        leadSource: updateLeadSource,
+        relevantDanceType:
+          checkIfOnChangeFuncExecuted == false
+            ? updateDanceType
+            : updateDanceTypeAfterOnChange,
+        leadStep: updateLeadStep,
+        isTheLeadRelevant: updateIsTheLeadRelevant,
+        lastUpdateDate: getCurrentDate(),
+        lastUpdateHour: getCurrentHour(),
+        dateManualMissionCreated: manulMissionCreatedDate,
+        manualTypeMission: manualMissionTypeOfMission,
+        manualMissionDescription: manualMissionDescription,
+        manualMissionCreateByTeamMember: manualMissionCreatedByTeamMember,
+        DeadlineDateManualMission: manualMissionDeadlineDateNewFormat,
+        manualMissionPerformed: manualMissionPerformed,
+        DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
+        manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
+        event1Interest: updateEvent1ActionTaken,
+        dateEvent1: updateEvent1DateNewFormat,
+        statusEvent1: updateEvent1StatsEvent,
+        event2WasTrialLesson: updateEvent2ActionTaken,
+        dateEvent2: updateEvent2DateNewFormat,
+        statusEvent2: updateEvent2StatsEvent,
+        leadPurchased: updateLeadPurchased,
+        PurchasedAmount: updatePurchasedAmount,
+        LeadCost: updateLeadCost,
+        LeadRate: updateLeadRate,
+      })
       .then((res) => {
         console.log(res);
         setShowLoadingUpdate(false);
@@ -693,7 +684,11 @@ function LeadFullDisplay1(props) {
       <div className="leadFullDisplay">
         <div className="leadFullDisplay__edit">
           <EditIcon onClick={handleOpenModal} />
-          <DeleteIcon onClick={handleOpenModalDelete} />
+          {id == 1 ? (
+            <div>זהו הליד הראשון במערכת. לא ניתן למחוק זה אלא רק לערוך.</div>
+          ) : (
+            <DeleteIcon onClick={handleOpenModalDelete} />
+          )}
         </div>
 
         <div className="leadFullDisplay__modalDeleteContainer">

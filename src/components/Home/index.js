@@ -14,6 +14,8 @@ import ManualMissions from "../ManualMissions";
 import Statistics from "../Statistics";
 import LogInPage from "../LogInPage";
 import Header from "../Header";
+import Account from "../Account";
+import Settings from "../Settings";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -27,7 +29,7 @@ import { CircularProgress } from "@material-ui/core";
   },
 }));*/
 
-function Home() {
+function Home(props) {
   const [data, setData] = useState(false);
 
   const [exampleData, setExampleData] = useState([
@@ -387,9 +389,9 @@ function Home() {
       addedDate: "1/1/2021",
       addedHour: "16:13",
       leadSource: "אתר",
-      name: "1יואב שמולי",
+      name: null,
       email: "cobi.sason@gmail.com",
-      tel: "054-9986363",
+      tel: null,
       age: "ז",
       releventBranch: "הדר עם",
       relevantDanceType: "היפ הופ",
@@ -421,9 +423,9 @@ function Home() {
 
   const getDataFromSheet = () => {
     const dataSheet = axios
-      .get("https://sheet.best/api/sheets/6c613560-926d-4171-8892-5ba0bae57c44")
+      .get(props.relCrudApiUrl && props.relCrudApiUrl)
       .then((res) => {
-        setData(res.data);
+        setData(res.data.filter((lead) => lead.ID != "1"));
       })
       .catch((err) => {
         console.log(err);
@@ -431,54 +433,78 @@ function Home() {
   };
 
   // disable to save cost of request during work
-
-  /*useEffect(() => {
+  useEffect(() => {
     getDataFromSheet();
-  }, []);*/
-  //console.log("data from sheet: ", data);
+  }, [props.relCrudApiUrl]);
+  console.log("data from sheet: ", data);
+
   return (
     <>
       {/* <CircularProgress color="secondary" /> */}
       <div className="home">
         <Switch>
           <Route exact path="/">
-            {exampleData ? (
-              <GeneralLeadsList data={exampleData} />
+            {data ? (
+              <GeneralLeadsList data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
-            {exampleData ? (
-              <ActiveSubscribers data={exampleData} />
+            {data ? (
+              <ActiveSubscribers data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/manual-missions">
-            {exampleData ? (
-              <ManualMissions data={exampleData} />
+            {data ? (
+              <ManualMissions data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/statistics">
-            {exampleData ? (
-              <Statistics data={exampleData} />
+            {data ? (
+              <Statistics data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/add-new-lead">
-            {exampleData ? (
-              <AddNewLead data={exampleData} />
+            {data ? (
+              <AddNewLead
+                relCrudApiUrl={props.relCrudApiUrl}
+                data={data}
+                relBranchesAccordingToAccount={
+                  props.relBranchesAccordingToAccount
+                }
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/search-lead">
-            {exampleData ? (
-              <SearchLead data={exampleData} />
+            {data ? (
+              <SearchLead data={data} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
+          </Route>
+          <Route path="/my-account">
+            {data ? (
+              <Account user={props.user} data={data} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
+          </Route>
+          <Route path="/settings">
+            {data ? (
+              <Settings
+                relBranchesAccordingToAccount={
+                  props.relBranchesAccordingToAccount
+                }
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
@@ -492,8 +518,14 @@ function Home() {
           </Route>
 
           <Route path="/:id">
-            {exampleData ? (
-              <LeadFullDisplay1 data={exampleData} />
+            {data ? (
+              <LeadFullDisplay1
+                data={data}
+                relCrudApiUrl={props.relCrudApiUrl}
+                relBranchesAccordingToAccount={
+                  props.relBranchesAccordingToAccount
+                }
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
