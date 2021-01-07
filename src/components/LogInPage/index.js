@@ -79,11 +79,6 @@ function LogInPage() {
             <Typography component="h1" variant="h5">
               מערכת לניהול לידים - סטודיו לריקוד
             </Typography>
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <h3>פרטי כניסה למערכת הדמו</h3>
-              <p>שם משתמש: hadarsites1@gmail.com</p>
-              <p>סיסמא: demo1234$</p>
-            </div>
 
             <Button
               type="button"
