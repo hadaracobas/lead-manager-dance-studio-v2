@@ -52,14 +52,17 @@ export default function LeadSmallDisplay(props) {
   const [
     checkIfLeadWithManualMission,
     setCheckIfLeadWithManualMission,
-  ] = useState("");
+  ] = useState("no-mission");
   const checkIfLeadWithManualMissionFunc = () => {
     if (
       props.manualMissionPerformed === "TRUE" ||
       props.manualMissionPerformed === true
     ) {
       setCheckIfLeadWithManualMission("mission-performed");
-    } else if (props.leadManualMissionDescription === null) {
+    } else if (
+      props.leadManualMissionDescription === null ||
+      props.leadManualMissionDescription === ""
+    ) {
       setCheckIfLeadWithManualMission("no-mission");
     } else {
       setCheckIfLeadWithManualMission("mission-is-open");
