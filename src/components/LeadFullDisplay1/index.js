@@ -666,6 +666,7 @@ function LeadFullDisplay1(props) {
         setTimeout(function () {
           setOpenAlertSuccess(false);
           handleCloseModal();
+          window.location.reload();
         }, 1200);
       })
       .catch((err) => {
@@ -1547,6 +1548,8 @@ function LeadFullDisplay1(props) {
                 <p className="leadFullDisplay__content--title">משימה בוצעה?</p>
                 <p className="leadFullDisplay__content--text">
                   {manualMissionPerformed === null
+                    ? "לא (ברירת מחדל)"
+                    : manualMissionPerformed == ""
                     ? "לא (ברירת מחדל)"
                     : manualMissionPerformed === false
                     ? "לא (ברירת מחדל)"

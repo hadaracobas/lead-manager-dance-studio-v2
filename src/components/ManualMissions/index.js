@@ -94,7 +94,9 @@ function ManualMissions(props) {
                     {row.manualMissionDescription}
                   </TableCell>
                   <TableCell align="left">
-                    {row.DeadlineDateManualMission}
+                    {row.DeadlineDateManualMission == "NaN/NaN/NaN"
+                      ? "לא עודכן דדליין"
+                      : row.DeadlineDateManualMission}
                   </TableCell>
                   <TableCell align="left">
                     {row.manualMissionAssociatedToTeamMember}
