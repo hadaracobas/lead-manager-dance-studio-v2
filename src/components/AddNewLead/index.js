@@ -70,10 +70,12 @@ function AddNewLead(props) {
 
   // age state, material ui styles and handlechange function
   const classesSelect = useStylesSelect();
+  /*
   const [age, setAge] = useState("");
   const handleChangeSelectAge = (event) => {
     setAge(event.target.value);
   };
+*/
 
   // lead source state and handlechange function
   const [leadSource, setLeadSource] = useState("");
@@ -87,6 +89,7 @@ function AddNewLead(props) {
     setLeadStep(event.target.value);
   };
 
+  /*
   // branch state object and onChange function get boolean values
   const [relBranches, setRelevantBranches] = useState({
     checkHadarAm: false,
@@ -98,6 +101,7 @@ function AddNewLead(props) {
       [event.target.name]: event.target.checked,
     });
   };
+
 
   // branches string list state, function and useEffect
   const [relBranchesStringList, setRelBranchesStringList] = useState("");
@@ -115,7 +119,9 @@ function AddNewLead(props) {
   useEffect(() => {
     createStringFromRelBranches();
   }, [relBranches]);
+*/
 
+  /*
   // dance type state object and onChange function get boolean values
   const [relDanceTypes, setRelDanceTypes] = useState({
     hipHop: false,
@@ -151,6 +157,7 @@ function AddNewLead(props) {
   useEffect(() => {
     createStringFromRelDanceTypes();
   }, [relDanceTypes]);
+*/
 
   // auto recommended mission by system state and function
   const [
@@ -159,12 +166,12 @@ function AddNewLead(props) {
   ] = useState("");
   const handleAutoRecommendedMission = () => {
     if (leadStep === "מתעניין") {
-      setRecommendedMissionByApplication("לקבוע מועד שיעור ניסיון");
-    } else if (leadStep === "הוזמן לשיעור ניסיון") {
-      setRecommendedMissionByApplication("לתזכר שיעור ניסיון");
-    } else if (leadStep === "היה בשיעור ניסיון") {
-      setRecommendedMissionByApplication("לרשום כמנוי קבוע");
-    } else if (leadStep === "נרשם כמנוי") {
+      setRecommendedMissionByApplication("לתאם פגישה");
+    } else if (leadStep === "תיאם פגישה") {
+      setRecommendedMissionByApplication("לתזכר פגישה");
+    } else if (leadStep === "היה בפגישה") {
+      setRecommendedMissionByApplication("חתימת חוזה");
+    } else if (leadStep === "רכש") {
       setRecommendedMissionByApplication("אין משימה מומלצת לשלב זה");
     }
   };
@@ -222,9 +229,9 @@ function AddNewLead(props) {
         name: name,
         email: email,
         tel: tel,
-        age: age,
-        releventBranch: relBranchesStringList,
-        relevantDanceType: relDanceTypesStringList,
+        //age: age,
+        //releventBranch: relBranchesStringList,
+        //relevantDanceType: relDanceTypesStringList,
         lastUpadateDate: getCurrentDate(),
         leadStep: leadStep,
         recommendedSystemMission: recommendedMissionByApplication,
@@ -241,10 +248,11 @@ function AddNewLead(props) {
         PurchasedAmount: null,
         LeadRate: null,
         LeadCost: null,
+        LeadPurchasedNote: null,
         event1Interest: null,
         dateEvent1: null,
         statusEvent1: null,
-        event2WasTrialLesson: null,
+        event2WasInMeeting: null,
         dateEvent2: null,
         statusEvent2: null,
       })
@@ -298,7 +306,7 @@ function AddNewLead(props) {
               label="מספר טלפון"
               fullWidth={true}
             />
-
+            {/* 
             <FormControl className={classesSelect.formControl}>
               <InputLabel id="demo-simple-select-label">שכבת גיל</InputLabel>
               <Select
@@ -325,8 +333,10 @@ function AddNewLead(props) {
                 <MenuItem value={"18+"}>18+</MenuItem>
               </Select>
             </FormControl>
+            */}
           </div>{" "}
           {/* end --prevDetails */}
+          {/* 
           <div className="addNewLead__form--branch">
             <p>בחר סניף רלוונטי</p>
             <FormControlLabel
@@ -352,7 +362,9 @@ function AddNewLead(props) {
               label="צורן"
             />
           </div>{" "}
+          */}
           {/* end --branch */}
+          {/* 
           <div className="addNewLead__form--danceType">
             <p>מתעניין בסוג ריקוד</p>
             <FormControlLabel
@@ -392,6 +404,7 @@ function AddNewLead(props) {
               label="בלט"
             />
           </div>
+          */}
         </div>
         {/* end --personalDetailsContainer */}
         <div className="addNewLead__form--leadDetailsContainer">
@@ -407,6 +420,7 @@ function AddNewLead(props) {
               >
                 <MenuItem value={"אתר"}>אתר</MenuItem>
                 <MenuItem value={"טלפוני"}>טלפוני</MenuItem>
+                <MenuItem value={"הגיע למשרד"}>הגיע למשרד</MenuItem>
                 <MenuItem value={"אחר"}>אחר</MenuItem>
               </Select>
             </FormControl>
@@ -425,13 +439,9 @@ function AddNewLead(props) {
                 required
               >
                 <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
-                <MenuItem value={"הוזמן לשיעור ניסיון"}>
-                  הוזמן לשיעור ניסיון
-                </MenuItem>
-                <MenuItem value={"היה בשיעור ניסיון"}>
-                  היה בשיעור ניסיון
-                </MenuItem>
-                <MenuItem value={"נרשם כמנוי"}>נרשם כמנוי</MenuItem>
+                <MenuItem value={"תיאם פגישה"}>תיאם פגישה</MenuItem>
+                <MenuItem value={"היה בפגישה"}>היה בפגישה</MenuItem>
+                <MenuItem value={"רכש"}>רכש</MenuItem>
               </Select>
             </FormControl>
           </div>

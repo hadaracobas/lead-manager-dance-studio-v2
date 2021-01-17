@@ -128,7 +128,7 @@ function GeneralLeadsList(props) {
             ))}
         </div>
         <div className="generalLeadsList__2 generalLeadsList__box">
-          <h2 className="generalLeadsList__box--title">הוזמנו לשיעור ניסיון</h2>
+          <h2 className="generalLeadsList__box--title">תיאמו פגישה </h2>
           <p className="generalLeadsList__box--totalNum">
             סה"כ: {allLeadsInStep2.length}
           </p>
@@ -151,7 +151,7 @@ function GeneralLeadsList(props) {
             ))}
         </div>
         <div className="generalLeadsList__3 generalLeadsList__box">
-          <h2 className="generalLeadsList__box--title">היו בשיעור ניסיון</h2>
+          <h2 className="generalLeadsList__box--title">היו בפגישה</h2>
           <p className="generalLeadsList__box--totalNum">
             סה"כ: {allLeadsInStep3.length}
           </p>
