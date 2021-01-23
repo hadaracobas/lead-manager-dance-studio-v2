@@ -1517,6 +1517,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -1560,6 +1563,7 @@ function LeadFullDisplay1(props) {
                           id="demo-simple-select"
                           value={updateEventHappendToActivityLog3}
                           onChange={onChangeUpdateEventHappendToActivityLog3}
+                          dir="rtl"
                         >
                           <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
                             התקשרנו והיה מענה - נקבעה פגישה
@@ -1581,6 +1585,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -1646,6 +1653,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -1709,6 +1719,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -1774,6 +1787,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -1837,6 +1853,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -1902,6 +1921,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -1965,6 +1987,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2031,6 +2056,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2096,6 +2124,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
                           </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2160,6 +2191,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
                             נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                          <MenuItem value={"התבצעה רכישה"}>
+                            התבצעה רכישה
                           </MenuItem>
                         </Select>
                       </FormControl>

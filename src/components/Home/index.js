@@ -92,7 +92,7 @@ function Home(props) {
       tel: "054-9983232",
       lastUpdateDate: "23/1/2021",
       lastUpdateHour: "13:43",
-      leadStep: "תיאם פגישה",
+      leadStep: "מתעניין",
       recommendedSystemMission: "לתזכר פגישה",
       manualMissionDescription: "",
       manualTypeMission: "",

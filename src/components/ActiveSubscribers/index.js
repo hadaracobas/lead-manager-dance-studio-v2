@@ -51,9 +51,7 @@ function ActiveSubscribers(props) {
               <TableCell style={{ fontWeight: "bold" }} align="left">
                 אימייל
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="left">
-                סניף רלוונטי
-              </TableCell>
+
               <TableCell style={{ fontWeight: "bold" }} align="left">
                 סכום רכישה
               </TableCell>
@@ -77,7 +75,7 @@ function ActiveSubscribers(props) {
                   <TableCell align="left">{row.name}</TableCell>
                   <TableCell align="left">{row.tel}</TableCell>
                   <TableCell align="left">{row.email}</TableCell>
-                  <TableCell align="left">{row.releventBranch}</TableCell>
+
                   <TableCell align="left">{row.PurchasedAmount}</TableCell>
                   <TableCell align="left">{row.LeadCost}</TableCell>
                 </TableRow>

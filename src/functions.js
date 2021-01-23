@@ -56,8 +56,8 @@ export const filterAllLeadsInSellProcess = (data) => {
     data.filter(
       (lead) =>
         lead.leadStep === "מתעניין" ||
-        lead.leadStep === "הוזמן לשיעור ניסיון" ||
-        lead.leadStep === "היה בשיעור ניסיון"
+        lead.leadStep === "תיאם פגישה" ||
+        lead.leadStep === "היה בפגישה"
     );
   return leadsInSellProcess;
 };
@@ -68,24 +68,23 @@ export const filterAllLeadsInStep1 = (data) => {
   return step1Leads;
 };
 
-// return all the leads that are in step "הוזמן לשיעור ניסיון"
+// return all the leads that are in step "תיאם פגישה"
 export const filterAllLeadsInStep2 = (data) => {
   let step2Leads =
-    data && data.filter((lead) => lead.leadStep === "הוזמן לשיעור ניסיון");
+    data && data.filter((lead) => lead.leadStep === "תיאם פגישה");
   return step2Leads;
 };
 
-// return all the leads that are in step "היה בשיעור ניסיון"
+// return all the leads that are in step "היה בפגישה"
 export const filterAllLeadsInStep3 = (data) => {
   let step3Leads =
-    data && data.filter((lead) => lead.leadStep === "היה בשיעור ניסיון");
+    data && data.filter((lead) => lead.leadStep === "היה בפגישה");
   return step3Leads;
 };
 
-// return all the leads that are in step "נרשם כמנוי"
+// return all the leads that are in step "רכש"
 export const filterAllLeadsInStep4 = (data) => {
-  let step4Leads =
-    data && data.filter((lead) => lead.leadStep === "נרשם כמנוי");
+  let step4Leads = data && data.filter((lead) => lead.leadStep === "רכש");
   return step4Leads;
 };
 
@@ -121,6 +120,7 @@ export const filterAllLeadsWithOpenMissions = (data) => {
     data.filter(
       (lead) =>
         lead.manualMissionDescription !== null &&
+        lead.manualMissionDescription !== "" &&
         lead.manualMissionPerformed !== "TRUE"
     );
   return LeadsWithOpenMissions;
