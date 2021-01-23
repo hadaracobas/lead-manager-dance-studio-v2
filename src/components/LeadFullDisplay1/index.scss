@@ -25,7 +25,14 @@
     margin: 0.8rem 0;
   }
   &__section {
-    border-bottom: 1px solid lightgray;
+    // border-bottom: 1px solid lightgray;
+
+    &--activityLogUlList li {
+      font-size: 1.2rem;
+      &:first-child {
+        color: gray;
+      }
+    }
   }
   &__contentContainer {
     //border: 1px solid red;

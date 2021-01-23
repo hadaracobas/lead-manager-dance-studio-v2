@@ -6,7 +6,9 @@ import {
   convertDateFromDatePickerToNormalDateFormat,
   getCurrentDate,
   getCurrentHour,
+  convertDateToNewFormat,
 } from "../../functions";
+import SimpleTabs from "../SimpleTabs";
 
 // imports material ui
 import EditIcon from "@material-ui/icons/Edit";
@@ -208,6 +210,7 @@ function LeadFullDisplay1(props) {
     setUpdateTel(e.target.value);
   };
 
+  /*
   // UPDATE RELEVANT BRANCH
   const [updateRelevantBranch, setUpdateRelevantBranch] = useState("");
   const [
@@ -261,6 +264,7 @@ function LeadFullDisplay1(props) {
       setUpdateRelevantBranch("");
     }
   }, [updateReleventBranchCheckboxes]);
+*/
 
   // UPDATE LEAD SOURCE
   const classesSelect = useStylesSelect();
@@ -269,6 +273,7 @@ function LeadFullDisplay1(props) {
     setUpdateLeadSource(event.target.value);
   };
 
+  /*
   // UPDATE DANCE TYPE
   const [updateDanceType, setUpdateDanceType] = useState("");
   const [updateDanceTypeCheckboxes, setUpdateDanceTypeCheckboxes] = useState({
@@ -345,12 +350,14 @@ function LeadFullDisplay1(props) {
   useEffect(() => {
     createStringFromUpdatedDanceTypeObj();
   }, [updateDanceTypeAfterOnChangeCheckboxes]);
-
+*/
+  /*
   // UPDATE AGE
   const [updateAge, setUpdateAge] = useState("");
   const onchangeUpdateAge = (event) => {
     setUpdateAge(event.target.value);
   };
+*/
 
   // GET ADDED DATE AND ADDED HOURE
   const [addedDate, setAddedDate] = useState("");
@@ -366,12 +373,12 @@ function LeadFullDisplay1(props) {
   const [updateRecommendedMission, setUpdateRecommendedMission] = useState("");
   const updateRocommendedMissionAccordingToLeadStep = () => {
     if (updateLeadStep === "מתעניין") {
-      setUpdateRecommendedMission("לקבוע מועד שיעור ניסיון");
-    } else if (updateLeadStep === "הוזמן לשיעור ניסיון") {
-      setUpdateRecommendedMission("לתזכר שיעור ניסיון");
-    } else if (updateLeadStep === "היה בשיעור ניסיון") {
-      setUpdateRecommendedMission("לרשום כמנוי קבוע");
-    } else if (updateLeadStep === "נרשם כמנוי") {
+      setUpdateRecommendedMission("לתאם פגישה");
+    } else if (updateLeadStep === "תיאם פגישה") {
+      setUpdateRecommendedMission("לתזכר פגישה");
+    } else if (updateLeadStep === "היה בפגישה") {
+      setUpdateRecommendedMission("חתימת חוזה");
+    } else if (updateLeadStep === "רכש") {
       setUpdateRecommendedMission("אין משימה מומלצת לשלב זה");
     }
   };
@@ -561,6 +568,291 @@ function LeadFullDisplay1(props) {
     setUpdateLeadRate(event.target.value);
   };
 
+  //UPDATE ACTIVITY LOGS
+
+  const [
+    getEventHappandToActivityLogFromDatabase,
+    setGetEventHappandToActivityLogFromDatabase,
+  ] = useState(false);
+
+  const [eventHappendToActivityLog, setEventHappendToActivityLog] = useState(
+    false
+  );
+
+  const onChangeUpdateEventHappendToActivityLog = (event) => {
+    setEventHappendToActivityLog(event.target.value);
+  };
+
+  const [
+    dateEventHappendToActivityLog,
+    setDateEventHappendToActivityLog,
+  ] = useState("");
+
+  const onChangeUpdateDateEventHappendToActivityLog = (event) => {
+    setDateEventHappendToActivityLog(event.target.value);
+  };
+  /*
+  const [
+    dateEventHappendToActivityLogNewFormat,
+    setDateEventHappendToActivityLogNewFormat,
+  ] = useState("");
+  useEffect(() => {
+    convertDateFromDatePickerToNormalDateFormat(
+      dateEventHappendToActivityLog,
+      setDateEventHappendToActivityLogNewFormat
+    );
+  }, [dateEventHappendToActivityLog]);
+*/
+  //---
+  //activity log event 2
+  const [
+    updateEventHappendToActivityLog2,
+    setUpdateEventHappendToActivityLog2,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog2 = (e) => {
+    setUpdateEventHappendToActivityLog2(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog2,
+    setUpdateDateEventHappendToActivityLog2,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog2 = (e) => {
+    setUpdateDateEventHappendToActivityLog2(e.target.value);
+  };
+
+  //activity log event 3
+  const [
+    updateEventHappendToActivityLog3,
+    setUpdateEventHappendToActivityLog3,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog3 = (e) => {
+    setUpdateEventHappendToActivityLog3(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog3,
+    setUpdateDateEventHappendToActivityLog3,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog3 = (e) => {
+    setUpdateDateEventHappendToActivityLog3(e.target.value);
+  };
+
+  //activity log event 4
+  const [
+    updateEventHappendToActivityLog4,
+    setUpdateEventHappendToActivityLog4,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog4 = (e) => {
+    setUpdateEventHappendToActivityLog4(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog4,
+    setUpdateDateEventHappendToActivityLog4,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog4 = (e) => {
+    setUpdateDateEventHappendToActivityLog4(e.target.value);
+  };
+
+  //activity log event 5
+  const [
+    updateEventHappendToActivityLog5,
+    setUpdateEventHappendToActivityLog5,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog5 = (e) => {
+    setUpdateEventHappendToActivityLog5(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog5,
+    setUpdateDateEventHappendToActivityLog5,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog5 = (e) => {
+    setUpdateDateEventHappendToActivityLog5(e.target.value);
+  };
+
+  //activity log event 6
+  const [
+    updateEventHappendToActivityLog6,
+    setUpdateEventHappendToActivityLog6,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog6 = (e) => {
+    setUpdateEventHappendToActivityLog6(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog6,
+    setUpdateDateEventHappendToActivityLog6,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog6 = (e) => {
+    setUpdateDateEventHappendToActivityLog6(e.target.value);
+  };
+
+  //activity log event 7
+  const [
+    updateEventHappendToActivityLog7,
+    setUpdateEventHappendToActivityLog7,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog7 = (e) => {
+    setUpdateEventHappendToActivityLog7(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog7,
+    setUpdateDateEventHappendToActivityLog7,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog7 = (e) => {
+    setUpdateDateEventHappendToActivityLog7(e.target.value);
+  };
+
+  //activity log event 8
+  const [
+    updateEventHappendToActivityLog8,
+    setUpdateEventHappendToActivityLog8,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog8 = (e) => {
+    setUpdateEventHappendToActivityLog8(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog8,
+    setUpdateDateEventHappendToActivityLog8,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog8 = (e) => {
+    setUpdateDateEventHappendToActivityLog8(e.target.value);
+  };
+
+  //activity log event 9
+  const [
+    updateEventHappendToActivityLog9,
+    setUpdateEventHappendToActivityLog9,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog9 = (e) => {
+    setUpdateEventHappendToActivityLog9(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog9,
+    setUpdateDateEventHappendToActivityLog9,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog9 = (e) => {
+    setUpdateDateEventHappendToActivityLog9(e.target.value);
+  };
+
+  //activity log event 10
+  const [
+    updateEventHappendToActivityLog10,
+    setUpdateEventHappendToActivityLog10,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog10 = (e) => {
+    setUpdateEventHappendToActivityLog10(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog10,
+    setUpdateDateEventHappendToActivityLog10,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog10 = (e) => {
+    setUpdateDateEventHappendToActivityLog10(e.target.value);
+  };
+
+  //activity log event 11
+  const [
+    updateEventHappendToActivityLog11,
+    setUpdateEventHappendToActivityLog11,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog11 = (e) => {
+    setUpdateEventHappendToActivityLog11(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog11,
+    setUpdateDateEventHappendToActivityLog11,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog11 = (e) => {
+    setUpdateDateEventHappendToActivityLog11(e.target.value);
+  };
+
+  //activity log event 12
+  const [
+    updateEventHappendToActivityLog12,
+    setUpdateEventHappendToActivityLog12,
+  ] = useState(false);
+  const onChangeUpdateEventHappendToActivityLog12 = (e) => {
+    setUpdateEventHappendToActivityLog12(e.target.value);
+  };
+
+  const [
+    updateDateEventHappendToActivityLog12,
+    setUpdateDateEventHappendToActivityLog12,
+  ] = useState(false);
+  const onChangeUpdateDateEventHappendToActivityLog12 = (e) => {
+    setUpdateDateEventHappendToActivityLog12(e.target.value);
+  };
+  console.log("2 ", updateEventHappendToActivityLog2);
+
+  const onClickAddEventActivityLogInModal = () => {
+    if (
+      updateEventHappendToActivityLog2 === null ||
+      updateEventHappendToActivityLog2 === ""
+    ) {
+      setUpdateEventHappendToActivityLog2(false);
+    } else if (
+      updateEventHappendToActivityLog3 === null ||
+      updateEventHappendToActivityLog3 === ""
+    ) {
+      setUpdateEventHappendToActivityLog3(false);
+    } else if (
+      updateEventHappendToActivityLog4 === null ||
+      updateEventHappendToActivityLog4 === ""
+    ) {
+      setUpdateEventHappendToActivityLog4(false);
+    } else if (
+      updateEventHappendToActivityLog5 === null ||
+      updateEventHappendToActivityLog5 === ""
+    ) {
+      setUpdateEventHappendToActivityLog5(false);
+    } else if (
+      updateEventHappendToActivityLog6 === null ||
+      updateEventHappendToActivityLog6 === ""
+    ) {
+      setUpdateEventHappendToActivityLog6(false);
+    } else if (
+      updateEventHappendToActivityLog7 === null ||
+      updateEventHappendToActivityLog7 === ""
+    ) {
+      setUpdateEventHappendToActivityLog7(false);
+    } else if (
+      updateEventHappendToActivityLog8 === null ||
+      updateEventHappendToActivityLog8 === ""
+    ) {
+      setUpdateEventHappendToActivityLog8(false);
+    } else if (
+      updateEventHappendToActivityLog9 === null ||
+      updateEventHappendToActivityLog9 === ""
+    ) {
+      setUpdateEventHappendToActivityLog9(false);
+    } else if (
+      updateEventHappendToActivityLog10 === null ||
+      updateEventHappendToActivityLog10 === ""
+    ) {
+      setUpdateEventHappendToActivityLog10(false);
+    } else if (
+      updateEventHappendToActivityLog11 === null ||
+      updateEventHappendToActivityLog11 === ""
+    ) {
+      setUpdateEventHappendToActivityLog11(false);
+    } else if (
+      updateEventHappendToActivityLog12 === null ||
+      updateEventHappendToActivityLog12 === ""
+    ) {
+      setUpdateEventHappendToActivityLog12(false);
+    } else {
+      alert("אין אפשרות ליצור לכל ליד יותר מ-11 אירועים");
+    }
+  };
+
   // FILTER AND GET DATA ACCORDING TO ID NUMBER
   const filterAndGetRelevantLead = () => {
     if (props.data) {
@@ -573,10 +865,10 @@ function LeadFullDisplay1(props) {
         setUpdateName(filterTheLead[0].name);
         setUpdateEmail(filterTheLead[0].email);
         setUpdateTel(filterTheLead[0].tel);
-        setUpdateRelevantBranch(filterTheLead[0].releventBranch);
+        //setUpdateRelevantBranch(filterTheLead[0].releventBranch);
         setUpdateLeadSource(filterTheLead[0].leadSource);
-        setUpdateDanceType(filterTheLead[0].relevantDanceType);
-        setUpdateAge(filterTheLead[0].age);
+        //setUpdateDanceType(filterTheLead[0].relevantDanceType);
+        //setUpdateAge(filterTheLead[0].age);
         setAddedDate(filterTheLead[0].addedDate);
         setAddedHour(filterTheLead[0].addedHour);
         setUpdateLeadStep(filterTheLead[0].leadStep);
@@ -600,16 +892,60 @@ function LeadFullDisplay1(props) {
         setManualMissionAssociatedToTeamMember(
           filterTheLead[0].manualMissionAssociatedToTeamMember
         );
-        setUpdateEvent1ActionTaken(filterTheLead[0].event1Interest);
-        setUpdateEvent1Date(filterTheLead[0].dateEvent1);
-        setUpdateEvent1StatsEvent(filterTheLead[0].statusEvent1);
-        setUpdateEvent2ActionTaken(filterTheLead[0].event2WasTrialLesson);
-        setUpdateEvent2Date(filterTheLead[0].dateEvent2);
-        setUpdateEvent2StatsEvent(filterTheLead[0].statusEvent2);
+
         setUpdateLeadPurchased(filterTheLead[0].leadPurchased);
         setUpdatePurchasedAmount(filterTheLead[0].PurchasedAmount);
         setUpdateLeadCost(filterTheLead[0].LeadCost);
         setUpdateLeadRate(filterTheLead[0].LeadRate);
+
+        setGetEventHappandToActivityLogFromDatabase(
+          filterTheLead[0].eventHappenedToActivityLog
+        );
+
+        setUpdateEventHappendToActivityLog2(filterTheLead[0].ActivityLog2);
+        setUpdateDateEventHappendToActivityLog2(
+          filterTheLead[0].DateActivityLog2
+        );
+        setUpdateEventHappendToActivityLog3(filterTheLead[0].ActivityLog3);
+        setUpdateDateEventHappendToActivityLog3(
+          filterTheLead[0].DateActivityLog3
+        );
+        setUpdateEventHappendToActivityLog4(filterTheLead[0].ActivityLog4);
+        setUpdateDateEventHappendToActivityLog4(
+          filterTheLead[0].DateActivityLog4
+        );
+        setUpdateEventHappendToActivityLog5(filterTheLead[0].ActivityLog5);
+        setUpdateDateEventHappendToActivityLog5(
+          filterTheLead[0].DateActivityLog5
+        );
+        setUpdateEventHappendToActivityLog6(filterTheLead[0].ActivityLog6);
+        setUpdateDateEventHappendToActivityLog6(
+          filterTheLead[0].DateActivityLog6
+        );
+        setUpdateEventHappendToActivityLog7(filterTheLead[0].ActivityLog7);
+        setUpdateDateEventHappendToActivityLog7(
+          filterTheLead[0].DateActivityLog7
+        );
+        setUpdateEventHappendToActivityLog8(filterTheLead[0].ActivityLog8);
+        setUpdateDateEventHappendToActivityLog8(
+          filterTheLead[0].DateActivityLog8
+        );
+        setUpdateEventHappendToActivityLog9(filterTheLead[0].ActivityLog9);
+        setUpdateDateEventHappendToActivityLog9(
+          filterTheLead[0].DateActivityLog9
+        );
+        setUpdateEventHappendToActivityLog10(filterTheLead[0].ActivityLog10);
+        setUpdateDateEventHappendToActivityLog10(
+          filterTheLead[0].DateActivityLog10
+        );
+        setUpdateEventHappendToActivityLog11(filterTheLead[0].ActivityLog11);
+        setUpdateDateEventHappendToActivityLog11(
+          filterTheLead[0].DateActivityLog11
+        );
+        setUpdateEventHappendToActivityLog12(filterTheLead[0].ActivityLog12);
+        setUpdateDateEventHappendToActivityLog12(
+          filterTheLead[0].DateActivityLog12
+        );
       }
     }
   };
@@ -626,12 +962,14 @@ function LeadFullDisplay1(props) {
         name: updateName,
         email: updateEmail,
         tel: updateTel,
-        releventBranch: updateRelevantBranch,
+        //releventBranch: updateRelevantBranch,
         leadSource: updateLeadSource,
+        /*
         relevantDanceType:
           checkIfOnChangeFuncExecuted == false
             ? updateDanceType
             : updateDanceTypeAfterOnChange,
+        */
         leadStep: updateLeadStep,
         isTheLeadRelevant: updateIsTheLeadRelevant,
         lastUpdateDate: getCurrentDate(),
@@ -644,16 +982,32 @@ function LeadFullDisplay1(props) {
         manualMissionPerformed: manualMissionPerformed,
         DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
         manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
-        event1Interest: updateEvent1ActionTaken,
-        dateEvent1: updateEvent1DateNewFormat,
-        statusEvent1: updateEvent1StatsEvent,
-        event2WasTrialLesson: updateEvent2ActionTaken,
-        dateEvent2: updateEvent2DateNewFormat,
-        statusEvent2: updateEvent2StatsEvent,
         leadPurchased: updateLeadPurchased,
         PurchasedAmount: updatePurchasedAmount,
         LeadCost: updateLeadCost,
         LeadRate: updateLeadRate,
+        ActivityLog2: updateEventHappendToActivityLog2,
+        ActivityLog3: updateEventHappendToActivityLog3,
+        ActivityLog4: updateEventHappendToActivityLog4,
+        ActivityLog5: updateEventHappendToActivityLog5,
+        ActivityLog6: updateEventHappendToActivityLog6,
+        ActivityLog7: updateEventHappendToActivityLog7,
+        ActivityLog8: updateEventHappendToActivityLog8,
+        ActivityLog9: updateEventHappendToActivityLog9,
+        ActivityLog10: updateEventHappendToActivityLog10,
+        ActivityLog11: updateEventHappendToActivityLog11,
+        ActivityLog12: updateEventHappendToActivityLog12,
+        DateActivityLog2: updateDateEventHappendToActivityLog2,
+        DateActivityLog3: updateDateEventHappendToActivityLog3,
+        DateActivityLog4: updateDateEventHappendToActivityLog4,
+        DateActivityLog5: updateDateEventHappendToActivityLog5,
+        DateActivityLog6: updateDateEventHappendToActivityLog6,
+        DateActivityLog7: updateDateEventHappendToActivityLog7,
+        DateActivityLog8: updateDateEventHappendToActivityLog8,
+        DateActivityLog9: updateDateEventHappendToActivityLog9,
+        DateActivityLog10: updateDateEventHappendToActivityLog10,
+        DateActivityLog11: updateDateEventHappendToActivityLog11,
+        DateActivityLog12: updateDateEventHappendToActivityLog12,
       })
       .then((res) => {
         console.log(res);
@@ -808,6 +1162,8 @@ function LeadFullDisplay1(props) {
                       value={updateTel}
                     />
                   </div>
+                  {/*
+                  
                   <div className="leadFullDisplay__modalInputContainer">
                     <p>סניף רלוונטי</p>
                     <FormControlLabel
@@ -835,6 +1191,7 @@ function LeadFullDisplay1(props) {
                       label="צורן"
                     />
                   </div>
+                   */}
                   <div className="leadFullDisplay__modalInputContainer">
                     <FormControl
                       className={classesSelect.formControl}
@@ -851,11 +1208,13 @@ function LeadFullDisplay1(props) {
                       >
                         <MenuItem value={"אתר"}>אתר</MenuItem>
                         <MenuItem value={"טלפוני"}>טלפוני</MenuItem>
+                        <MenuItem value={"הגיע למשרד"}>הגיע למשרד</MenuItem>
                         <MenuItem value={"אחר"}>אחר</MenuItem>
                       </Select>
                     </FormControl>
                   </div>
-                  <div className="leadFullDisplay__modalInputContainer">
+                  {/*
+                                    <div className="leadFullDisplay__modalInputContainer">
                     <p>סוג ריקוד</p>
                     <FormControlLabel
                       dir="rtl"
@@ -909,7 +1268,10 @@ function LeadFullDisplay1(props) {
                       label="בלט"
                     />
                   </div>
-                  <div className="leadFullDisplay__modalInputContainer">
+                  */}
+
+                  {/*
+                                    <div className="leadFullDisplay__modalInputContainer">
                     <FormControl
                       dir="rtl"
                       className={classesSelect.formControl}
@@ -942,6 +1304,7 @@ function LeadFullDisplay1(props) {
                       </Select>
                     </FormControl>
                   </div>
+                  */}
                 </div>
                 {/* end .__modalSection */}
                 <div className="leadFullDisplay__modalSection">
@@ -963,13 +1326,9 @@ function LeadFullDisplay1(props) {
                         onChange={onchangeUpdateLeadStep}
                       >
                         <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
-                        <MenuItem value={"הוזמן לשיעור ניסיון"}>
-                          הוזמן לשיעור ניסיון
-                        </MenuItem>
-                        <MenuItem value={"היה בשיעור ניסיון"}>
-                          היה בשיעור ניסיון
-                        </MenuItem>
-                        <MenuItem value={"נרשם כמנוי"}>נרשם כמנוי</MenuItem>
+                        <MenuItem value={"תיאם פגישה"}>תיאם פגישה</MenuItem>
+                        <MenuItem value={"היה בפגישה"}>היה בפגישה</MenuItem>
+                        <MenuItem value={"רכש"}>רכש</MenuItem>
                       </Select>
                     </FormControl>
                   </div>
@@ -1112,161 +1471,724 @@ function LeadFullDisplay1(props) {
                 </div>
                 {/* end .__modalSection */}
 
-                <div className="leadFullDisplay__modalSection">
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <h4>אירוע 1 - ליד מתעניין</h4>
-                  </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <FormControl
-                      className={classesSelect.formControl}
-                      dir="rtl"
-                    >
-                      <InputLabel id="demo-simple-select-label">
-                        פעולה שהתבצעה
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={updateEvent1ActionTaken}
-                        onChange={onChangeUpdateEvent1ActionTaken}
-                      >
-                        <MenuItem value={"התקשרנו ללא מענה"}>
-                          התקשרנו ללא מענה
-                        </MenuItem>
-                        <MenuItem value={"התקשרנו ונקבע שיעור ניסיון"}>
-                          התקשרנו ונקבע שיעור ניסיון
-                        </MenuItem>
-                        <MenuItem value={"התקשרנו ולא רלוונטי"}>
-                          התקשרנו ולא רלוונטי
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
-                  </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <TextField
-                      id="date"
-                      label="תאריך אירוע"
-                      type="date"
-                      defaultValue="2020-05-24"
-                      todayLabel="היום"
-                      value={updateEvent1Date}
-                      onChange={onChangeUpdateEvent1Date}
-                      className={classesDatePicker.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <FormControl
-                      className={classesSelect.formControl}
-                      dir="rtl"
-                    >
-                      <InputLabel id="demo-simple-select-label">
-                        סטטוס אירוע
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={updateEvent1StatsEvent}
-                        onChange={onChangeUpdateEvent1StatusEvent}
-                      >
-                        <MenuItem value={"קנה"}>קנה</MenuItem>
-                        <MenuItem value={"מחכה לתיאום פגישה"}>
-                          מחכה לתיאום פגישה
-                        </MenuItem>
-                        <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
-                        <MenuItem value={"חושב"}>חושב</MenuItem>
-                        <MenuItem value={"לא מעוניין"}>לא מעוניין</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </div>
+                <div className="leadFullDisplay__modalInputContainer">
+                  <h4> אירועי ליד בתהליך מכירה</h4>
                 </div>
-                {/* end .__modalSection */}
-                <div className="leadFullDisplay__modalSection">
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <h4>אירוע 2 - ליד היה בשיעור ניסיון</h4>
-                  </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <FormControl
-                      className={classesSelect.formControl}
-                      dir="rtl"
-                    >
-                      <InputLabel id="demo-simple-select-label">
-                        פעולה שהתבצעה
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={updateEvent2ActionTaken}
-                        onChange={onChangeUpdateEvent2ActionTaken}
+                {/* start activity logs updates modal */}
+                {updateEventHappendToActivityLog2 ===
+                null ? null : updateEventHappendToActivityLog2 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 1</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
                       >
-                        <MenuItem value={"הגיע לשיעור ניסיון"}>
-                          הגיע לשיעור ניסיון
-                        </MenuItem>
-                        <MenuItem value={"הגיע לשיעור ניסיון - ליצור קשר"}>
-                          הגיע לשיעור ניסיון - ליצור קשר
-                        </MenuItem>
-                        <MenuItem value={"הגיע לשיעור ניסיון - מחכה לרישום"}>
-                          הגיע לשיעור ניסיון - מחכה לרישום
-                        </MenuItem>
-                        <MenuItem value={"הגיע לשיעור ניסיון - לא רלוונטי"}>
-                          הגיע לשיעור ניסיון - לא רלוונטי
-                        </MenuItem>
-                        <MenuItem
-                          value={
-                            "הגיע לשיעור ניסיון - מעוניין בשיעור ניסיון נוסף"
-                          }
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog2}
+                          onChange={onChangeUpdateEventHappendToActivityLog2}
                         >
-                          הגיע לשיעור ניסיון - מעוניין בשיעור ניסיון נוסף
-                        </MenuItem>
-                        <MenuItem value={"מעוניין ביצירת קשר נוספת"}>
-                          מעוניין ביצירת קשר נוספת
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog2}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog2}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <TextField
-                      id="date"
-                      label="תאריך אירוע"
-                      type="date"
-                      defaultValue="2020-05-24"
-                      todayLabel="היום"
-                      value={updateEvent2Date}
-                      onChange={onChangeUpdateEvent2Date}
-                      className={classesDatePicker.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </div>
-                  <div className="leadFullDisplay__modalInputContainer">
-                    <FormControl
-                      className={classesSelect.formControl}
-                      dir="rtl"
-                    >
-                      <InputLabel id="demo-simple-select-label">
-                        סטטוס אירוע
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={updateEvent2StatsEvent}
-                        onChange={onChangeUpdateEvent2StatusEvent}
+                )}
+
+                {/* end activity log 1 */}
+
+                {updateEventHappendToActivityLog3 ===
+                null ? null : updateEventHappendToActivityLog3 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 2</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
                       >
-                        <MenuItem value={"קנה"}>קנה</MenuItem>
-                        <MenuItem value={"מחכה לתיאום פגישה"}>
-                          מחכה לתיאום פגישה
-                        </MenuItem>
-                        <MenuItem value={"מתעניין"}>מתעניין</MenuItem>
-                        <MenuItem value={"חושב"}>חושב</MenuItem>
-                        <MenuItem value={"לא מעוניין"}>לא מעוניין</MenuItem>
-                      </Select>
-                    </FormControl>
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog3}
+                          onChange={onChangeUpdateEventHappendToActivityLog3}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog3}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog3}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-                {/* end .__modalSection */}
+                )}
+                {/* end activity log 2 */}
+
+                {updateEventHappendToActivityLog4 ===
+                null ? null : updateEventHappendToActivityLog4 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 3</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog4}
+                          onChange={onChangeUpdateEventHappendToActivityLog4}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog4}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog4}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 3 */}
+
+                {updateEventHappendToActivityLog5 ===
+                null ? null : updateEventHappendToActivityLog5 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 4</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog5}
+                          onChange={onChangeUpdateEventHappendToActivityLog5}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog5}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog5}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 4 */}
+
+                {updateEventHappendToActivityLog6 ===
+                null ? null : updateEventHappendToActivityLog6 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 5</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog6}
+                          onChange={onChangeUpdateEventHappendToActivityLog6}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog6}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog6}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 5 */}
+
+                {updateEventHappendToActivityLog7 ===
+                null ? null : updateEventHappendToActivityLog7 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 6</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog7}
+                          onChange={onChangeUpdateEventHappendToActivityLog7}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog7}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog7}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 6 */}
+
+                {updateEventHappendToActivityLog8 ===
+                null ? null : updateEventHappendToActivityLog8 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 7</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog8}
+                          onChange={onChangeUpdateEventHappendToActivityLog8}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog8}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog8}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 7 */}
+
+                {updateEventHappendToActivityLog9 ===
+                null ? null : updateEventHappendToActivityLog9 === "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 8</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog9}
+                          onChange={onChangeUpdateEventHappendToActivityLog9}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog9}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog9}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 8 */}
+
+                {updateEventHappendToActivityLog10 ===
+                null ? null : updateEventHappendToActivityLog10 ===
+                  "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 9</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog10}
+                          onChange={onChangeUpdateEventHappendToActivityLog10}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog10}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog10}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 9 */}
+
+                {updateEventHappendToActivityLog11 ===
+                null ? null : updateEventHappendToActivityLog11 ===
+                  "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 10</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog11}
+                          onChange={onChangeUpdateEventHappendToActivityLog11}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog11}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog11}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 10 */}
+
+                {updateEventHappendToActivityLog12 ===
+                null ? null : updateEventHappendToActivityLog12 ===
+                  "" ? null : (
+                  <div className="leadFullDisplay__modalSection">
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <h5>אירוע 11</h5>
+                    </div>
+
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <FormControl
+                        className={classesSelect.formControl}
+                        dir="rtl"
+                      >
+                        <InputLabel id="demo-simple-select-label">
+                          פעולה שהתבצעה
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={updateEventHappendToActivityLog12}
+                          onChange={onChangeUpdateEventHappendToActivityLog12}
+                        >
+                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                            התקשרנו והיה מענה - נקבעה פגישה
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                            התקשרנו והיה מענה - לא רלוונטי
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                            התקשרנו ולא היה מענה, לחזור
+                          </MenuItem>
+                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                            התקשרנו ומספר לא תקין
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                            נפגשנו - מתקדם לחוזה
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                            נפגשנו - לתאם פגישה שוב
+                          </MenuItem>
+                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                            נפגשנו - כרגע לא מעוניין
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="leadFullDisplay__modalInputContainer">
+                      <TextField
+                        id="date"
+                        label="תאריך אירוע"
+                        type="date"
+                        //defaultValue="2020-05-24"
+                        todayLabel="היום"
+                        value={updateDateEventHappendToActivityLog12}
+                        onChange={onChangeUpdateDateEventHappendToActivityLog12}
+                        className={classesDatePicker.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* end activity log 11 */}
+                <button
+                  type="button"
+                  onClick={onClickAddEventActivityLogInModal}
+                >
+                  הוסף אירוע לליד
+                </button>
+
                 <div className="leadFullDisplay__modalSection">
                   <div className="leadFullDisplay__modalInputContainer">
                     <h4>רכישה</h4>
@@ -1396,34 +2318,10 @@ function LeadFullDisplay1(props) {
               </div>
 
               <div className="leadFullDisplay__content">
-                <p className="leadFullDisplay__content--title">סניף רלוונטי</p>
-                <p className="leadFullDisplay__content--text">
-                  {updateRelevantBranch}
-                </p>
-              </div>
-            </div>
-            <div className="leadFullDisplay__contentContainer--left">
-              <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">מקור ליד</p>
                 <p className="leadFullDisplay__content--text">
                   {updateLeadSource}
                 </p>
-              </div>
-
-              <div className="leadFullDisplay__content">
-                <p className="leadFullDisplay__content--title">
-                  מתעניין בריקוד
-                </p>
-                <p className="leadFullDisplay__content--text">
-                  {checkIfOnChangeFuncExecuted == false
-                    ? updateDanceType
-                    : updateDanceTypeAfterOnChange}
-                </p>
-              </div>
-
-              <div className="leadFullDisplay__content">
-                <p className="leadFullDisplay__content--title">שכבת גיל</p>
-                <p className="leadFullDisplay__content--text">{updateAge}</p>
               </div>
 
               <div className="leadFullDisplay__content">
@@ -1434,11 +2332,43 @@ function LeadFullDisplay1(props) {
                   {`${addedHour}  ${addedDate}`}
                 </p>
               </div>
+
+              {/*
+                <div className="leadFullDisplay__content">
+                <p className="leadFullDisplay__content--title">סניף רלוונטי</p>
+                <p className="leadFullDisplay__content--text">
+                  {updateRelevantBranch}
+                </p>
+              </div>
+                */}
+            </div>
+
+            <div className="leadFullDisplay__contentContainer--left">
+              {/*
+                 <div className="leadFullDisplay__content">
+                <p className="leadFullDisplay__content--title">
+                  מתעניין בריקוד
+                </p>
+                <p className="leadFullDisplay__content--text">
+                  {checkIfOnChangeFuncExecuted == false
+                    ? updateDanceType
+                    : updateDanceTypeAfterOnChange}
+                </p>
+              </div>
+                */}
+
+              {/*
+               <div className="leadFullDisplay__content">
+                <p className="leadFullDisplay__content--title">שכבת גיל</p>
+                <p className="leadFullDisplay__content--text">{updateAge}</p>
+              </div>
+                */}
             </div>
           </div>
         </div>
 
-        <div className="leadFullDisplay__section">
+        {/*
+                  <div className="leadFullDisplay__section">
           <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
             <FacebookIcon
               style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
@@ -1496,8 +2426,10 @@ function LeadFullDisplay1(props) {
             <div className="leadFullDisplay__contentContainer--left"></div>
           </div>
         </div>
+          */}
 
-        <div className="leadFullDisplay__section">
+        {/*
+                  <div className="leadFullDisplay__section">
           <h3 className="leadFullDisplay__subtitle">משימה לליד</h3>
 
           <div className="leadFullDisplay__contentContainer">
@@ -1581,8 +2513,10 @@ function LeadFullDisplay1(props) {
             </div>
           </div>
         </div>
+          */}
 
-        <div className="leadFullDisplay__section">
+        {/*
+                  <div className="leadFullDisplay__section">
           <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
             <FacebookIcon
               style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
@@ -1626,8 +2560,10 @@ function LeadFullDisplay1(props) {
             <div className="leadFullDisplay__contentContainer--left"></div>
           </div>
         </div>
+          */}
 
-        <div className="leadFullDisplay__section">
+        {/*
+                  <div className="leadFullDisplay__section">
           <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
             <FacebookIcon
               style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
@@ -1671,8 +2607,10 @@ function LeadFullDisplay1(props) {
             <div className="leadFullDisplay__contentContainer--left"></div>
           </div>
         </div>
+          */}
 
-        <div className="leadFullDisplay__section">
+        {/*
+                  <div className="leadFullDisplay__section">
           <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
             <FacebookIcon
               style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
@@ -1705,7 +2643,7 @@ function LeadFullDisplay1(props) {
                   {updatePurchasedAmount === null
                     ? ""
                     : `${updatePurchasedAmount} ש"ח`}
-                  {/*`${updatePurchasedAmount} ש"ח`*/}
+                
                 </p>
               </div>
 
@@ -1713,7 +2651,7 @@ function LeadFullDisplay1(props) {
                 <p className="leadFullDisplay__content--title">עלות ליד</p>
                 <p className="leadFullDisplay__content--text">
                   {updateLeadCost === null ? "" : `${updateLeadCost} ש"ח`}
-                  {/*`${updateLeadCost} ש"ח`*/}
+                 
                 </p>
               </div>
 
@@ -1729,7 +2667,327 @@ function LeadFullDisplay1(props) {
             <div className="leadFullDisplay__contentContainer--left"></div>
           </div>
         </div>
+          */}
       </div>
+      <SimpleTabs
+        tabLabel1="יומן פעילות"
+        tab1={
+          <div className="leadFullDisplay__section">
+            <ul className="leadFullDisplay__section--activityLogUlList">
+              <li>
+                ליד התווסף ממקור: {updateLeadSource} בתאריך: {addedHour}{" "}
+                {addedDate}
+              </li>
+
+              {updateEventHappendToActivityLog2 ===
+              null ? null : updateEventHappendToActivityLog2 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog2}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog2})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog3 ===
+              null ? null : updateEventHappendToActivityLog3 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog3}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog3})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog4 ===
+              null ? null : updateEventHappendToActivityLog4 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog4}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog4})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog5 ===
+              null ? null : updateEventHappendToActivityLog5 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog5}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog5})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog6 ===
+              null ? null : updateEventHappendToActivityLog6 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog6}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog6})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog7 ===
+              null ? null : updateEventHappendToActivityLog7 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog7}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog7})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog8 ===
+              null ? null : updateEventHappendToActivityLog8 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog8}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog8})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog9 ===
+              null ? null : updateEventHappendToActivityLog9 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog9}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog9})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog10 ===
+              null ? null : updateEventHappendToActivityLog10 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog10}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog10})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog11 ===
+              null ? null : updateEventHappendToActivityLog11 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog11}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog11})</span>
+                </li>
+              )}
+
+              {updateEventHappendToActivityLog12 ===
+              null ? null : updateEventHappendToActivityLog12 === "" ? null : (
+                <li>
+                  <span>{updateEventHappendToActivityLog12}</span>
+                  <span> </span>
+                  <span>({updateDateEventHappendToActivityLog12})</span>
+                </li>
+              )}
+            </ul>
+          </div>
+        }
+        tabLabel2="שלב ורלוונטיות ליד"
+        tab2={
+          <div className="leadFullDisplay__section">
+            <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+              <FacebookIcon
+                style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+              />
+            </Tooltip>
+
+            <div className="leadFullDisplay__contentContainer">
+              <div className="leadFullDisplay__contentContainer--right">
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">שלב ליד</p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateLeadStep}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    משימה ממומלצת לשלב זה
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateRecommendedMission}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    האם הליד רלוונטי?
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateIsTheLeadRelevant === null
+                      ? "לא (ברירת מחדל)"
+                      : updateIsTheLeadRelevant === false
+                      ? "לא (ברירת מחדל)"
+                      : updateIsTheLeadRelevant === "FALSE"
+                      ? "לא (ברירת מחדל)"
+                      : updateIsTheLeadRelevant === "TRUE"
+                      ? "כן"
+                      : updateIsTheLeadRelevant === true
+                      ? "כן"
+                      : updateIsTheLeadRelevant}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    תאריך עדכון אחרון של ליד זה
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {`${lastCurrentUpdateHour}  ${lastCurrentUpdateDate}`}
+                  </p>
+                </div>
+              </div>
+              <div className="leadFullDisplay__contentContainer--left"></div>
+            </div>
+          </div>
+        }
+        tabLabel3="משימה לליד"
+        tab3={
+          <div className="leadFullDisplay__section">
+            <div className="leadFullDisplay__contentContainer">
+              <div className="leadFullDisplay__contentContainer--right">
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    משימה נוצרה בתאריך
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manulMissionCreatedDate}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">סוג משימה</p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionTypeOfMission}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">תיאור משימה</p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionDescription}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    משימה נוצרה ע"י איש צוות
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionCreatedByTeamMember}
+                  </p>
+                </div>
+              </div>
+              <div className="leadFullDisplay__contentContainer--left">
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    דדליין ביצוע משימה
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionDeadlineDateNewFormat}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    משימה בוצעה?
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionPerformed === null
+                      ? "לא (ברירת מחדל)"
+                      : manualMissionPerformed == ""
+                      ? "לא (ברירת מחדל)"
+                      : manualMissionPerformed === false
+                      ? "לא (ברירת מחדל)"
+                      : manualMissionPerformed === "FALSE"
+                      ? "לא (ברירת מחדל)"
+                      : manualMissionPerformed === "TRUE"
+                      ? "כן"
+                      : manualMissionPerformed === true
+                      ? "כן"
+                      : updateIsTheLeadRelevant}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    בוצעה בתאריך
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionPerformedDateNewFormat}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    משימה מוטלת על איש צוות
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {manualMissionAssociatedToTeamMember}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+        tabLabel4="רכישה"
+        tab4={
+          <div className="leadFullDisplay__section">
+            <Tooltip title="בסעיף זה ישנם נתונים המועברים לפייסבוק על מנת לשפר את הפרסום שלך">
+              <FacebookIcon
+                style={{ color: "lightgray", margin: ".4rem 0 0 0" }}
+              />
+            </Tooltip>
+
+            <div className="leadFullDisplay__contentContainer">
+              <div className="leadFullDisplay__contentContainer--right">
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">ליד רכש?</p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateLeadPurchased === null
+                      ? "לא (ברירת מחדל)"
+                      : updateLeadPurchased === false
+                      ? "לא (ברירת מחדל)"
+                      : updateLeadPurchased === "FALSE"
+                      ? "לא (ברירת מחדל)"
+                      : updateLeadPurchased === "TRUE"
+                      ? "כן"
+                      : updateLeadPurchased === true
+                      ? "כן"
+                      : updateLeadPurchased}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">סכום רכישה</p>
+                  <p className="leadFullDisplay__content--text">
+                    {updatePurchasedAmount === null
+                      ? ""
+                      : `${updatePurchasedAmount} ש"ח`}
+                    {/*`${updatePurchasedAmount} ש"ח`*/}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">עלות ליד</p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateLeadCost === null ? "" : `${updateLeadCost} ש"ח`}
+                    {/*`${updateLeadCost} ש"ח`*/}
+                  </p>
+                </div>
+
+                <div className="leadFullDisplay__content">
+                  <p className="leadFullDisplay__content--title">
+                    דירוג ליד 1-10
+                  </p>
+                  <p className="leadFullDisplay__content--text">
+                    {updateLeadRate}
+                  </p>
+                </div>
+              </div>
+              <div className="leadFullDisplay__contentContainer--left"></div>
+            </div>
+          </div>
+        }
+      />
     </>
   );
 }

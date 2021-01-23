@@ -20,6 +20,16 @@ export const convertDateFromDatePickerToNormalDateFormat = (
   }
 };
 
+export const convertDateToNewFormat = (date) => {
+  if (date) {
+    let year = date.slice(0, 4);
+    let month = date.slice(5, 7);
+    let day = date.slice(8, 10);
+    let newFormat = day + "/" + month + "/" + year;
+    return newFormat;
+  }
+};
+
 // return the current date
 export const getCurrentDate = () => {
   let d = new Date();
