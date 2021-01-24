@@ -77,7 +77,7 @@ function LogInPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              מערכת לניהול לידים - סטודיו לריקוד
+              מערכת לניהול לידים - נדל"ן
             </Typography>
 
             <Button
