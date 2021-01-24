@@ -5,9 +5,12 @@ import {
   filterAllLeadsInStep1,
   filterAllLeadsInStep2,
   filterAllLeadsInStep3,
+  filterAllLeadsInStep4,
   filterAllManualMissionWithDeadlineSoon,
   filterRelevantLeads,
   sortLeadsAccordingToAddedDate,
+  filterAllNewLeadsPerTime,
+  filterAllLeadsInSellProcess,
 } from "../../functions";
 
 import {
@@ -19,12 +22,25 @@ import {
   FormControl,
   FormLabel,
 } from "@material-ui/core";
+import DataCard from "../DataCard";
 
 function GeneralLeadsList(props) {
   const [data, setData] = useState(false);
   const [allLeadsInStep1, setAllLeadsInStep1] = useState(false);
   const [allLeadsInStep2, setAllLeadsInStep2] = useState(false);
   const [allLeadsInStep3, setAllLeadsInStep3] = useState(false);
+  const [allLeadsInStep4, setAllLeadsInStep4] = useState(false);
+  const [allLeadsInSellProcess, setAllLeadsInSellProcess] = useState(false);
+  console.log(
+    "leads in step 1: ",
+    allLeadsInStep1,
+    "leads in step 2: ",
+    allLeadsInStep2,
+    "leads in step 3: ",
+    allLeadsInStep3,
+    "leads in step 4: ",
+    allLeadsInStep4
+  );
   const [
     allLeadsWithManualMissionDeadlineSoon,
     setAllLeadsWithManualMissionDeadlineSoon,
@@ -39,6 +55,8 @@ function GeneralLeadsList(props) {
     /* setAllLeadsInStep1(filterAllLeadsInStep1(props.data));
     setAllLeadsInStep2(filterAllLeadsInStep2(props.data));
     setAllLeadsInStep3(filterAllLeadsInStep3(props.data));*/
+    setAllLeadsInStep4(filterAllLeadsInStep4(props.data));
+    setAllLeadsInSellProcess(filterAllLeadsInSellProcess(props.data));
     setAllLeadsWithManualMissionDeadlineSoon(
       filterAllManualMissionWithDeadlineSoon(props.data)
     );
@@ -75,6 +93,46 @@ function GeneralLeadsList(props) {
   // console.log(toggleShowJustRelevantLeads); accordingToAddedDate
   return (
     <div className="generalLeadsList">
+      <div className="statistics__cards">
+        <div className="statistics__card">
+          <DataCard
+            titleCard='סה"כ לידים'
+            num={`בתהליך מכירה: ${
+              props.data &&
+              allLeadsInStep1.length +
+                allLeadsInStep2.length +
+                allLeadsInStep3.length
+            } | לידים שרכשו: ${allLeadsInStep4 && allLeadsInStep4.length}`}
+          />
+        </div>
+        <div className="statistics__card">
+          <DataCard
+            titleCard='סה"כ לידים בתהליך מכירה'
+            num={`מתעניינים: ${
+              allLeadsInStep1 && allLeadsInStep1.length
+            } | תיאמו פגישה: ${
+              allLeadsInStep2 && allLeadsInStep2.length
+            } | היו בפגישה: ${allLeadsInStep3 && allLeadsInStep3.length}`}
+          />
+        </div>
+        <div className="statistics__card">
+          <DataCard
+            titleCard="לידים חדשים התווספו בתהליך מכירה"
+            //num="היום: 2 | השבוע: 14 | החודש: 24 "
+            num={`היום: ${
+              allLeadsInSellProcess &&
+              filterAllNewLeadsPerTime(allLeadsInSellProcess, 0).length
+            } | השבוע: ${
+              allLeadsInSellProcess &&
+              filterAllNewLeadsPerTime(allLeadsInSellProcess, 7).length
+            } | החודש: ${
+              allLeadsInSellProcess &&
+              filterAllNewLeadsPerTime(allLeadsInSellProcess, 30).length
+            }`}
+          />
+        </div>
+      </div>
+
       <div className="generalLeadsList__radioForm">
         <FormControl component="fieldset">
           <RadioGroup

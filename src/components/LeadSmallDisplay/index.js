@@ -127,10 +127,11 @@ export default function LeadSmallDisplay(props) {
               {props.leadTel}
             </Typography>
           </div>
-
+          {/* 
           <Typography variant="h5" component="h2">
             {props.leadStep}
           </Typography>
+            */}
         </CardContent>
         <div className="leadSmallDisplay__bottom">
           <CardActions>
@@ -138,7 +139,10 @@ export default function LeadSmallDisplay(props) {
               <Button size="small">כרטיס ליד</Button>
             </Link>
           </CardActions>
+          {/*
           <p>דירוג ליד: {props.leadRate}</p>
+          */}
+
           <div>
             {checkIfLeadWithManualMission === "no-mission" ? (
               <Tooltip title="אין משימה">

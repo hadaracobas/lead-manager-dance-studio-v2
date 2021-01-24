@@ -369,6 +369,8 @@ function LeadFullDisplay1(props) {
     setUpdateLeadStep(event.target.value);
   };
 
+  console.log("update lead stepp: ", updateLeadStep);
+
   // UPDATE RECOMMENDED MISSION ACCORDING TO LEAD STEP
   const [updateRecommendedMission, setUpdateRecommendedMission] = useState("");
   const updateRocommendedMissionAccordingToLeadStep = () => {
@@ -490,6 +492,7 @@ function LeadFullDisplay1(props) {
     alert("תאריך יצירת משימה התעדכן לתאריך של היום");
   };
 
+  /*
   // UPDATE EVENT 1 ACTION TAKEN
   const [updateEvent1ActionTaken, setUpdateEvent1ActionTaken] = useState("");
   const onChangeUpdateEvent1ActionTaken = (event) => {
@@ -544,6 +547,8 @@ function LeadFullDisplay1(props) {
     setUpdateEvent2StatsEvent(event.target.value);
   };
 
+  */
+
   // UPDATE LEAD PURCHASED
   const [updateLeadPurchased, setUpdateLeadPurchased] = useState(false);
   const onchangeUpdateLeadPurchased = (e) => {
@@ -569,7 +574,7 @@ function LeadFullDisplay1(props) {
   };
 
   //UPDATE ACTIVITY LOGS
-
+  /*
   const [
     getEventHappandToActivityLogFromDatabase,
     setGetEventHappandToActivityLogFromDatabase,
@@ -591,7 +596,7 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog = (event) => {
     setDateEventHappendToActivityLog(event.target.value);
   };
-  /*
+  
   const [
     dateEventHappendToActivityLogNewFormat,
     setDateEventHappendToActivityLogNewFormat,
@@ -621,6 +626,42 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog2(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog2 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog2 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog2 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog2 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog2 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog2 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog2 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog2 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog2 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog2]);
+
   //activity log event 3
   const [
     updateEventHappendToActivityLog3,
@@ -637,6 +678,42 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog3 = (e) => {
     setUpdateDateEventHappendToActivityLog3(e.target.value);
   };
+
+  useEffect(() => {
+    if (updateEventHappendToActivityLog3 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog3 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog3 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog3 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog3 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog3 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog3 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog3 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog3 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog3]);
 
   //activity log event 4
   const [
@@ -655,6 +732,42 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog4(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog4 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog4 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog4 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog4 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog4 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog4 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog4 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog4 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog4 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog4]);
+
   //activity log event 5
   const [
     updateEventHappendToActivityLog5,
@@ -671,6 +784,42 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog5 = (e) => {
     setUpdateDateEventHappendToActivityLog5(e.target.value);
   };
+
+  useEffect(() => {
+    if (updateEventHappendToActivityLog5 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog5 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog5 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog5 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog5 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog5 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog5 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog5 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog5 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog5]);
 
   //activity log event 6
   const [
@@ -689,6 +838,42 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog6(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog6 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog6 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog6 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog6 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog6 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog6 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog6 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog6 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog6 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog6]);
+
   //activity log event 7
   const [
     updateEventHappendToActivityLog7,
@@ -705,6 +890,42 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog7 = (e) => {
     setUpdateDateEventHappendToActivityLog7(e.target.value);
   };
+
+  useEffect(() => {
+    if (updateEventHappendToActivityLog7 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog7 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog7 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog7 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog7 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog7 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog7 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog7 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog7 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog7]);
 
   //activity log event 8
   const [
@@ -723,6 +944,42 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog8(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog8 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog8 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog8 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog8 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog8 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog8 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog8 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog8 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog8 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog8]);
+
   //activity log event 9
   const [
     updateEventHappendToActivityLog9,
@@ -739,6 +996,42 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog9 = (e) => {
     setUpdateDateEventHappendToActivityLog9(e.target.value);
   };
+
+  useEffect(() => {
+    if (updateEventHappendToActivityLog9 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog9 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog9 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog9 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog9 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog9 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog9 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog9 == "נפגשנו - כרגע לא מעוניין") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog9 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog9]);
 
   //activity log event 10
   const [
@@ -757,6 +1050,44 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog10(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog10 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog10 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog10 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog10 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog10 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog10 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog10 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog10 == "נפגשנו - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog10 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog10]);
+
   //activity log event 11
   const [
     updateEventHappendToActivityLog11,
@@ -774,6 +1105,44 @@ function LeadFullDisplay1(props) {
     setUpdateDateEventHappendToActivityLog11(e.target.value);
   };
 
+  useEffect(() => {
+    if (updateEventHappendToActivityLog11 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog11 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog11 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog11 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog11 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog11 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog11 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog11 == "נפגשנו - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog11 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog11]);
+
   //activity log event 12
   const [
     updateEventHappendToActivityLog12,
@@ -790,9 +1159,50 @@ function LeadFullDisplay1(props) {
   const onChangeUpdateDateEventHappendToActivityLog12 = (e) => {
     setUpdateDateEventHappendToActivityLog12(e.target.value);
   };
-  console.log("2 ", updateEventHappendToActivityLog2);
+
+  useEffect(() => {
+    if (updateEventHappendToActivityLog12 === false) {
+      // do nothing
+    } else if (
+      updateEventHappendToActivityLog12 == "התקשרנו והיה מענה - נקבעה פגישה"
+    ) {
+      setUpdateLeadStep("תיאם פגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog12 == "התקשרנו והיה מענה - לא רלוונטי"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (
+      updateEventHappendToActivityLog12 == "התקשרנו ולא היה מענה, לחזור"
+    ) {
+      setUpdateLeadStep("מתעניין");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog12 == "התקשרנו ומספר לא תקין") {
+      setUpdateLeadStep("מתעניין");
+    } else if (updateEventHappendToActivityLog12 == "נפגשנו - מתקדם לחוזה") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (updateEventHappendToActivityLog12 == "נפגשנו - לתאם פגישה שוב") {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog12 == "נפגשנו - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בפגישה");
+      setUpdateIsTheLeadRelevant(false);
+    } else if (updateEventHappendToActivityLog12 == "התבצעה רכישה") {
+      setUpdateLeadStep("רכש");
+      setUpdateLeadPurchased(true);
+      setUpdateIsTheLeadRelevant(true);
+    }
+  }, [updateEventHappendToActivityLog12]);
+
+  // handle activity log add event button
+  const [addMaxOneEventPerLoad, setAddMaxOneEventPerLoad] = useState(false);
 
   const onClickAddEventActivityLogInModal = () => {
+    setAddMaxOneEventPerLoad(true);
     if (
       updateEventHappendToActivityLog2 === null ||
       updateEventHappendToActivityLog2 === ""
@@ -897,11 +1307,11 @@ function LeadFullDisplay1(props) {
         setUpdatePurchasedAmount(filterTheLead[0].PurchasedAmount);
         setUpdateLeadCost(filterTheLead[0].LeadCost);
         setUpdateLeadRate(filterTheLead[0].LeadRate);
-
+        /*
         setGetEventHappandToActivityLogFromDatabase(
           filterTheLead[0].eventHappenedToActivityLog
         );
-
+*/
         setUpdateEventHappendToActivityLog2(filterTheLead[0].ActivityLog2);
         setUpdateDateEventHappendToActivityLog2(
           filterTheLead[0].DateActivityLog2
@@ -1307,7 +1717,9 @@ function LeadFullDisplay1(props) {
                   */}
                 </div>
                 {/* end .__modalSection */}
-                <div className="leadFullDisplay__modalSection">
+
+                {/*
+                                <div className="leadFullDisplay__modalSection">
                   <div className="leadFullDisplay__modalInputContainer">
                     <h4>שלב ורלוונטיות ליד</h4>
                   </div>
@@ -1348,6 +1760,8 @@ function LeadFullDisplay1(props) {
                     />
                   </div>
                 </div>
+                */}
+
                 {/* end .__modalSection */}
                 <div className="leadFullDisplay__modalSection">
                   <div className="leadFullDisplay__modalInputContainer">
@@ -1376,13 +1790,11 @@ function LeadFullDisplay1(props) {
                         value={manualMissionTypeOfMission}
                         onChange={onChangeManualMissionTypeOfMission}
                       >
-                        <MenuItem value={"קביעת מועד לשיעור ניסיון"}>
-                          קביעת מועד לשיעור ניסיון
+                        <MenuItem value={"קביעת מועד לפגישה"}>
+                          קביעת מועד לפגישה
                         </MenuItem>
-                        <MenuItem value={"תזכורת"}>תזכורת</MenuItem>
-                        <MenuItem value={"רישום ליד כמנוי קבוע"}>
-                          רישום ליד כמנוי קבוע
-                        </MenuItem>
+                        <MenuItem value={"לתזכר ליד"}>לתזכר ליד</MenuItem>
+                        <MenuItem value={"חתימת חוזה"}>חתימת חוזה</MenuItem>
                         <MenuItem value={"גביית תשלום"}>גביית תשלום</MenuItem>
                         <MenuItem value={"אחר"}>אחר</MenuItem>
                       </Select>
@@ -2216,18 +2628,29 @@ function LeadFullDisplay1(props) {
                   </div>
                 )}
                 {/* end activity log 11 */}
-                <button
-                  type="button"
-                  onClick={onClickAddEventActivityLogInModal}
-                >
-                  הוסף אירוע לליד
-                </button>
+                {addMaxOneEventPerLoad ? (
+                  <button
+                    type="button"
+                    onClick={onClickAddEventActivityLogInModal}
+                    disabled
+                  >
+                    הוסף אירוע לליד
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={onClickAddEventActivityLogInModal}
+                  >
+                    הוסף אירוע לליד
+                  </button>
+                )}
 
                 <div className="leadFullDisplay__modalSection">
                   <div className="leadFullDisplay__modalInputContainer">
                     <h4>רכישה</h4>
                   </div>
-                  <div className="leadFullDisplay__modalInputContainer">
+                  {/* 
+                      <div className="leadFullDisplay__modalInputContainer">
                     <p dir="rtl">האם הליד רכש?</p>
                     <FormControlLabel
                       dir="rtl"
@@ -2242,6 +2665,8 @@ function LeadFullDisplay1(props) {
                       label="התבצעה רכישה"
                     />
                   </div>
+                  */}
+
                   {updateLeadPurchased && (
                     <div className="leadFullDisplay__modalInputContainer">
                       <TextField
@@ -2848,6 +3273,8 @@ function LeadFullDisplay1(props) {
                   <p className="leadFullDisplay__content--text">
                     {updateIsTheLeadRelevant === null
                       ? "לא (ברירת מחדל)"
+                      : updateIsTheLeadRelevant === ""
+                      ? "לא (ברירת מחדל)"
                       : updateIsTheLeadRelevant === false
                       ? "לא (ברירת מחדל)"
                       : updateIsTheLeadRelevant === "FALSE"
@@ -2978,6 +3405,8 @@ function LeadFullDisplay1(props) {
                   <p className="leadFullDisplay__content--text">
                     {updateLeadPurchased === null
                       ? "לא (ברירת מחדל)"
+                      : updateLeadPurchased === ""
+                      ? "לא (ברירת מחדל)"
                       : updateLeadPurchased === false
                       ? "לא (ברירת מחדל)"
                       : updateLeadPurchased === "FALSE"
@@ -2995,6 +3424,8 @@ function LeadFullDisplay1(props) {
                   <p className="leadFullDisplay__content--text">
                     {updatePurchasedAmount === null
                       ? ""
+                      : updatePurchasedAmount === ""
+                      ? ""
                       : `${updatePurchasedAmount} ש"ח`}
                     {/*`${updatePurchasedAmount} ש"ח`*/}
                   </p>
@@ -3003,7 +3434,11 @@ function LeadFullDisplay1(props) {
                 <div className="leadFullDisplay__content">
                   <p className="leadFullDisplay__content--title">עלות ליד</p>
                   <p className="leadFullDisplay__content--text">
-                    {updateLeadCost === null ? "" : `${updateLeadCost} ש"ח`}
+                    {updateLeadCost === null
+                      ? ""
+                      : updateLeadCost === ""
+                      ? ""
+                      : `${updateLeadCost} ש"ח`}
                     {/*`${updateLeadCost} ש"ח`*/}
                   </p>
                 </div>

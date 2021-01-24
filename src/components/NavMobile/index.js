@@ -26,6 +26,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import FaceIcon from "@material-ui/icons/Face";
 import CardMembershipIcon from "@material-ui/icons/CardMembership";
 import SettingsIcon from "@material-ui/icons/Settings";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 //import Link from "@material-ui/core/Link";
 
 const StyledMenu = withStyles({
@@ -114,7 +115,7 @@ function NavMobile() {
             <ListItemIcon>
               <FaceIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText style={menuLiStyles} primary="לידים" />
+            <ListItemText style={menuLiStyles} primary="לידים בתהליך מכירה" />
           </StyledMenuItem>
         </Link>
         <Link
@@ -124,9 +125,9 @@ function NavMobile() {
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <CardMembershipIcon fontSize="small" />
+              <AttachMoneyIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText style={menuLiStyles} primary="מנויים" />
+            <ListItemText style={menuLiStyles} primary="ביצעו רכישה" />
           </StyledMenuItem>
         </Link>
 

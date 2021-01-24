@@ -34,21 +34,21 @@ function Home(props) {
 
   const [exampleData, setExampleData] = useState([
     {
-      ID: "1",
-      addedDate: null,
-      addedHour: null,
-      leadSource: null,
-      name: null,
-      email: null,
-      tel: null,
-      lastUpdateDate: null,
-      lastUpdateHour: null,
-      leadStep: null,
-      recommendedSystemMission: null,
-      manualMissionDescription: null,
+      ID: "2",
+      addedDate: "24/1/2021",
+      addedHour: "16:15",
+      leadSource: "הגיע למשרד",
+      name: "שלום כהן",
+      email: "shalom@gmail.com",
+      tel: "054-9983232",
+      lastUpdateDate: "24/1/2021",
+      lastUpdateHour: "10:26",
+      leadStep: "היה בפגישה",
+      recommendedSystemMission: "לתזכר פגישה",
+      manualMissionDescription: "ccc",
       manualTypeMission: null,
       dateManualMissionCreated: null,
-      DeadlineDateManualMission: null,
+      DeadlineDateManualMission: "26/01/2021",
       manualMissionCreateByTeamMember: null,
       manualMissionAssociatedToTeamMember: null,
       manualMissionPerformed: null,
@@ -83,17 +83,17 @@ function Home(props) {
       DateActivityLog12: null,
     },
     {
-      ID: "2",
-      addedDate: "17/1/2021",
-      addedHour: "16:15",
-      leadSource: "הגיע למשרד",
-      name: "שלום כהן",
-      email: "shalom@gmail.com",
-      tel: "054-9983232",
-      lastUpdateDate: "23/1/2021",
-      lastUpdateHour: "13:43",
-      leadStep: "מתעניין",
-      recommendedSystemMission: "לתזכר פגישה",
+      ID: "3",
+      addedDate: "24/1/2020",
+      addedHour: "12:23",
+      leadSource: "אתר",
+      name: "רוני אלבז",
+      email: "roni@gmail.com",
+      tel: "054-9963789",
+      lastUpdateDate: "",
+      lastUpdateHour: "",
+      leadStep: "רכש",
+      recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
       dateManualMissionCreated: "",
@@ -102,24 +102,24 @@ function Home(props) {
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
       DateManualMissionPerformed: "",
-      isTheLeadRelevant: "",
-      leadPurchased: "",
-      PurchasedAmount: "",
-      LeadRate: "",
-      LeadCost: "",
-      LeadPurchasedNote: "",
-      ActivityLog2: "",
-      ActivityLog3: "",
-      ActivityLog4: "",
-      ActivityLog5: "",
-      ActivityLog6: "",
-      ActivityLog7: "",
-      ActivityLog8: "",
-      ActivityLog9: "",
-      ActivityLog10: "",
-      ActivityLog11: "",
-      ActivityLog12: "",
-      DateActivityLog2: "",
+      isTheLeadRelevant: "TRUE",
+      leadPurchased: null,
+      PurchasedAmount: null,
+      LeadRate: null,
+      LeadCost: null,
+      LeadPurchasedNote: null,
+      ActivityLog2: null,
+      ActivityLog3: null,
+      ActivityLog4: null,
+      ActivityLog5: null,
+      ActivityLog6: null,
+      ActivityLog7: null,
+      ActivityLog8: null,
+      ActivityLog9: null,
+      ActivityLog10: null,
+      ActivityLog11: null,
+      ActivityLog12: null,
+      DateActivityLog2: null,
       DateActivityLog3: null,
       DateActivityLog4: null,
       DateActivityLog5: null,
@@ -145,9 +145,9 @@ function Home(props) {
   };
 
   // disable to save cost of request during work
-  /*useEffect(() => {
+  useEffect(() => {
     getDataFromSheet();
-  }, [props.relCrudApiUrl]);*/
+  }, [props.relCrudApiUrl]);
   //console.log("data from sheet: ", data);
 
   return (
@@ -156,38 +156,38 @@ function Home(props) {
       <div className="home">
         <Switch>
           <Route exact path="/">
-            {exampleData ? (
-              <GeneralLeadsList data={exampleData} />
+            {data ? (
+              <GeneralLeadsList data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
-            {exampleData ? (
-              <ActiveSubscribers data={exampleData} />
+            {data ? (
+              <ActiveSubscribers data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/manual-missions">
-            {exampleData ? (
-              <ManualMissions data={exampleData} />
+            {data ? (
+              <ManualMissions data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/statistics">
-            {exampleData ? (
-              <Statistics data={exampleData} />
+            {data ? (
+              <Statistics data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/add-new-lead">
-            {exampleData ? (
+            {data ? (
               <AddNewLead
                 relCrudApiUrl={props.relCrudApiUrl}
-                data={exampleData}
+                data={data}
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
                 }
@@ -197,21 +197,21 @@ function Home(props) {
             )}
           </Route>
           <Route path="/search-lead">
-            {exampleData ? (
-              <SearchLead data={exampleData} />
+            {data ? (
+              <SearchLead data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/my-account">
-            {exampleData ? (
-              <Account user={props.user} data={exampleData} />
+            {data ? (
+              <Account user={props.user} data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/settings">
-            {exampleData ? (
+            {data ? (
               <Settings
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
@@ -230,9 +230,9 @@ function Home(props) {
           </Route>
 
           <Route path="/:id">
-            {exampleData ? (
+            {data ? (
               <LeadFullDisplay1
-                data={exampleData}
+                data={data}
                 relCrudApiUrl={props.relCrudApiUrl}
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount

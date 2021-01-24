@@ -89,6 +89,60 @@ function AddNewLead(props) {
     setLeadStep(event.target.value);
   };
 
+  // event activity log
+  const [eventActivityLog, setEventActivityLog] = useState();
+  const handleOnChangeEventActivityLog = (event) => {
+    setEventActivityLog(event.target.value);
+  };
+
+  // relevent lead?
+  const [relLead, setRelLead] = useState(false);
+
+  // lead purchased?
+  const [leadPurchased, setLeadPurchased] = useState(false);
+
+  useEffect(() => {
+    if (eventActivityLog === false) {
+      // do nothing
+    } else if (eventActivityLog == "התקשרנו והיה מענה - נקבעה פגישה") {
+      setLeadStep("תיאם פגישה");
+      setRelLead(true);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "התקשרנו והיה מענה - לא רלוונטי") {
+      setLeadStep("מתעניין");
+      setRelLead(false);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "התקשרנו ולא היה מענה, לחזור") {
+      setLeadStep("מתעניין");
+      setRelLead(true);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "התקשרנו ומספר לא תקין") {
+      setLeadStep("מתעניין");
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "נפגשנו - מתקדם לחוזה") {
+      setLeadStep("היה בפגישה");
+      setRelLead(true);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "נפגשנו - לתאם פגישה שוב") {
+      setLeadStep("היה בפגישה");
+      setRelLead(true);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "נפגשנו - כרגע לא מעוניין") {
+      setLeadStep("היה בפגישה");
+      setRelLead(false);
+      setLeadPurchased(false);
+    } else if (eventActivityLog == "התבצעה רכישה") {
+      setLeadStep("רכש");
+      setLeadPurchased(true);
+      setRelLead(true);
+    }
+  }, [eventActivityLog]);
+  /*
+  console.log("add new lead, event activity log state: ", eventActivityLog);
+  console.log("add new lead, lead step state: ", leadStep);
+  console.log("add new lead, rel lead: ", relLead);
+  console.log("add new lead, lead purchased: ", leadPurchased);
+*/
   /*
   // branch state object and onChange function get boolean values
   const [relBranches, setRelevantBranches] = useState({
@@ -233,7 +287,7 @@ function AddNewLead(props) {
         //releventBranch: relBranchesStringList,
         //relevantDanceType: relDanceTypesStringList,
         lastUpadateDate: getCurrentDate(),
-        leadStep: leadStep,
+        leadStep: "מתעניין",
         recommendedSystemMission: recommendedMissionByApplication,
         manualMissionDescription: null,
         manualTypeMission: null,
@@ -249,12 +303,17 @@ function AddNewLead(props) {
         LeadRate: null,
         LeadCost: null,
         LeadPurchasedNote: null,
-        event1Interest: null,
-        dateEvent1: null,
-        statusEvent1: null,
-        event2WasInMeeting: null,
-        dateEvent2: null,
-        statusEvent2: null,
+        //ActivityLog2: eventActivityLog,
+        //DateActivityLog2: getCurrentDate(),
+        isTheLeadRelevant: true,
+
+        //leadPurchased: leadPurchased,
+        //event1Interest: null,
+        //dateEvent1: null,
+        //statusEvent1: null,
+        //event2WasInMeeting: null,
+        // dateEvent2: null,
+        // statusEvent2: null,
       })
       .then(function (response) {
         console.log(response);
@@ -427,6 +486,7 @@ function AddNewLead(props) {
           </div>{" "}
           {/* end --leadSource */}
           <div className="addNewLead__form--leadStep">
+            {/*
             <FormControl className={classesSelect.formControl}>
               <InputLabel id="demo-simple-select-label">
                 שלב ליד בתהליך מכירה
@@ -444,6 +504,44 @@ function AddNewLead(props) {
                 <MenuItem value={"רכש"}>רכש</MenuItem>
               </Select>
             </FormControl>
+            */}
+
+            {/*
+            <FormControl className={classesSelect.formControl} dir="rtl">
+              <InputLabel id="demo-simple-select-label">
+                פעולה שהתבצעה
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={eventActivityLog}
+                onChange={handleOnChangeEventActivityLog}
+              >
+                <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
+                  התקשרנו והיה מענה - נקבעה פגישה
+                </MenuItem>
+                <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
+                  התקשרנו והיה מענה - לא רלוונטי
+                </MenuItem>
+                <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
+                  התקשרנו ולא היה מענה, לחזור
+                </MenuItem>
+                <MenuItem value={"התקשרנו ומספר לא תקין"}>
+                  התקשרנו ומספר לא תקין
+                </MenuItem>
+                <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
+                  נפגשנו - מתקדם לחוזה
+                </MenuItem>
+                <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
+                  נפגשנו - לתאם פגישה שוב
+                </MenuItem>
+                <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
+                  נפגשנו - כרגע לא מעוניין
+                </MenuItem>
+                <MenuItem value={"התבצעה רכישה"}>התבצעה רכישה</MenuItem>
+              </Select>
+            </FormControl>
+            */}
           </div>
           {/* end --leadStep */}
         </div>

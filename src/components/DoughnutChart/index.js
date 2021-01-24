@@ -7,15 +7,16 @@ function DoughnutChart(props) {
     <div className="doughnutChart">
       <Doughnut
         data={{
-          labels: ["אתר", "טלפוני", "אחר"],
+          labels: ["אחר", "הגיע למשרד", "טלפוני", "אתר"],
           datasets: [
             {
               data: props.arrOfDataNum,
 
               backgroundColor: [
-                "rgba(255, 99, 132, 0.8)",
+                "gray",
                 "rgba(54, 162, 235, 0.8)",
                 "rgba(255, 206, 86, 0.8)",
+                "rgba(255, 99, 132, 0.8)",
               ],
             },
           ],

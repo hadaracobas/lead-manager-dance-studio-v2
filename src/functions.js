@@ -106,6 +106,13 @@ export const filterAllLeadsAccoordingToLeadSourceDifferent = (data) => {
   return filterLeads;
 };
 
+// return all the leads according to leadSource "הגיע למשרד"
+export const filterAllLeadsAccoordingToLeadSourceOffice = (data) => {
+  let filterLeads =
+    data && data.filter((lead) => lead.leadSource == "הגיע למשרד");
+  return filterLeads;
+};
+
 // return all the relevant leads
 export const filterRelevantLeads = (data) => {
   let filterLeads =

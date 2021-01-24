@@ -32,7 +32,7 @@ function ActiveSubscribers(props) {
   };
   return (
     <div className="activeSubscribers">
-      <h2 className="activeSubscribers__title">מנויים </h2>
+      <h2 className="activeSubscribers__title">לידים שביצעו רכישה </h2>
       <p className="activeSubscribers__amount">
         סה"כ {activeSubscribersData && activeSubscribersData.length}
       </p>

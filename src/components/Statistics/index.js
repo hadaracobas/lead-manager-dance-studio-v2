@@ -17,6 +17,7 @@ import {
   filterLeadsJoinedOnSpecificMonth,
   filterAllLeadsAccoordingToLeadSourceTel,
   filterAllLeadsAccoordingToLeadSourceWeb,
+  filterAllLeadsAccoordingToLeadSourceOffice,
   filterAllLeadsAccoordingToLeadSourceDifferent,
   filterLeadsJoinedBeforeSpecificMonthAndYear,
   getCurrentDate,
@@ -78,6 +79,9 @@ function Statistics(props) {
   ] = useState(false);
   const [allLeadsFromSourceWeb, setAllLeadsFromSourceWeb] = useState(false);
   const [allLeadsFromSourceTel, setAllLeadsFromSourceTel] = useState(false);
+  const [allLeadsFromSourceOffice, setAllLeadsFromSourceOffice] = useState(
+    false
+  );
   const [
     allLeadsFromSourceDifferent,
     setAllLeadsFromSourceDifferent,
@@ -114,6 +118,9 @@ function Statistics(props) {
     );
     setAllLeadsFromSourceWeb(
       filterAllLeadsAccoordingToLeadSourceWeb(props.data)
+    );
+    setAllLeadsFromSourceOffice(
+      filterAllLeadsAccoordingToLeadSourceOffice(props.data)
     );
     setAllLeadsFromSourceDifferent(
       filterAllLeadsAccoordingToLeadSourceDifferent(props.data)
@@ -775,7 +782,8 @@ function Statistics(props) {
   return (
     <div className="statistics">
       <h2 className="statistics__title">תמונת מצב</h2>
-      <div className="statistics__cards">
+      {/*
+            <div className="statistics__cards">
         <div className="statistics__card">
           <DataCard
             titleCard='סה"כ לידים'
@@ -812,6 +820,8 @@ function Statistics(props) {
           />
         </div>
       </div>
+      */}
+
       <div className="statistics__charts">
         <div className="statistics__chart">
           <div className="statistics__chartDesc">
@@ -975,9 +985,10 @@ function Statistics(props) {
           <div style={{ width: "70%", margin: "0 auto" }}>
             <DoughnutChart
               arrOfDataNum={[
-                allLeadsFromSourceWeb.length,
-                allLeadsFromSourceTel.length,
                 allLeadsFromSourceDifferent.length,
+                allLeadsFromSourceOffice.length,
+                allLeadsFromSourceTel.length,
+                allLeadsFromSourceWeb.length,
               ]}
             />
           </div>
