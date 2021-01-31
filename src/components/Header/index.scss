@@ -44,8 +44,8 @@
     justify-content: space-evenly;
 
     &__right {
-      visibility: visible;
-      opacity: 1;
+      visibility: hidden;
+      opacity: 0;
     }
 
     &__center {

@@ -33,13 +33,33 @@ html {
 .app {
   height: 100vh;
   font-family: "Varela Round", sans-serif;
+  &__navDesk {
+    display: none;
+  }
 }
 
 @media (min-width: 760px) {
 }
 
 @media (min-width: 1200px) {
-  .app__main {
-    display: flex;
+  .app {
+    overflow-x: hidden;
+    &__mainContainer {
+      //border: 1px solid red;
+      display: flex;
+      flex-direction: row-reverse;
+      //justify-content: space-between;
+    }
+
+    &__main {
+      //display: flex;
+      // flex: 0.9;
+      width: 85%;
+    }
+    &__navDesk {
+      display: block;
+      //flex: 0.1;
+      width: 15%;
+    }
   }
 }

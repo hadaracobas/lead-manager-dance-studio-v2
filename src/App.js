@@ -7,6 +7,7 @@ import axios from "axios";
 // import components
 import Header from "./components/Header";
 import Home from "./components/Home";
+import NavDesktop from "./components/NavDesktop";
 
 import LogInPage from "./components/LogInPage";
 
@@ -23,6 +24,8 @@ const {
   REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1,
   REACT_APP_API_URL_DEMO2,
   REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2,
+  REACT_APP_API_URL_REFAEL_ATIA,
+  REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA,
 } = process.env;
 
 const theme = createMuiTheme(
@@ -36,6 +39,8 @@ const theme = createMuiTheme(
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
+  // state for development without auth
+  const [inDevModeState, setInDevModeState] = useState(true);
   // GET RELEVANT DATA (API URL) ACCORDING TO ACCOUNT
   const [relApiUrlForCrud, setRelApiUrlForCrud] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -46,6 +51,8 @@ function App() {
         setRelApiUrlForCrud(REACT_APP_API_URL_DEMO1);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2) {
         setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
+      } else if (user.email == REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA) {
+        setRelApiUrlForCrud(REACT_APP_API_URL_REFAEL_ATIA);
       }
     } // end parent condition
   }, [user]);
@@ -69,20 +76,27 @@ function App() {
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
+        {/*{inDevModeState ? ( */}
         {isAuthenticated ? (
           <div className="app__appAfterAuth">
             <Router>
               <ThemeProvider theme={theme}>
                 <Header />
-                <main className="app__main">
-                  <Home
-                    relBranchesAccordingToAccount={
-                      relBranchesAccordingToAccount
-                    }
-                    relCrudApiUrl={relApiUrlForCrud}
-                    user={user}
-                  />
-                </main>
+                <div className="app__mainContainer">
+                  <main className="app__main">
+                    <Home
+                      relBranchesAccordingToAccount={
+                        relBranchesAccordingToAccount
+                      }
+                      relCrudApiUrl={relApiUrlForCrud}
+                      user={user}
+                    />
+                  </main>
+                  <div className="app__navDesk">
+                    <NavDesktop businessName="רפאל עטיה אחזקות" />
+                  </div>
+                </div>{" "}
+                {/* end .app__mainContainer */}
               </ThemeProvider>
             </Router>
           </div>
