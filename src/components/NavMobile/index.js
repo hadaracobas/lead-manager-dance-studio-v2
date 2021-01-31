@@ -130,8 +130,8 @@ function NavMobile() {
             <ListItemText style={menuLiStyles} primary="ביצעו רכישה" />
           </StyledMenuItem>
         </Link>
-
-        <Link
+        {/*
+           <Link
           to="/manual-missions"
           style={{ textDecoration: "none", color: "#000000DE" }}
           onClick={() => handleClickMenuButtonClose()}
@@ -143,6 +143,7 @@ function NavMobile() {
             <ListItemText style={menuLiStyles} primary="משימות" />
           </StyledMenuItem>
         </Link>
+          */}
 
         <Link
           to="/statistics"

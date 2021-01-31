@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
 import LeadSmallDisplay from "../LeadSmallDisplay";
+import DoughnutChart from "../DoughnutChart";
+import ManualMissions from "../ManualMissions";
+
 import {
   filterAllLeadsInStep1,
   filterAllLeadsInStep2,
@@ -11,6 +14,10 @@ import {
   sortLeadsAccordingToAddedDate,
   filterAllNewLeadsPerTime,
   filterAllLeadsInSellProcess,
+  filterAllLeadsAccoordingToLeadSourceTel,
+  filterAllLeadsAccoordingToLeadSourceWeb,
+  filterAllLeadsAccoordingToLeadSourceOffice,
+  filterAllLeadsAccoordingToLeadSourceDifferent,
 } from "../../functions";
 
 import {
@@ -31,7 +38,7 @@ function GeneralLeadsList(props) {
   const [allLeadsInStep3, setAllLeadsInStep3] = useState(false);
   const [allLeadsInStep4, setAllLeadsInStep4] = useState(false);
   const [allLeadsInSellProcess, setAllLeadsInSellProcess] = useState(false);
-  console.log(
+  /*console.log(
     "leads in step 1: ",
     allLeadsInStep1,
     "leads in step 2: ",
@@ -40,7 +47,7 @@ function GeneralLeadsList(props) {
     allLeadsInStep3,
     "leads in step 4: ",
     allLeadsInStep4
-  );
+  );*/
   const [
     allLeadsWithManualMissionDeadlineSoon,
     setAllLeadsWithManualMissionDeadlineSoon,
@@ -50,13 +57,40 @@ function GeneralLeadsList(props) {
     setToggleShowJustRelevantLeads,
   ] = useState(false);
 
+  const [allLeadsFromSourceWeb, setAllLeadsFromSourceWeb] = useState(false);
+  const [allLeadsFromSourceTel, setAllLeadsFromSourceTel] = useState(false);
+  const [allLeadsFromSourceOffice, setAllLeadsFromSourceOffice] = useState(
+    false
+  );
+  const [
+    allLeadsFromSourceDifferent,
+    setAllLeadsFromSourceDifferent,
+  ] = useState(false);
+
   useEffect(() => {
+    console.log(
+      "deadline 5 days arr: ",
+      // filterAllManualMissionWithDeadlineSoon(props.data)
+      props.data
+    );
     setData(props.data);
     /* setAllLeadsInStep1(filterAllLeadsInStep1(props.data));
     setAllLeadsInStep2(filterAllLeadsInStep2(props.data));
     setAllLeadsInStep3(filterAllLeadsInStep3(props.data));*/
     setAllLeadsInStep4(filterAllLeadsInStep4(props.data));
     setAllLeadsInSellProcess(filterAllLeadsInSellProcess(props.data));
+    setAllLeadsFromSourceTel(
+      filterAllLeadsAccoordingToLeadSourceTel(props.data)
+    );
+    setAllLeadsFromSourceWeb(
+      filterAllLeadsAccoordingToLeadSourceWeb(props.data)
+    );
+    setAllLeadsFromSourceOffice(
+      filterAllLeadsAccoordingToLeadSourceOffice(props.data)
+    );
+    setAllLeadsFromSourceDifferent(
+      filterAllLeadsAccoordingToLeadSourceDifferent(props.data)
+    );
     setAllLeadsWithManualMissionDeadlineSoon(
       filterAllManualMissionWithDeadlineSoon(props.data)
     );
@@ -129,6 +163,23 @@ function GeneralLeadsList(props) {
               allLeadsInSellProcess &&
               filterAllNewLeadsPerTime(allLeadsInSellProcess, 30).length
             }`}
+          />
+        </div>
+      </div>
+
+      <div className="generalLeadsList__missionsAndLeadSourcePie">
+        <div className="generalLeadsList__missionsAndLeadSourcePie--missions">
+          <ManualMissions data={props.data} />
+        </div>
+        <div className="generalLeadsList__missionsAndLeadSourcePie--leadSurce">
+          <h2>מקור ליד</h2>
+          <DoughnutChart
+            arrOfDataNum={[
+              allLeadsFromSourceDifferent.length,
+              allLeadsFromSourceOffice.length,
+              allLeadsFromSourceTel.length,
+              allLeadsFromSourceWeb.length,
+            ]}
           />
         </div>
       </div>
@@ -231,7 +282,8 @@ function GeneralLeadsList(props) {
               />
             ))}
         </div>
-        <div
+        {/* 
+           <div
           className="generalLeadsList__4 generalLeadsList__box"
           id="generalLeadsList__missionBox"
         >
@@ -259,6 +311,7 @@ function GeneralLeadsList(props) {
               />
             ))}
         </div>
+        */}
       </div>
       {/* end -__boxes */}
     </div>

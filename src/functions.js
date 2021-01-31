@@ -165,6 +165,7 @@ export const filterAllManualMissionWithDeadlineSoon = (data) => {
       let missionDateJsFormat = convertDateBackInJsFormat(
         lead.DeadlineDateManualMission
       );
+
       let missionDate = new Date(missionDateJsFormat);
       let missionDateMs = missionDate.getTime();
       return (

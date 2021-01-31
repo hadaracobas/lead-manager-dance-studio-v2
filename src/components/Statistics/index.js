@@ -970,7 +970,8 @@ function Statistics(props) {
           />
         </div>
 
-        <div className="statistics__chart">
+        {/*
+           <div className="statistics__chart">
           <div className="statistics__chartDesc">
             <h4>כמות לידים לפי מקוד ליד</h4>
 
@@ -983,7 +984,8 @@ function Statistics(props) {
             </p>
           </div>
           <div style={{ width: "70%", margin: "0 auto" }}>
-            <DoughnutChart
+          
+               <DoughnutChart
               arrOfDataNum={[
                 allLeadsFromSourceDifferent.length,
                 allLeadsFromSourceOffice.length,
@@ -991,8 +993,10 @@ function Statistics(props) {
                 allLeadsFromSourceWeb.length,
               ]}
             />
+          
           </div>
         </div>
+        */}
       </div>
     </div>
   );
