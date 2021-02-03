@@ -76,8 +76,8 @@ function App() {
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
-        {/*{inDevModeState ? ( */}
-        {isAuthenticated ? (
+        {/*{isAuthenticated ? ( */}
+        {inDevModeState ? (
           <div className="app__appAfterAuth">
             <Router>
               <ThemeProvider theme={theme}>

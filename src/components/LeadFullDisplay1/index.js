@@ -1571,7 +1571,7 @@ function LeadFullDisplay1(props) {
                       dir="rtl"
                       onChange={onChangeUpdateTel}
                       value={updateTel}
-                      type="tel"
+                      type="text"
                     />
                   </div>
                   {/*

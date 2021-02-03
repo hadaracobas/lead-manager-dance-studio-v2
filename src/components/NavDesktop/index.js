@@ -3,7 +3,7 @@ import "./index.scss";
 
 import { Link } from "react-router-dom";
 
-import Logo from "../../img/logo-12.svg";
+import Logo from "../../img/refael_atia_logo.jpeg";
 
 // import material ui
 import { makeStyles } from "@material-ui/core/styles";

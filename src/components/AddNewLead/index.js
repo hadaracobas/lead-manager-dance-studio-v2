@@ -364,7 +364,7 @@ function AddNewLead(props) {
               onChange={(e) => setTel(e.target.value)}
               id="standard-basic"
               label="מספר טלפון"
-              type="tel"
+              type="text"
               fullWidth={true}
             />
             {/* 
