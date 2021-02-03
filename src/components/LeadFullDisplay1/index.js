@@ -1560,6 +1560,7 @@ function LeadFullDisplay1(props) {
                       dir="rtl"
                       onChange={onChangeUpdateEmail}
                       value={updateEmail}
+                      type="email"
                     />
                   </div>
                   <div className="leadFullDisplay__modalInputContainer">
@@ -1570,6 +1571,7 @@ function LeadFullDisplay1(props) {
                       dir="rtl"
                       onChange={onChangeUpdateTel}
                       value={updateTel}
+                      type="tel"
                     />
                   </div>
                   {/*
