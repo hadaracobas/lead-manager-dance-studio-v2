@@ -282,7 +282,7 @@ function AddNewLead(props) {
         leadSource: leadSource,
         name: name,
         email: email,
-        tel: tel,
+        tel: "'" + tel,
         //age: age,
         //releventBranch: relBranchesStringList,
         //relevantDanceType: relDanceTypesStringList,

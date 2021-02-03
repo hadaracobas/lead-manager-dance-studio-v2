@@ -1371,7 +1371,7 @@ function LeadFullDisplay1(props) {
         ID: id == 1 ? "=ARRAYFORMULA(ROW(A2:A)-1)" : null,
         name: updateName,
         email: updateEmail,
-        tel: updateTel,
+        tel: "'" + updateTel,
         //releventBranch: updateRelevantBranch,
         leadSource: updateLeadSource,
         /*
