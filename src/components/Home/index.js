@@ -587,9 +587,9 @@ function Home(props) {
   };
 
   // disable to save cost of request during work
-  /* useEffect(() => {
+  useEffect(() => {
     getDataFromSheet();
-  }, [props.relCrudApiUrl]);*/
+  }, [props.relCrudApiUrl]);
   //console.log("data from sheet: ", data);
 
   return (
@@ -598,38 +598,38 @@ function Home(props) {
       <div className="home">
         <Switch>
           <Route exact path="/">
-            {exampleData ? (
-              <GeneralLeadsList data={exampleData} />
+            {data ? (
+              <GeneralLeadsList data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
-            {exampleData ? (
-              <ActiveSubscribers data={exampleData} />
+            {data ? (
+              <ActiveSubscribers data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/manual-missions">
-            {exampleData ? (
-              <ManualMissions data={exampleData} />
+            {data ? (
+              <ManualMissions data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/statistics">
-            {exampleData ? (
-              <Statistics data={exampleData} />
+            {data ? (
+              <Statistics data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/add-new-lead">
-            {exampleData ? (
+            {data ? (
               <AddNewLead
                 relCrudApiUrl={props.relCrudApiUrl}
-                data={exampleData}
+                data={data}
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
                 }
@@ -639,21 +639,21 @@ function Home(props) {
             )}
           </Route>
           <Route path="/search-lead">
-            {exampleData ? (
-              <SearchLead data={exampleData} />
+            {data ? (
+              <SearchLead data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/my-account">
-            {exampleData ? (
-              <Account user={props.user} data={exampleData} />
+            {data ? (
+              <Account user={props.user} data={data} />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/settings">
-            {exampleData ? (
+            {data ? (
               <Settings
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
@@ -672,9 +672,9 @@ function Home(props) {
           </Route>
 
           <Route path="/:id">
-            {exampleData ? (
+            {data ? (
               <LeadFullDisplay1
-                data={exampleData}
+                data={data}
                 relCrudApiUrl={props.relCrudApiUrl}
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
