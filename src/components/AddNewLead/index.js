@@ -357,12 +357,14 @@ function AddNewLead(props) {
               id="standard-basic"
               label="כתובת אימייל"
               fullWidth={true}
+              type="email"
               required
             />
             <TextField
               onChange={(e) => setTel(e.target.value)}
               id="standard-basic"
               label="מספר טלפון"
+              type="tel"
               fullWidth={true}
             />
             {/* 
