@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/collection/311603)",
+    backgroundImage: "url(https://source.unsplash.com/collection/4895648)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -77,7 +77,7 @@ function LogInPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              מערכת לניהול לידים - נדל"ן
+              מערכת לניהול לידים - התחברות
             </Typography>
 
             <Button

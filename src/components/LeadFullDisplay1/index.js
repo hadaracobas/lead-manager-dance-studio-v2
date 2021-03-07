@@ -375,12 +375,12 @@ function LeadFullDisplay1(props) {
   const [updateRecommendedMission, setUpdateRecommendedMission] = useState("");
   const updateRocommendedMissionAccordingToLeadStep = () => {
     if (updateLeadStep === "מתעניין") {
-      setUpdateRecommendedMission("לתאם פגישה");
-    } else if (updateLeadStep === "תיאם פגישה") {
-      setUpdateRecommendedMission("לתזכר פגישה");
-    } else if (updateLeadStep === "היה בפגישה") {
-      setUpdateRecommendedMission("חתימת חוזה");
-    } else if (updateLeadStep === "רכש") {
+      setUpdateRecommendedMission("לתאם מועד לשיעור ניסיון");
+    } else if (updateLeadStep === "הוזמן לשיעור ניסיון") {
+      setUpdateRecommendedMission("לתזכר ליד");
+    } else if (updateLeadStep === "היה בשיעור ניסיון") {
+      setUpdateRecommendedMission("הרשמה כמנוי קבוע");
+    } else if (updateLeadStep === "נרשם כמנוי") {
       setUpdateRecommendedMission("אין משימה מומלצת לשלב זה");
     }
   };
@@ -630,9 +630,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog2 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog2 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog2 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog2 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -646,17 +647,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog2 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog2 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog2 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog2 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog2 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog2 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog2 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog2 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog2 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -683,9 +692,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog3 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog3 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog3 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog3 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -699,17 +709,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog3 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog3 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog3 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog3 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog3 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog3 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog3 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog3 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog3 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -736,9 +754,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog4 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog4 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog4 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog4 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -752,17 +771,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog4 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog4 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog4 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog4 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog4 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog4 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog4 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog4 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog4 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -789,9 +816,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog5 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog5 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog5 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog5 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -805,17 +833,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog5 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog5 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog5 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog5 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog5 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog5 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog5 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog5 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog5 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -842,9 +878,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog6 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog6 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog6 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog6 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -858,17 +895,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog6 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog6 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog6 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog6 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog6 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog6 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog6 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog6 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog6 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -895,9 +940,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog7 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog7 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog7 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog7 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -911,17 +957,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog7 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog7 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog7 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog7 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog7 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog7 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog7 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog7 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog7 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -948,9 +1002,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog8 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog8 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog8 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog8 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -964,17 +1019,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog8 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog8 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog8 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog8 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog8 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog8 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog8 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog8 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog8 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1001,9 +1064,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog9 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog9 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog9 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog9 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -1017,17 +1081,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog9 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog9 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog9 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog9 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog9 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog9 == "נפגשנו - כרגע לא מעוניין") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog9 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog9 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog9 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1054,9 +1126,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog10 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog10 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog10 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog10 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -1070,19 +1143,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog10 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog10 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog10 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog10 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog10 == "נפגשנו - כרגע לא מעוניין"
+      updateEventHappendToActivityLog10 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
     ) {
-      setUpdateLeadStep("היה בפגישה");
+      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog10 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog10 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog10 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1109,9 +1188,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog11 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog11 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog11 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog11 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -1125,19 +1205,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog11 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog11 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog11 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog11 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog11 == "נפגשנו - כרגע לא מעוניין"
+      updateEventHappendToActivityLog11 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
     ) {
-      setUpdateLeadStep("היה בפגישה");
+      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog11 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog11 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog11 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1164,9 +1250,10 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog12 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog12 == "התקשרנו והיה מענה - נקבעה פגישה"
+      updateEventHappendToActivityLog12 ==
+      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
     ) {
-      setUpdateLeadStep("תיאם פגישה");
+      setUpdateLeadStep("הוזמן לשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
       updateEventHappendToActivityLog12 == "התקשרנו והיה מענה - לא רלוונטי"
@@ -1180,19 +1267,25 @@ function LeadFullDisplay1(props) {
       setUpdateIsTheLeadRelevant(true);
     } else if (updateEventHappendToActivityLog12 == "התקשרנו ומספר לא תקין") {
       setUpdateLeadStep("מתעניין");
-    } else if (updateEventHappendToActivityLog12 == "נפגשנו - מתקדם לחוזה") {
-      setUpdateLeadStep("היה בפגישה");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog12 == "נפגשנו - לתאם פגישה שוב") {
-      setUpdateLeadStep("היה בפגישה");
+    } else if (
+      updateEventHappendToActivityLog12 ==
+      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog12 == "נפגשנו - כרגע לא מעוניין"
+      updateEventHappendToActivityLog12 ==
+      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
     ) {
-      setUpdateLeadStep("היה בפגישה");
+      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog12 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+    ) {
+      setUpdateLeadStep("היה בשיעור ניסיון");
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog12 == "התבצעה רכישה") {
-      setUpdateLeadStep("רכש");
+    } else if (updateEventHappendToActivityLog12 == "התבצעה הרשמה") {
+      setUpdateLeadStep("נרשם כמנוי");
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1792,11 +1885,15 @@ function LeadFullDisplay1(props) {
                         value={manualMissionTypeOfMission}
                         onChange={onChangeManualMissionTypeOfMission}
                       >
-                        <MenuItem value={"קביעת מועד לפגישה"}>
-                          קביעת מועד לפגישה
+                        <MenuItem value={"קביעת מועד לשיעור ניסיון"}>
+                          קביעת מועד לשיעור ניסיון
                         </MenuItem>
-                        <MenuItem value={"לתזכר ליד"}>לתזכר ליד</MenuItem>
-                        <MenuItem value={"חתימת חוזה"}>חתימת חוזה</MenuItem>
+                        <MenuItem value={"לתזכר שיעור ניסיון"}>
+                          לתזכר שיעור ניסיון
+                        </MenuItem>
+                        <MenuItem value={"רישום כמנוי קבוע"}>
+                          רישום כמנוי קבוע
+                        </MenuItem>
                         <MenuItem value={"גביית תשלום"}>גביית תשלום</MenuItem>
                         <MenuItem value={"אחר"}>אחר</MenuItem>
                       </Select>
@@ -1910,8 +2007,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog2}
                           onChange={onChangeUpdateEventHappendToActivityLog2}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -1922,17 +2021,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -1979,8 +2086,10 @@ function LeadFullDisplay1(props) {
                           onChange={onChangeUpdateEventHappendToActivityLog3}
                           dir="rtl"
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -1991,17 +2100,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2046,8 +2163,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog4}
                           onChange={onChangeUpdateEventHappendToActivityLog4}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2058,17 +2177,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2113,8 +2240,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog5}
                           onChange={onChangeUpdateEventHappendToActivityLog5}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2125,17 +2254,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2180,8 +2317,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog6}
                           onChange={onChangeUpdateEventHappendToActivityLog6}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2192,17 +2331,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2247,8 +2394,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog7}
                           onChange={onChangeUpdateEventHappendToActivityLog7}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2259,17 +2408,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2314,8 +2471,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog8}
                           onChange={onChangeUpdateEventHappendToActivityLog8}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2326,17 +2485,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2381,8 +2548,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog9}
                           onChange={onChangeUpdateEventHappendToActivityLog9}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2393,17 +2562,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2449,8 +2626,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog10}
                           onChange={onChangeUpdateEventHappendToActivityLog10}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2461,17 +2640,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2517,8 +2704,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog11}
                           onChange={onChangeUpdateEventHappendToActivityLog11}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2529,17 +2718,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2585,8 +2782,10 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog12}
                           onChange={onChangeUpdateEventHappendToActivityLog12}
                         >
-                          <MenuItem value={"התקשרנו והיה מענה - נקבעה פגישה"}>
-                            התקשרנו והיה מענה - נקבעה פגישה
+                          <MenuItem
+                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                          >
+                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
                           </MenuItem>
                           <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
                             התקשרנו והיה מענה - לא רלוונטי
@@ -2597,17 +2796,25 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={"התקשרנו ומספר לא תקין"}>
                             התקשרנו ומספר לא תקין
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - מתקדם לחוזה"}>
-                            נפגשנו - מתקדם לחוזה
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
+                          >
+                            היה בשיעור ניסיון - מתקדם לרישום קבוע
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - לתאם פגישה שוב"}>
-                            נפגשנו - לתאם פגישה שוב
+                          <MenuItem
+                            value={
+                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                            }
+                          >
+                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
                           </MenuItem>
-                          <MenuItem value={"נפגשנו - כרגע לא מעוניין"}>
-                            נפגשנו - כרגע לא מעוניין
+                          <MenuItem
+                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                          >
+                            היה בשיעור ניסיון - כרגע לא מעוניין
                           </MenuItem>
-                          <MenuItem value={"התבצעה רכישה"}>
-                            התבצעה רכישה
+                          <MenuItem value={"התבצעה הרשמה"}>
+                            התבצעה הרשמה
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -3145,7 +3352,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog2}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog2})</span>
+                  <span>{updateDateEventHappendToActivityLog2}</span>
                 </li>
               )}
 
@@ -3154,7 +3361,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog3}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog3})</span>
+                  <span>{updateDateEventHappendToActivityLog3}</span>
                 </li>
               )}
 
@@ -3163,7 +3370,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog4}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog4})</span>
+                  <span>{updateDateEventHappendToActivityLog4}</span>
                 </li>
               )}
 
@@ -3172,7 +3379,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog5}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog5})</span>
+                  <span>{updateDateEventHappendToActivityLog5}</span>
                 </li>
               )}
 
@@ -3181,7 +3388,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog6}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog6})</span>
+                  <span>{updateDateEventHappendToActivityLog6}</span>
                 </li>
               )}
 
@@ -3190,7 +3397,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog7}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog7})</span>
+                  <span>{updateDateEventHappendToActivityLog7}</span>
                 </li>
               )}
 
@@ -3199,7 +3406,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog8}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog8})</span>
+                  <span>{updateDateEventHappendToActivityLog8}</span>
                 </li>
               )}
 
@@ -3208,7 +3415,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog9}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog9})</span>
+                  <span>{updateDateEventHappendToActivityLog9}</span>
                 </li>
               )}
 
@@ -3217,7 +3424,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog10}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog10})</span>
+                  <span>{updateDateEventHappendToActivityLog10}</span>
                 </li>
               )}
 
@@ -3226,7 +3433,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog11}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog11})</span>
+                  <span>{updateDateEventHappendToActivityLog11}</span>
                 </li>
               )}
 
@@ -3235,7 +3442,7 @@ function LeadFullDisplay1(props) {
                 <li>
                   <span>{updateEventHappendToActivityLog12}</span>
                   <span> </span>
-                  <span>({updateDateEventHappendToActivityLog12})</span>
+                  <span>{updateDateEventHappendToActivityLog12}</span>
                 </li>
               )}
             </ul>
@@ -3403,7 +3610,9 @@ function LeadFullDisplay1(props) {
             <div className="leadFullDisplay__contentContainer">
               <div className="leadFullDisplay__contentContainer--right">
                 <div className="leadFullDisplay__content">
-                  <p className="leadFullDisplay__content--title">ליד רכש?</p>
+                  <p className="leadFullDisplay__content--title">
+                    ליד נרשם כמנוי?
+                  </p>
                   <p className="leadFullDisplay__content--text">
                     {updateLeadPurchased === null
                       ? "לא (ברירת מחדל)"

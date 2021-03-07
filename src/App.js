@@ -26,6 +26,10 @@ const {
   REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2,
   REACT_APP_API_URL_REFAEL_ATIA,
   REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA,
+  REACT_APP_API_URL_URBANPLACE,
+  REACT_APP_EMAIL_ADDRESS_URBANPLACE,
+  REACT_APP_BUSINESS_NAME_URBANPLACE,
+  REACT_APP_LOGO_URL_URBANPLACE,
 } = process.env;
 
 const theme = createMuiTheme(
@@ -43,6 +47,8 @@ function App() {
   const [inDevModeState, setInDevModeState] = useState(true);
   // GET RELEVANT DATA (API URL) ACCORDING TO ACCOUNT
   const [relApiUrlForCrud, setRelApiUrlForCrud] = useState(false);
+  const [relBusinessName, setRelBusinessName] = useState(false);
+  const [relBusinessLogo, setRelBusinessLogo] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
@@ -53,6 +59,10 @@ function App() {
         setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA) {
         setRelApiUrlForCrud(REACT_APP_API_URL_REFAEL_ATIA);
+      } else if (user.email == REACT_APP_EMAIL_ADDRESS_URBANPLACE) {
+        setRelApiUrlForCrud(REACT_APP_API_URL_URBANPLACE);
+        setRelBusinessName(REACT_APP_BUSINESS_NAME_URBANPLACE);
+        setRelBusinessLogo(REACT_APP_LOGO_URL_URBANPLACE);
       }
     } // end parent condition
   }, [user]);
@@ -76,7 +86,7 @@ function App() {
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
-        {/* */}
+        {/**/}
         {/* {inDevModeState ? ( */}
         {isAuthenticated ? (
           <div className="app__appAfterAuth">
@@ -94,7 +104,10 @@ function App() {
                     />
                   </main>
                   <div className="app__navDesk">
-                    <NavDesktop businessName="רפאל עטיה אחזקות" />
+                    <NavDesktop
+                      businessName={relBusinessName}
+                      logoUrl={relBusinessLogo}
+                    />
                   </div>
                 </div>{" "}
                 {/* end .app__mainContainer */}

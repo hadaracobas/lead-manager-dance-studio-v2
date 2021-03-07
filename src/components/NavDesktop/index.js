@@ -51,7 +51,7 @@ function NavDesktop(props) {
           <h2 style={{ padding: "3px 0" }}>{props.businessName} </h2>
         </div>
         <div className="navDesktop__top--logoContainer">
-          <img src={Logo} />
+          <img src={props.logoUrl} />
         </div>
         <div className="navDesktop__top--businessSlogenContainer">
           {/*
@@ -78,7 +78,7 @@ function NavDesktop(props) {
                 <ListItemIcon style={iconStyles}>
                   <AttachMoneyIcon fontSize="large" />
                 </ListItemIcon>
-                <ListItemText primary="ביצעו רכישה" />
+                <ListItemText primary="מנויים קבועים" />
               </ListItem>
             </Link>
             {/*
