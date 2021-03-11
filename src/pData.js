@@ -14,6 +14,12 @@ export const customersData = [
       "היה בשיעור ניסיון",
       "נרשם כמנוי",
     ],
+    recommendedMissionBySystemToLeadStep: [
+      "לתאם מועד לשיעור ניסיון",
+      "לתזכר ליד",
+      "הרשמה כמנוי קבוע",
+      "אין משימה מומלצת לשלב זה",
+    ],
     leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
     missionTypes: [
       "קביעת מועד לשיעור ניסיון",
@@ -35,8 +41,38 @@ export const customersData = [
   },
 
   {
-    hh: "gg",
+    businessName: "רפאל עטיה",
+    emailAddress: "rafaelattianadlan@gmail.com",
+    businessLogo:
+      "https://drive.google.com/uc?export=view&id=1YqGFTMdZaqreJEq-8pdEInuaIcizS2On",
+    businessType: "real estate",
+    businessBranches: [],
+    relApiUrl:
+      "https://sheet.best/api/sheets/61d7b023-e8c2-488b-baa3-6c3941bc70ee",
+    funnelSteps: ["מתעניין", "תיאם פגישה", "היה בפגישה", "רכש"],
+    recommendedMissionBySystemToLeadStep: [
+      "לתאם פגישה",
+      "לתזכר ליד",
+      "חתימת חוזה",
+      "אין משימה מומלצת לשלב זה",
+    ],
+    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
+    missionTypes: [
+      "קביעת מועד לפגישה",
+      "לתזכר ליד",
+      "חתימת חוזה",
+      "גביית תשלום",
+      "אחר",
+    ],
+    events: [
+      "התקשרנו והיה מענה - נקבעה פגישה",
+      "התקשרנו והיה מענה - לא רלוונטי",
+      "התקשרנו ולא היה מענה - לחזור",
+      "התקשרנו ומספר לא תקין",
+      "נפגשנו - מתקדם לחוזה",
+      "נפגשנו - לתאם פגישה שוב",
+      "נפגשנו - כרגע לא מעוניין",
+      "התבצעה רכישה",
+    ],
   },
 ];
-
-console.log("customerData: ", customersData);

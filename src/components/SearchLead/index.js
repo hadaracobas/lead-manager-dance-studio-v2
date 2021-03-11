@@ -29,9 +29,13 @@ function SearchLead(props) {
   const filterByTypeOfLeads = () => {
     let filtered;
     if (props.data && leadType === "leadInProcess") {
-      filtered = props.data.filter((lead) => lead.leadStep !== "נרשם כמנוי");
+      filtered = props.data.filter(
+        (lead) => lead.leadStep !== props.relCustomerDataObj.funnelSteps[3]
+      );
     } else if (leadType === "subscriber") {
-      filtered = props.data.filter((lead) => lead.leadStep === "נרשם כמנוי");
+      filtered = props.data.filter(
+        (lead) => lead.leadStep === props.relCustomerDataObj.funnelSteps[3]
+      );
     }
     setFilteredLeadType(filtered);
   };
@@ -98,12 +102,12 @@ function SearchLead(props) {
                 <FormControlLabel
                   value="leadInProcess"
                   control={<Radio />}
-                  label="ליד בתהליך מכירה (מתעניין, הוזמן לשיעור ניסיון, היה בשיעור ניסיון)"
+                  label="ליד בתהליך מכירה"
                 />
                 <FormControlLabel
                   value="subscriber"
                   control={<Radio />}
-                  label="נרשם כמנוי"
+                  label={props.relCustomerDataObj.funnelSteps[3]}
                 />
               </RadioGroup>
             </FormControl>

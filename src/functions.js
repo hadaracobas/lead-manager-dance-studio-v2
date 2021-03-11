@@ -1,3 +1,5 @@
+import { customersData } from "./pData";
+
 export const convertDateFromDatePickerToNormalDateFormat = (
   materialFormatDataState,
   setNewFormatDataState
@@ -50,67 +52,63 @@ export const getCurrentHour = () => {
 };
 
 // return all leads in sell process
-export const filterAllLeadsInSellProcess = (data) => {
+export const filterAllLeadsInSellProcess = (data, step1, step2, step3) => {
   let leadsInSellProcess =
     data &&
     data.filter(
       (lead) =>
-        lead.leadStep === "מתעניין" ||
-        lead.leadStep === "הוזמן לשיעור ניסיון" ||
-        lead.leadStep === "היה בשיעור ניסיון"
+        lead.leadStep === step1 ||
+        lead.leadStep === step2 ||
+        lead.leadStep === step3
     );
   return leadsInSellProcess;
 };
 
 // return all the leads that are in step "מתעניין"
-export const filterAllLeadsInStep1 = (data) => {
-  let step1Leads = data && data.filter((lead) => lead.leadStep === "מתעניין");
+export const filterAllLeadsInStep1 = (data, step1) => {
+  let step1Leads = data && data.filter((lead) => lead.leadStep === step1);
   return step1Leads;
 };
 
 // return all the leads that are in step "תיאם פגישה"
-export const filterAllLeadsInStep2 = (data) => {
-  let step2Leads =
-    data && data.filter((lead) => lead.leadStep === "הוזמן לשיעור ניסיון");
+export const filterAllLeadsInStep2 = (data, step2) => {
+  let step2Leads = data && data.filter((lead) => lead.leadStep === step2);
   return step2Leads;
 };
 
 // return all the leads that are in step "היה בפגישה"
-export const filterAllLeadsInStep3 = (data) => {
-  let step3Leads =
-    data && data.filter((lead) => lead.leadStep === "היה בשיעור ניסיון");
+export const filterAllLeadsInStep3 = (data, step3) => {
+  let step3Leads = data && data.filter((lead) => lead.leadStep === step3);
   return step3Leads;
 };
 
 // return all the leads that are in step "רכש"
-export const filterAllLeadsInStep4 = (data) => {
-  let step4Leads =
-    data && data.filter((lead) => lead.leadStep === "נרשם כמנוי");
+export const filterAllLeadsInStep4 = (data, step4) => {
+  let step4Leads = data && data.filter((lead) => lead.leadStep === step4);
   return step4Leads;
 };
 
 // return all the leads according to leadSource "טלפוני"
-export const filterAllLeadsAccoordingToLeadSourceTel = (data) => {
-  let filterLeads = data && data.filter((lead) => lead.leadSource == "טלפוני");
+export const filterAllLeadsAccoordingToLeadSourceTel = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
   return filterLeads;
 };
 
 // return all the leads according to leadSource "אתר"
-export const filterAllLeadsAccoordingToLeadSourceWeb = (data) => {
-  let filterLeads = data && data.filter((lead) => lead.leadSource == "אתר");
+export const filterAllLeadsAccoordingToLeadSourceWeb = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
   return filterLeads;
 };
 
 // return all the leads according to leadSource "אחר"
-export const filterAllLeadsAccoordingToLeadSourceDifferent = (data) => {
-  let filterLeads = data && data.filter((lead) => lead.leadSource == "אחר");
+export const filterAllLeadsAccoordingToLeadSourceDifferent = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
   return filterLeads;
 };
 
 // return all the leads according to leadSource "הגיע למשרד"
-export const filterAllLeadsAccoordingToLeadSourceOffice = (data) => {
-  let filterLeads =
-    data && data.filter((lead) => lead.leadSource == "הגיע למשרד");
+export const filterAllLeadsAccoordingToLeadSourceOffice = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
   return filterLeads;
 };
 

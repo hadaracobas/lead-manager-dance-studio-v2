@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import { customerData, customersData } from "./pData";
+import { customersData } from "./pData";
 
 // import components
 import Header from "./components/Header";
@@ -47,7 +47,18 @@ function App() {
   // state for development without auth
   const [inDevModeState, setInDevModeState] = useState(true);
   // GET RELEVANT DATA (API URL) ACCORDING TO ACCOUNT
-  const [relDataObjToCustomer, setRelDataObjToCustomer] = useState({});
+  const [relDataObjToCustomer, setRelDataObjToCustomer] = useState({
+    businessName: "",
+    emailAddress: "",
+    businessLogo: "",
+    businessType: "",
+    businessBranches: [],
+    relApiUrl: "",
+    funnelSteps: [],
+    leadSources: [],
+    missionTypes: [],
+    events: [],
+  });
   const [relApiUrlForCrud, setRelApiUrlForCrud] = useState(false);
   const [relBusinessName, setRelBusinessName] = useState(false);
   const [relBusinessLogo, setRelBusinessLogo] = useState(false);
@@ -61,14 +72,19 @@ function App() {
         setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA) {
         setRelApiUrlForCrud(REACT_APP_API_URL_REFAEL_ATIA);
+        setRelDataObjToCustomer(customersData[1]);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_URBANPLACE) {
         setRelDataObjToCustomer(customersData[0]);
         setRelApiUrlForCrud(REACT_APP_API_URL_URBANPLACE);
         setRelBusinessName(REACT_APP_BUSINESS_NAME_URBANPLACE);
         setRelBusinessLogo(REACT_APP_LOGO_URL_URBANPLACE);
+      } else {
+        setRelDataObjToCustomer(customersData[0]);
       }
     } // end parent condition
   }, [user]);
+
+  console.log("bbh: ", relDataObjToCustomer);
 
   // DYNAMIC STATES ACCORDING TO ACCOUNT
   const [
@@ -89,8 +105,8 @@ function App() {
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
-        {/*{isAuthenticated ? (*/}
-        {inDevModeState ? (
+        {/* {inDevModeState ? ( */}
+        {isAuthenticated ? (
           <div className="app__appAfterAuth">
             <Router>
               <ThemeProvider theme={theme}>
@@ -103,12 +119,13 @@ function App() {
                       }
                       relCrudApiUrl={relApiUrlForCrud}
                       user={user}
+                      relCustomerDataObj={relDataObjToCustomer}
                     />
                   </main>
                   <div className="app__navDesk">
                     <NavDesktop
-                      businessName={relBusinessName}
-                      logoUrl={relBusinessLogo}
+                      businessName={relDataObjToCustomer.businessName}
+                      logoUrl={relDataObjToCustomer.businessLogo}
                     />
                   </div>
                 </div>{" "}

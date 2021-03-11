@@ -65,6 +65,17 @@ function NavDesktop(props) {
             <Link to="/" style={{ textDecoration: "none", color: "#000000DE" }}>
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
+                  <HomeIcon fontSize="large" />
+                </ListItemIcon>
+                <ListItemText primary="ראשי" />
+              </ListItem>
+            </Link>
+            <Link
+              to="/leads-in-progress-table"
+              style={{ textDecoration: "none", color: "#000000DE" }}
+            >
+              <ListItem button>
+                <ListItemIcon style={iconStyles}>
                   <FaceIcon fontSize="large" />
                 </ListItemIcon>
                 <ListItemText primary="לידים בתהליך מכירה" />

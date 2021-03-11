@@ -113,6 +113,18 @@ function NavMobile() {
         >
           <StyledMenuItem>
             <ListItemIcon>
+              <HomeIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="ראשי" />
+          </StyledMenuItem>
+        </Link>
+        <Link
+          to="/leads-in-progress-table"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
               <FaceIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="לידים בתהליך מכירה" />

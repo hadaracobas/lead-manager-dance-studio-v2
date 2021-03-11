@@ -107,23 +107,50 @@ function Statistics(props) {
   ).getTime();
 
   useEffect(() => {
-    setLeadsInStep1(filterAllLeadsInStep1(props.data));
-    setLeadsInStep2(filterAllLeadsInStep2(props.data));
-    setLeadsInStep3(filterAllLeadsInStep3(props.data));
-    setLeadsInStep4(filterAllLeadsInStep4(props.data));
-    setLeadsInSellProcess(filterAllLeadsInSellProcess(props.data));
+    setLeadsInStep1(
+      filterAllLeadsInStep1(props.data, props.relCustomerDataObj.funnelSteps[0])
+    );
+    setLeadsInStep2(
+      filterAllLeadsInStep2(props.data, props.relCustomerDataObj.funnelSteps[1])
+    );
+    setLeadsInStep3(
+      filterAllLeadsInStep3(props.data, props.relCustomerDataObj.funnelSteps[2])
+    );
+    setLeadsInStep4(
+      filterAllLeadsInStep4(props.data, props.relCustomerDataObj.funnelSteps[3])
+    );
+    setLeadsInSellProcess(
+      filterAllLeadsInSellProcess(
+        props.data,
+        props.relCustomerDataObj.funnelSteps[0],
+        props.relCustomerDataObj.funnelSteps[1],
+        props.relCustomerDataObj.funnelSteps[2]
+      )
+    );
     setLastYearLeads(filterLeadsJoinedOneYearAgo(props.data));
     setAllLeadsFromSourceTel(
-      filterAllLeadsAccoordingToLeadSourceTel(props.data)
+      filterAllLeadsAccoordingToLeadSourceTel(
+        props.data,
+        props.relCustomerDataObj.leadSources[1]
+      )
     );
     setAllLeadsFromSourceWeb(
-      filterAllLeadsAccoordingToLeadSourceWeb(props.data)
+      filterAllLeadsAccoordingToLeadSourceWeb(
+        props.data,
+        props.relCustomerDataObj.leadSources[0]
+      )
     );
     setAllLeadsFromSourceOffice(
-      filterAllLeadsAccoordingToLeadSourceOffice(props.data)
+      filterAllLeadsAccoordingToLeadSourceOffice(
+        props.data,
+        props.relCustomerDataObj.leadSources[2]
+      )
     );
     setAllLeadsFromSourceDifferent(
-      filterAllLeadsAccoordingToLeadSourceDifferent(props.data)
+      filterAllLeadsAccoordingToLeadSourceDifferent(
+        props.data,
+        props.relCustomerDataObj.leadSources[3]
+      )
     );
 
     // set arr of nums leads joined before specific month and current year
@@ -132,7 +159,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/1/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             1,
             "current year"
           ).length,
@@ -140,7 +172,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/2/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             2,
             "current year"
           ).length,
@@ -148,7 +185,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/3/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             3,
             "current year"
           ).length,
@@ -156,7 +198,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/4/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             4,
             "current year"
           ).length,
@@ -164,7 +211,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/5/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             5,
             "current year"
           ).length,
@@ -172,7 +224,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/6/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             6,
             "current year"
           ).length,
@@ -180,7 +237,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/7/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             7,
             "current year"
           ).length,
@@ -188,7 +250,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/8/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             8,
             "current year"
           ).length,
@@ -196,7 +263,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/9/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             9,
             "current year"
           ).length,
@@ -204,7 +276,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/10/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             10,
             "current year"
           ).length,
@@ -212,7 +289,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/11/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             11,
             "current year"
           ).length,
@@ -220,7 +302,12 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/12/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInSellProcess(props.data),
+            filterAllLeadsInSellProcess(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[0],
+              props.relCustomerDataObj.funnelSteps[1],
+              props.relCustomerDataObj.funnelSteps[2]
+            ),
             12,
             "current year"
           ).length,
@@ -232,7 +319,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/1/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             1,
             "current year"
           ).length,
@@ -240,7 +330,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/2/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             2,
             "current year"
           ).length,
@@ -248,7 +341,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/3/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             3,
             "current year"
           ).length,
@@ -256,7 +352,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/4/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             4,
             "current year"
           ).length,
@@ -264,7 +363,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/5/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             5,
             "current year"
           ).length,
@@ -272,7 +374,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/6/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             6,
             "current year"
           ).length,
@@ -280,7 +385,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/7/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             7,
             "current year"
           ).length,
@@ -288,7 +396,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/8/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             8,
             "current year"
           ).length,
@@ -296,7 +407,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/9/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             9,
             "current year"
           ).length,
@@ -304,7 +418,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/10/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             10,
             "current year"
           ).length,
@@ -312,7 +429,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/11/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             11,
             "current year"
           ).length,
@@ -320,7 +440,10 @@ function Statistics(props) {
       new Date(convertDateBackInJsFormat(`1/12/${currentYear}`)).getTime()
         ? 0
         : filterLeadsJoinedBeforeSpecificMonthAndYear(
-            filterAllLeadsInStep4(props.data),
+            filterAllLeadsInStep4(
+              props.data,
+              props.relCustomerDataObj.funnelSteps[3]
+            ),
             12,
             "current year"
           ).length,
@@ -430,73 +553,133 @@ function Statistics(props) {
     setArrOfAmountLeadsJoinedBeforeSpecificMonthAndPrevYear([
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           1,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           2,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           3,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           4,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           5,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           6,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           7,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           8,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           9,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           10,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           11,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInSellProcess(props.data),
+          filterAllLeadsInSellProcess(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           12,
           "prev year"
         ).length,
@@ -506,73 +689,109 @@ function Statistics(props) {
     setArrOfAmountSubscribersJoinedBeforeSpecificMonthAndPrevYear([
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           1,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           2,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           3,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           4,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           5,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           6,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           7,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           8,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           9,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           10,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           11,
           "prev year"
         ).length,
       props.data &&
         filterLeadsJoinedBeforeSpecificMonthAndYear(
-          filterAllLeadsInStep4(props.data),
+          filterAllLeadsInStep4(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           12,
           "prev year"
         ).length,
@@ -626,62 +845,122 @@ function Statistics(props) {
     setArrOfAmonthNewLeadsInSellProcJoinedAccordingToMonth([
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           1
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           2
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           3
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           4
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           5
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           6
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           7
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           8
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           9
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           10
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           11
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInSellProcess(lastYearLeads),
+          filterAllLeadsInSellProcess(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[0],
+            props.relCustomerDataObj.funnelSteps[1],
+            props.relCustomerDataObj.funnelSteps[2]
+          ),
           12
         ).length,
     ]);
@@ -690,62 +969,98 @@ function Statistics(props) {
     setArrOfAmonthNewLeadsInSellProcBecomeSubscribersJoinedAccordingToMonth([
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           1
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           2
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           3
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           4
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           5
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           6
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           7
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           8
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           9
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           10
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           11
         ).length,
       lastYearLeads &&
         filterLeadsJoinedOnSpecificMonth(
-          filterAllLeadsInStep4(lastYearLeads),
+          filterAllLeadsInStep4(
+            lastYearLeads,
+            props.relCustomerDataObj.funnelSteps[3]
+          ),
           12
         ).length,
     ]);

@@ -77,19 +77,40 @@ function GeneralLeadsList(props) {
     /* setAllLeadsInStep1(filterAllLeadsInStep1(props.data));
     setAllLeadsInStep2(filterAllLeadsInStep2(props.data));
     setAllLeadsInStep3(filterAllLeadsInStep3(props.data));*/
-    setAllLeadsInStep4(filterAllLeadsInStep4(props.data));
-    setAllLeadsInSellProcess(filterAllLeadsInSellProcess(props.data));
+    setAllLeadsInStep4(
+      filterAllLeadsInStep4(props.data, props.relCustomerDataObj.funnelSteps[3])
+    );
+    setAllLeadsInSellProcess(
+      filterAllLeadsInSellProcess(
+        props.data,
+        props.relCustomerDataObj.funnelSteps[0],
+        props.relCustomerDataObj.funnelSteps[1],
+        props.relCustomerDataObj.funnelSteps[2]
+      )
+    );
     setAllLeadsFromSourceTel(
-      filterAllLeadsAccoordingToLeadSourceTel(props.data)
+      filterAllLeadsAccoordingToLeadSourceTel(
+        props.data,
+        props.relCustomerDataObj.leadSources[1]
+      )
     );
     setAllLeadsFromSourceWeb(
-      filterAllLeadsAccoordingToLeadSourceWeb(props.data)
+      filterAllLeadsAccoordingToLeadSourceWeb(
+        props.data,
+        props.relCustomerDataObj.leadSources[0]
+      )
     );
     setAllLeadsFromSourceOffice(
-      filterAllLeadsAccoordingToLeadSourceOffice(props.data)
+      filterAllLeadsAccoordingToLeadSourceOffice(
+        props.data,
+        props.relCustomerDataObj.leadSources[2]
+      )
     );
     setAllLeadsFromSourceDifferent(
-      filterAllLeadsAccoordingToLeadSourceDifferent(props.data)
+      filterAllLeadsAccoordingToLeadSourceDifferent(
+        props.data,
+        props.relCustomerDataObj.leadSources[3]
+      )
     );
     setAllLeadsWithManualMissionDeadlineSoon(
       filterAllManualMissionWithDeadlineSoon(props.data)
@@ -99,28 +120,73 @@ function GeneralLeadsList(props) {
 
   useEffect(() => {
     if (toggleShowJustRelevantLeads == "allLeads") {
-      setAllLeadsInStep1(filterAllLeadsInStep1(props.data));
-      setAllLeadsInStep2(filterAllLeadsInStep2(props.data));
-      setAllLeadsInStep3(filterAllLeadsInStep3(props.data));
-    } else if (toggleShowJustRelevantLeads == "justRelevantLeads") {
       setAllLeadsInStep1(
-        filterRelevantLeads(filterAllLeadsInStep1(props.data))
+        filterAllLeadsInStep1(
+          props.data,
+          props.relCustomerDataObj.funnelSteps[0]
+        )
       );
       setAllLeadsInStep2(
-        filterRelevantLeads(filterAllLeadsInStep2(props.data))
+        filterAllLeadsInStep2(
+          props.data,
+          props.relCustomerDataObj.funnelSteps[1]
+        )
       );
       setAllLeadsInStep3(
-        filterRelevantLeads(filterAllLeadsInStep3(props.data))
+        filterAllLeadsInStep3(
+          props.data,
+          props.relCustomerDataObj.funnelSteps[2]
+        )
+      );
+    } else if (toggleShowJustRelevantLeads == "justRelevantLeads") {
+      setAllLeadsInStep1(
+        filterRelevantLeads(
+          filterAllLeadsInStep1(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0]
+          )
+        )
+      );
+      setAllLeadsInStep2(
+        filterRelevantLeads(
+          filterAllLeadsInStep2(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[1]
+          )
+        )
+      );
+      setAllLeadsInStep3(
+        filterRelevantLeads(
+          filterAllLeadsInStep3(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[2]
+          )
+        )
       );
     } else if (toggleShowJustRelevantLeads == "accordingToAddedDate") {
       setAllLeadsInStep1(
-        sortLeadsAccordingToAddedDate(filterAllLeadsInStep1(props.data))
+        sortLeadsAccordingToAddedDate(
+          filterAllLeadsInStep1(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[0]
+          )
+        )
       );
       setAllLeadsInStep2(
-        sortLeadsAccordingToAddedDate(filterAllLeadsInStep2(props.data))
+        sortLeadsAccordingToAddedDate(
+          filterAllLeadsInStep2(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[1]
+          )
+        )
       );
       setAllLeadsInStep3(
-        sortLeadsAccordingToAddedDate(filterAllLeadsInStep3(props.data))
+        sortLeadsAccordingToAddedDate(
+          filterAllLeadsInStep3(
+            props.data,
+            props.relCustomerDataObj.funnelSteps[2]
+          )
+        )
       );
     }
   }, [toggleShowJustRelevantLeads]);
@@ -136,17 +202,19 @@ function GeneralLeadsList(props) {
               allLeadsInStep1.length +
                 allLeadsInStep2.length +
                 allLeadsInStep3.length
-            } | לידים שרכשו: ${allLeadsInStep4 && allLeadsInStep4.length}`}
+            } | ${props.relCustomerDataObj.funnelSteps[3]}: ${
+              allLeadsInStep4 && allLeadsInStep4.length
+            }`}
           />
         </div>
         <div className="statistics__card">
           <DataCard
             titleCard='סה"כ לידים בתהליך מכירה'
-            num={`מתעניינים: ${
-              allLeadsInStep1 && allLeadsInStep1.length
-            } | תיאמו פגישה: ${
-              allLeadsInStep2 && allLeadsInStep2.length
-            } | היו בפגישה: ${allLeadsInStep3 && allLeadsInStep3.length}`}
+            num={`מתעניינים: ${allLeadsInStep1 && allLeadsInStep1.length} | ${
+              props.relCustomerDataObj.funnelSteps[1]
+            }: ${allLeadsInStep2 && allLeadsInStep2.length} | ${
+              props.relCustomerDataObj.funnelSteps[2]
+            }: ${allLeadsInStep3 && allLeadsInStep3.length}`}
           />
         </div>
         <div className="statistics__card">
@@ -174,6 +242,7 @@ function GeneralLeadsList(props) {
         <div className="generalLeadsList__missionsAndLeadSourcePie--leadSurce">
           <h2>מקור ליד</h2>
           <DoughnutChart
+            relCustomerDataObj={props.relCustomerDataObj}
             arrOfDataNum={[
               allLeadsFromSourceDifferent.length,
               allLeadsFromSourceOffice.length,
@@ -213,7 +282,9 @@ function GeneralLeadsList(props) {
       </div>
       <div className="generalLeadsList__boxes">
         <div className="generalLeadsList__1 generalLeadsList__box">
-          <h2 className="generalLeadsList__box--title">מתעניינים</h2>
+          <h2 className="generalLeadsList__box--title">
+            {props.relCustomerDataObj.funnelSteps[0]}
+          </h2>
 
           <p className="generalLeadsList__box--totalNum">
             סה"כ: {allLeadsInStep1.length}
@@ -238,7 +309,7 @@ function GeneralLeadsList(props) {
         </div>
         <div className="generalLeadsList__2 generalLeadsList__box">
           <h2 className="generalLeadsList__box--title">
-            הוזמנו לשיעור ניסיון{" "}
+            {props.relCustomerDataObj.funnelSteps[1]}
           </h2>
           <p className="generalLeadsList__box--totalNum">
             סה"כ: {allLeadsInStep2.length}
@@ -262,7 +333,9 @@ function GeneralLeadsList(props) {
             ))}
         </div>
         <div className="generalLeadsList__3 generalLeadsList__box">
-          <h2 className="generalLeadsList__box--title">היו בשיעור ניסיון</h2>
+          <h2 className="generalLeadsList__box--title">
+            {props.relCustomerDataObj.funnelSteps[2]}
+          </h2>
           <p className="generalLeadsList__box--totalNum">
             סה"כ: {allLeadsInStep3.length}
           </p>

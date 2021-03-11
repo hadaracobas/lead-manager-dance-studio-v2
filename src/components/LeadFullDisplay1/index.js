@@ -210,6 +210,12 @@ function LeadFullDisplay1(props) {
     setUpdateTel(e.target.value);
   };
 
+  // UPDATE BRANCH
+  const [updateBranch, setUpdateBranch] = useState("");
+  const onChangeUpdateBranch = (e) => {
+    setUpdateBranch(e.target.value);
+  };
+
   /*
   // UPDATE RELEVANT BRANCH
   const [updateRelevantBranch, setUpdateRelevantBranch] = useState("");
@@ -369,19 +375,25 @@ function LeadFullDisplay1(props) {
     setUpdateLeadStep(event.target.value);
   };
 
-  console.log("update lead stepp: ", updateLeadStep);
-
   // UPDATE RECOMMENDED MISSION ACCORDING TO LEAD STEP
   const [updateRecommendedMission, setUpdateRecommendedMission] = useState("");
   const updateRocommendedMissionAccordingToLeadStep = () => {
-    if (updateLeadStep === "מתעניין") {
-      setUpdateRecommendedMission("לתאם מועד לשיעור ניסיון");
-    } else if (updateLeadStep === "הוזמן לשיעור ניסיון") {
-      setUpdateRecommendedMission("לתזכר ליד");
-    } else if (updateLeadStep === "היה בשיעור ניסיון") {
-      setUpdateRecommendedMission("הרשמה כמנוי קבוע");
-    } else if (updateLeadStep === "נרשם כמנוי") {
-      setUpdateRecommendedMission("אין משימה מומלצת לשלב זה");
+    if (updateLeadStep === props.relCustomerDataObj.funnelSteps[0]) {
+      setUpdateRecommendedMission(
+        props.relCustomerDataObj.recommendedMissionBySystemToLeadStep[0]
+      );
+    } else if (updateLeadStep === props.relCustomerDataObj.funnelSteps[1]) {
+      setUpdateRecommendedMission(
+        props.relCustomerDataObj.recommendedMissionBySystemToLeadStep[1]
+      );
+    } else if (updateLeadStep === props.relCustomerDataObj.funnelSteps[2]) {
+      setUpdateRecommendedMission(
+        props.relCustomerDataObj.recommendedMissionBySystemToLeadStep[2]
+      );
+    } else if (updateLeadStep === props.relCustomerDataObj.funnelSteps[3]) {
+      setUpdateRecommendedMission(
+        props.relCustomerDataObj.recommendedMissionBySystemToLeadStep[3]
+      );
     }
   };
   useEffect(() => {
@@ -630,42 +642,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog2 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog2 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog2 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog2 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog2 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog2 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog2 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog2 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog2 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -692,42 +705,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog3 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog3 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog3 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog3 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog3 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog3 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog3 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog3 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog3 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -754,42 +768,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog4 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog4 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog4 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog4 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog4 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog4 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog4 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog4 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog4 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -816,42 +831,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog5 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog5 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog5 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog5 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog5 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog5 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog5 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog5 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog5 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -878,42 +894,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog6 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog6 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog6 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog6 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog6 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog6 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog6 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog6 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog6 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -940,42 +957,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog7 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog7 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog7 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog7 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog7 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog7 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog7 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog7 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog7 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1002,42 +1020,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog8 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog8 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog8 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog8 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog8 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog8 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog8 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog8 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog8 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1064,42 +1083,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog9 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog9 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog9 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog9 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog9 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog9 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog9 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog9 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog9 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1126,42 +1146,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog10 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog10 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog10 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog10 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog10 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog10 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog10 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog10 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog10 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1188,42 +1209,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog11 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog11 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog11 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog11 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog11 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog11 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog11 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog11 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog11 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1250,42 +1272,43 @@ function LeadFullDisplay1(props) {
     if (updateEventHappendToActivityLog12 === false) {
       // do nothing
     } else if (
-      updateEventHappendToActivityLog12 ==
-      "התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[0]
     ) {
-      setUpdateLeadStep("הוזמן לשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[1]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog12 == "התקשרנו והיה מענה - לא רלוונטי"
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[1]
     ) {
-      setUpdateLeadStep("מתעניין");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(false);
     } else if (
-      updateEventHappendToActivityLog12 == "התקשרנו ולא היה מענה, לחזור"
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[2]
     ) {
-      setUpdateLeadStep("מתעניין");
-      setUpdateIsTheLeadRelevant(true);
-    } else if (updateEventHappendToActivityLog12 == "התקשרנו ומספר לא תקין") {
-      setUpdateLeadStep("מתעניין");
-    } else if (
-      updateEventHappendToActivityLog12 ==
-      "היה בשיעור ניסיון - מתקדם לרישום קבוע"
-    ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog12 ==
-      "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[3]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+    } else if (
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[4]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(true);
     } else if (
-      updateEventHappendToActivityLog12 == "היה בשיעור ניסיון - כרגע לא מעוניין"
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[5]
     ) {
-      setUpdateLeadStep("היה בשיעור ניסיון");
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
+      setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[6]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[2]);
       setUpdateIsTheLeadRelevant(false);
-    } else if (updateEventHappendToActivityLog12 == "התבצעה הרשמה") {
-      setUpdateLeadStep("נרשם כמנוי");
+    } else if (
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[7]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
     }
@@ -1368,6 +1391,8 @@ function LeadFullDisplay1(props) {
         setUpdateName(filterTheLead[0].name);
         setUpdateEmail(filterTheLead[0].email);
         setUpdateTel(filterTheLead[0].tel);
+        setUpdateBranch(filterTheLead[0].branch);
+
         //setUpdateRelevantBranch(filterTheLead[0].releventBranch);
         setUpdateLeadSource(filterTheLead[0].leadSource);
         //setUpdateDanceType(filterTheLead[0].relevantDanceType);
@@ -1465,6 +1490,7 @@ function LeadFullDisplay1(props) {
         name: updateName,
         email: updateEmail,
         tel: "'" + updateTel,
+        branch: updateBranch,
         //releventBranch: updateRelevantBranch,
         leadSource: updateLeadSource,
         /*
@@ -1537,6 +1563,10 @@ function LeadFullDisplay1(props) {
       });
   };
 
+  console.log(
+    "bbb: ",
+    props.relCustomerDataObj && props.relCustomerDataObj.events[0]
+  );
   return (
     <>
       <div className="leadFullDisplay">
@@ -1667,6 +1697,21 @@ function LeadFullDisplay1(props) {
                       type="text"
                     />
                   </div>
+                  {props.relCustomerDataObj &&
+                    props.relCustomerDataObj.businessBranches.length > 0 && (
+                      <div className="leadFullDisplay__modalInputContainer">
+                        <TextField
+                          id="standard-basic"
+                          label="סניף"
+                          fullWidth={true}
+                          dir="rtl"
+                          onChange={onChangeUpdateBranch}
+                          value={updateBranch}
+                          type="text"
+                        />
+                      </div>
+                    )}
+
                   {/*
                   
                   <div className="leadFullDisplay__modalInputContainer">
@@ -1711,10 +1756,26 @@ function LeadFullDisplay1(props) {
                         value={updateLeadSource}
                         onChange={onChangeUpdateLeadSource}
                       >
-                        <MenuItem value={"אתר"}>אתר</MenuItem>
-                        <MenuItem value={"טלפוני"}>טלפוני</MenuItem>
-                        <MenuItem value={"הגיע למשרד"}>הגיע למשרד</MenuItem>
-                        <MenuItem value={"אחר"}>אחר</MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.leadSources[0]}
+                        >
+                          {props.relCustomerDataObj.leadSources[0]}
+                        </MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.leadSources[1]}
+                        >
+                          {props.relCustomerDataObj.leadSources[1]}
+                        </MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.leadSources[2]}
+                        >
+                          {props.relCustomerDataObj.leadSources[2]}
+                        </MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.leadSources[3]}
+                        >
+                          {props.relCustomerDataObj.leadSources[3]}
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   </div>
@@ -1885,17 +1946,31 @@ function LeadFullDisplay1(props) {
                         value={manualMissionTypeOfMission}
                         onChange={onChangeManualMissionTypeOfMission}
                       >
-                        <MenuItem value={"קביעת מועד לשיעור ניסיון"}>
-                          קביעת מועד לשיעור ניסיון
+                        <MenuItem
+                          value={props.relCustomerDataObj.missionTypes[0]}
+                        >
+                          {props.relCustomerDataObj.missionTypes[0]}
                         </MenuItem>
-                        <MenuItem value={"לתזכר שיעור ניסיון"}>
-                          לתזכר שיעור ניסיון
+                        <MenuItem
+                          value={props.relCustomerDataObj.missionTypes[1]}
+                        >
+                          {props.relCustomerDataObj.missionTypes[1]}
                         </MenuItem>
-                        <MenuItem value={"רישום כמנוי קבוע"}>
-                          רישום כמנוי קבוע
+                        <MenuItem
+                          value={props.relCustomerDataObj.missionTypes[2]}
+                        >
+                          {props.relCustomerDataObj.missionTypes[2]}
                         </MenuItem>
-                        <MenuItem value={"גביית תשלום"}>גביית תשלום</MenuItem>
-                        <MenuItem value={"אחר"}>אחר</MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.missionTypes[3]}
+                        >
+                          {props.relCustomerDataObj.missionTypes[3]}
+                        </MenuItem>
+                        <MenuItem
+                          value={props.relCustomerDataObj.missionTypes[4]}
+                        >
+                          {props.relCustomerDataObj.missionTypes[4]}
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   </div>
@@ -2008,38 +2083,68 @@ function LeadFullDisplay1(props) {
                           onChange={onChangeUpdateEventHappendToActivityLog2}
                         >
                           <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[0]
+                            }
                           >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
-                          </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
-                          </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
-                          </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
-                          </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
                           <MenuItem
                             value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[1]
                             }
                           >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
                           <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[2]
+                            }
                           >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[3]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[3]}
+                          </MenuItem>
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[4]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[4]}
+                          </MenuItem>
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[5]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[5]}
+                          </MenuItem>
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[6]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[6]}
+                          </MenuItem>
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[7]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2086,39 +2191,29 @@ function LeadFullDisplay1(props) {
                           onChange={onChangeUpdateEventHappendToActivityLog3}
                           dir="rtl"
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2163,39 +2258,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog4}
                           onChange={onChangeUpdateEventHappendToActivityLog4}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2240,39 +2325,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog5}
                           onChange={onChangeUpdateEventHappendToActivityLog5}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2317,39 +2392,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog6}
                           onChange={onChangeUpdateEventHappendToActivityLog6}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2394,39 +2459,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog7}
                           onChange={onChangeUpdateEventHappendToActivityLog7}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2471,39 +2526,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog8}
                           onChange={onChangeUpdateEventHappendToActivityLog8}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2548,39 +2593,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog9}
                           onChange={onChangeUpdateEventHappendToActivityLog9}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2626,39 +2661,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog10}
                           onChange={onChangeUpdateEventHappendToActivityLog10}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2704,39 +2729,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog11}
                           onChange={onChangeUpdateEventHappendToActivityLog11}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2782,39 +2797,29 @@ function LeadFullDisplay1(props) {
                           value={updateEventHappendToActivityLog12}
                           onChange={onChangeUpdateEventHappendToActivityLog12}
                         >
-                          <MenuItem
-                            value={"התקשרנו והיה מענה - נקבע מועד שיעור ניסיון"}
-                          >
-                            התקשרנו והיה מענה - נקבע מועד שיעור ניסיון
+                          <MenuItem value={props.relCustomerDataObj.events[0]}>
+                            {props.relCustomerDataObj.events[0]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו והיה מענה - לא רלוונטי"}>
-                            התקשרנו והיה מענה - לא רלוונטי
+                          <MenuItem value={props.relCustomerDataObj.events[1]}>
+                            {props.relCustomerDataObj.events[1]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ולא היה מענה, לחזור"}>
-                            התקשרנו ולא היה מענה, לחזור
+                          <MenuItem value={props.relCustomerDataObj.events[2]}>
+                            {props.relCustomerDataObj.events[2]}
                           </MenuItem>
-                          <MenuItem value={"התקשרנו ומספר לא תקין"}>
-                            התקשרנו ומספר לא תקין
+                          <MenuItem value={props.relCustomerDataObj.events[3]}>
+                            {props.relCustomerDataObj.events[3]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - מתקדם לרישום קבוע"}
-                          >
-                            היה בשיעור ניסיון - מתקדם לרישום קבוע
+                          <MenuItem value={props.relCustomerDataObj.events[4]}>
+                            {props.relCustomerDataObj.events[4]}
                           </MenuItem>
-                          <MenuItem
-                            value={
-                              "היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף"
-                            }
-                          >
-                            היה בשיעור ניסיון - לתאם מועד לשיעור ניסיון נוסף
+                          <MenuItem value={props.relCustomerDataObj.events[5]}>
+                            {props.relCustomerDataObj.events[5]}
                           </MenuItem>
-                          <MenuItem
-                            value={"היה בשיעור ניסיון - כרגע לא מעוניין"}
-                          >
-                            היה בשיעור ניסיון - כרגע לא מעוניין
+                          <MenuItem value={props.relCustomerDataObj.events[6]}>
+                            {props.relCustomerDataObj.events[6]}
                           </MenuItem>
-                          <MenuItem value={"התבצעה הרשמה"}>
-                            התבצעה הרשמה
+                          <MenuItem value={props.relCustomerDataObj.events[7]}>
+                            {props.relCustomerDataObj.events[7]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2984,6 +2989,15 @@ function LeadFullDisplay1(props) {
                 <p className="leadFullDisplay__content--title">טלפון</p>
                 <p className="leadFullDisplay__content--text">{updateTel}</p>
               </div>
+              {props.relCustomerDataObj &&
+                props.relCustomerDataObj.businessBranches.length > 0 && (
+                  <div className="leadFullDisplay__content">
+                    <p className="leadFullDisplay__content--title">סניף</p>
+                    <p className="leadFullDisplay__content--text">
+                      {updateBranch}
+                    </p>
+                  </div>
+                )}
 
               <div className="leadFullDisplay__content">
                 <p className="leadFullDisplay__content--title">מקור ליד</p>

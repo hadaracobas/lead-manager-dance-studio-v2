@@ -68,6 +68,9 @@ function AddNewLead(props) {
   // tel state
   const [tel, setTel] = useState("");
 
+  //branch state
+  const [branch, setBranch] = useState("");
+
   // age state, material ui styles and handlechange function
   const classesSelect = useStylesSelect();
   /*
@@ -283,6 +286,7 @@ function AddNewLead(props) {
         name: name,
         email: email,
         tel: "'" + tel,
+        branch: branch,
         //age: age,
         //releventBranch: relBranchesStringList,
         //relevantDanceType: relDanceTypesStringList,
@@ -367,6 +371,16 @@ function AddNewLead(props) {
               type="text"
               fullWidth={true}
             />
+            {props.relCustomerDataObj.businessBranches.length > 0 && (
+              <TextField
+                onChange={(e) => setBranch(e.target.value)}
+                id="standard-basic"
+                label="שם סניף"
+                type="text"
+                fullWidth={true}
+              />
+            )}
+
             {/* 
             <FormControl className={classesSelect.formControl}>
               <InputLabel id="demo-simple-select-label">שכבת גיל</InputLabel>

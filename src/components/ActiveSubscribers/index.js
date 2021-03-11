@@ -22,7 +22,9 @@ const useStylesTable = makeStyles({
 function ActiveSubscribers(props) {
   const [activeSubscribersData, setActiveSubscribersData] = useState(false);
   useEffect(() => {
-    setActiveSubscribersData(filterAllLeadsInStep4(props.data));
+    setActiveSubscribersData(
+      filterAllLeadsInStep4(props.data, props.relCustomerDataObj.funnelSteps[3])
+    );
   }, [props.data]);
 
   const classesTable = useStylesTable();

@@ -16,6 +16,7 @@ import LogInPage from "../LogInPage";
 import Header from "../Header";
 import Account from "../Account";
 import Settings from "../Settings";
+import LeadsInProgTable from "../LeadsInProgTable";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -43,6 +44,7 @@ function Home(props) {
       name: null,
       email: null,
       tel: null,
+      branch: null,
       lastUpdateDate: null,
       lastUpdateHour: null,
       leadStep: null,
@@ -92,6 +94,7 @@ function Home(props) {
       name: "דני אבדיה",
       email: "dani@gmail.co.il",
       tel: "543321321",
+      branch: "הדר עם",
       lastUpdateDate: "31/1/2021",
       lastUpdateHour: "10:12",
       leadStep: "הוזמן לשיעור ניסיון",
@@ -141,6 +144,7 @@ function Home(props) {
       name: "בני ברוכים",
       email: "dd@cc.com",
       tel: "545342342",
+      branch: "הדר עם",
       lastUpdateDate: "31/1/2021",
       lastUpdateHour: "10:11",
       leadStep: "נרשם כמנוי",
@@ -190,6 +194,7 @@ function Home(props) {
       name: "דן אבירן",
       email: "fdfd.ddf",
       tel: "32432333",
+      branch: "הדר עם",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:25",
       leadStep: "מתעניין",
@@ -239,6 +244,7 @@ function Home(props) {
       name: "איציק אליהו",
       email: "כתובת מייל",
       tel: "4343333",
+      branch: "הדר עם",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:25",
       leadStep: "מתעניין",
@@ -288,9 +294,10 @@ function Home(props) {
       name: "רפאל אטיאה",
       email: "aviadkisos@g.com",
       tel: "4343433",
+      branch: "הדר עם",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:27",
-      leadStep: "היה בפגישה",
+      leadStep: "מתעניין",
       recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
@@ -331,15 +338,16 @@ function Home(props) {
     },
     {
       ID: "7",
-      addedDate: "28/1/2021",
+      addedDate: "26/1/2021",
       addedHour: "19:23",
       leadSource: "טלפוני",
       name: "ירדן בינימין",
       email: "aviadkisos@g.com",
       tel: "4323333",
+      branch: "צורן",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:26",
-      leadStep: "היה בפגישה",
+      leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
@@ -381,15 +389,16 @@ function Home(props) {
 
     {
       ID: "8",
-      addedDate: "28/1/2021",
+      addedDate: "28/1/2020",
       addedHour: "19:23",
       leadSource: "",
       name: "דניאל דניאל",
       email: "aviadkisos@g.com",
       tel: "3242343243",
+      branch: "צורן",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:29",
-      leadStep: "היה בפגישה",
+      leadStep: "היה בשיעור ניסיון",
       recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
@@ -430,15 +439,16 @@ function Home(props) {
     },
     {
       ID: "9",
-      addedDate: "28/1/2021",
+      addedDate: "21/3/2020",
       addedHour: "19:24",
       leadSource: "",
       name: "ישראל ישראלי",
       email: "aviadkisos@g.com",
       tel: "רק'קק",
+      branch: "צורן",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:30",
-      leadStep: "רכש",
+      leadStep: "מתעניין",
       recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
@@ -479,15 +489,16 @@ function Home(props) {
     },
     {
       ID: "10",
-      addedDate: "28/1/2021",
+      addedDate: "18/1/2020",
       addedHour: "19:23",
       leadSource: "טלפוני",
       name: "ירדן בינימין",
       email: "aviadkisos@g.com",
       tel: "4323333",
+      branch: "צורן",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:26",
-      leadStep: "היה בפגישה",
+      leadStep: "מתעניין",
       recommendedSystemMission: "",
       manualMissionDescription: "",
       manualTypeMission: "",
@@ -534,11 +545,12 @@ function Home(props) {
       name: "ירדן בינימין",
       email: "aviadkisos@g.com",
       tel: "4323333",
+      branch: "צורן",
       lastUpdateDate: "28/1/2021",
       lastUpdateHour: "19:26",
-      leadStep: "היה בפגישה",
+      leadStep: "מתעניין",
       recommendedSystemMission: "",
-      manualMissionDescription: "",
+      manualMissionDescription: "gggg",
       manualTypeMission: "",
       dateManualMissionCreated: "",
       DeadlineDateManualMission: "",
@@ -601,14 +613,20 @@ function Home(props) {
         <Switch>
           <Route exact path="/">
             {exampleData ? (
-              <GeneralLeadsList data={exampleData} />
+              <GeneralLeadsList
+                data={exampleData}
+                relCustomerDataObj={props.relCustomerDataObj}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/active-subscribers">
             {exampleData ? (
-              <ActiveSubscribers data={exampleData} />
+              <ActiveSubscribers
+                data={exampleData}
+                relCustomerDataObj={props.relCustomerDataObj}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
@@ -622,7 +640,10 @@ function Home(props) {
           </Route>
           <Route path="/statistics">
             {exampleData ? (
-              <Statistics data={exampleData} />
+              <Statistics
+                data={exampleData}
+                relCustomerDataObj={props.relCustomerDataObj}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
@@ -635,6 +656,7 @@ function Home(props) {
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
                 }
+                relCustomerDataObj={props.relCustomerDataObj}
               />
             ) : (
               <CircularProgress color="secondary" />
@@ -642,14 +664,21 @@ function Home(props) {
           </Route>
           <Route path="/search-lead">
             {exampleData ? (
-              <SearchLead data={exampleData} />
+              <SearchLead
+                data={exampleData}
+                relCustomerDataObj={props.relCustomerDataObj}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
           </Route>
           <Route path="/my-account">
             {exampleData ? (
-              <Account user={props.user} data={exampleData} />
+              <Account
+                user={props.user}
+                data={exampleData}
+                relCustomerDataObj={props.relCustomerDataObj}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}
@@ -673,6 +702,13 @@ function Home(props) {
             <LogInPage />
           </Route>
 
+          <Route path="/leads-in-progress-table">
+            <LeadsInProgTable
+              data={exampleData}
+              relCustomerDataObj={props.relCustomerDataObj}
+            />
+          </Route>
+
           <Route path="/:id">
             {exampleData ? (
               <LeadFullDisplay1
@@ -681,6 +717,7 @@ function Home(props) {
                 relBranchesAccordingToAccount={
                   props.relBranchesAccordingToAccount
                 }
+                relCustomerDataObj={props.relCustomerDataObj}
               />
             ) : (
               <CircularProgress color="secondary" />
