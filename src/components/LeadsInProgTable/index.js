@@ -190,6 +190,26 @@ function LeadsInProgTable(props) {
         }
       );
       setDisplayLeads(relBranchesAccordingToBranchVar2);
+    } else if (
+      toggleShowJustRelevantLeadsAfterFilter ===
+      props.relCustomerDataObj.businessBranches[2]
+    ) {
+      let relBranchesAccordingToBranchVar3 = saveOriginalDisplayRelLeadsArr.filter(
+        (lead) => {
+          return lead.branch === props.relCustomerDataObj.businessBranches[2];
+        }
+      );
+      setDisplayLeads(relBranchesAccordingToBranchVar3);
+    } else if (
+      toggleShowJustRelevantLeadsAfterFilter ===
+      props.relCustomerDataObj.businessBranches[3]
+    ) {
+      let relBranchesAccordingToBranchVar4 = saveOriginalDisplayRelLeadsArr.filter(
+        (lead) => {
+          return lead.branch === props.relCustomerDataObj.businessBranches[3];
+        }
+      );
+      setDisplayLeads(relBranchesAccordingToBranchVar4);
     }
   }, [toggleShowJustRelevantLeadsAfterFilter]);
 

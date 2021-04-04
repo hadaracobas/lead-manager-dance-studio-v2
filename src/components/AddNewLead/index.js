@@ -362,7 +362,6 @@ function AddNewLead(props) {
               label="כתובת אימייל"
               fullWidth={true}
               type="email"
-              required
             />
             <TextField
               onChange={(e) => setTel(e.target.value)}
