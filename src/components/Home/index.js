@@ -621,6 +621,7 @@ function Home(props) {
               <CircularProgress color="secondary" />
             )}
           </Route>
+
           <Route path="/active-subscribers">
             {data ? (
               <ActiveSubscribers

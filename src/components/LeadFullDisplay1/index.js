@@ -1700,6 +1700,7 @@ function LeadFullDisplay1(props) {
                   {props.relCustomerDataObj &&
                     props.relCustomerDataObj.businessBranches.length > 0 && (
                       <div className="leadFullDisplay__modalInputContainer">
+                        {/* 
                         <TextField
                           id="standard-basic"
                           label="סניף"
@@ -1709,6 +1710,25 @@ function LeadFullDisplay1(props) {
                           value={updateBranch}
                           type="text"
                         />
+                        */}
+                        <FormControl
+                          className={classesSelect.formControl}
+                          dir="rtl"
+                        >
+                          <InputLabel id="demo-simple-select-label">
+                            סניף רלוונטי
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={updateBranch}
+                            onChange={onChangeUpdateBranch}
+                          >
+                            {props.relCustomerDataObj.leadSources.map((sou) => {
+                              <MenuItem value={sou}>{sou}</MenuItem>;
+                            })}
+                          </Select>
+                        </FormControl>
                       </div>
                     )}
 
@@ -1756,26 +1776,9 @@ function LeadFullDisplay1(props) {
                         value={updateLeadSource}
                         onChange={onChangeUpdateLeadSource}
                       >
-                        <MenuItem
-                          value={props.relCustomerDataObj.leadSources[0]}
-                        >
-                          {props.relCustomerDataObj.leadSources[0]}
-                        </MenuItem>
-                        <MenuItem
-                          value={props.relCustomerDataObj.leadSources[1]}
-                        >
-                          {props.relCustomerDataObj.leadSources[1]}
-                        </MenuItem>
-                        <MenuItem
-                          value={props.relCustomerDataObj.leadSources[2]}
-                        >
-                          {props.relCustomerDataObj.leadSources[2]}
-                        </MenuItem>
-                        <MenuItem
-                          value={props.relCustomerDataObj.leadSources[3]}
-                        >
-                          {props.relCustomerDataObj.leadSources[3]}
-                        </MenuItem>
+                        {props.relCustomerDataObj.leadSources.map((sou) => {
+                          <MenuItem value={sou}>{sou}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                   </div>

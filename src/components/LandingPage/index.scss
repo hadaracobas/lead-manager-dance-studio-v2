@@ -1,0 +1,36 @@
+.landing-page {
+  padding: 0 1rem;
+  &__title {
+    margin: 7rem 0 2.4rem 0;
+    font-size: 4rem;
+  }
+
+  &__subtitle {
+    font-size: 1.6rem;
+    color: rgb(116, 116, 118);
+  }
+
+  &__btnsContainer {
+    /*border: 1px solid red !important;*/
+    padding-top: 4.6rem;
+  }
+
+  &__btn {
+    /*border: 1px solid orange !important;*/
+    background-color: #000 !important;
+    font-size: 1.6rem !important;
+
+    &:last-child {
+      margin-right: 1.6rem;
+    }
+  }
+
+  &__main-img-container {
+    margin-top: 8rem;
+    text-align: center;
+  }
+
+  &__main-img {
+    width: 22.4rem;
+  }
+}

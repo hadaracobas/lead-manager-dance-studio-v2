@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import NavDesktop from "./components/NavDesktop";
 
 import LogInPage from "./components/LogInPage";
+import LandingPage from "./components/LandingPage";
 
 // import material ui
 import { create } from "jss";
@@ -31,6 +32,8 @@ const {
   REACT_APP_EMAIL_ADDRESS_URBANPLACE,
   REACT_APP_BUSINESS_NAME_URBANPLACE,
   REACT_APP_LOGO_URL_URBANPLACE,
+  REACT_APP_EMAIL_ADDRESS_WAVE_STUDIO,
+  REACT_APP_API_URL_WAVE_STUDIO,
 } = process.env;
 
 const theme = createMuiTheme(
@@ -78,13 +81,14 @@ function App() {
         setRelApiUrlForCrud(REACT_APP_API_URL_URBANPLACE);
         setRelBusinessName(REACT_APP_BUSINESS_NAME_URBANPLACE);
         setRelBusinessLogo(REACT_APP_LOGO_URL_URBANPLACE);
+      } else if (user.email == REACT_APP_EMAIL_ADDRESS_WAVE_STUDIO) {
+        setRelApiUrlForCrud(REACT_APP_API_URL_WAVE_STUDIO);
+        setRelDataObjToCustomer(customersData[2]);
       } else {
         setRelDataObjToCustomer(customersData[0]);
       }
     } // end parent condition
   }, [user]);
-
-  console.log("bbh: ", relDataObjToCustomer);
 
   // DYNAMIC STATES ACCORDING TO ACCOUNT
   const [
@@ -106,6 +110,7 @@ function App() {
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
         {/* {inDevModeState ? ( */}
+        {/*  */}
         {isAuthenticated ? (
           <div className="app__appAfterAuth">
             <Router>
@@ -142,3 +147,5 @@ function App() {
 }
 
 export default App;
+
+/* <LandingPage /> */

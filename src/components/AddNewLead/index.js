@@ -371,15 +371,6 @@ function AddNewLead(props) {
               type="text"
               fullWidth={true}
             />
-            {props.relCustomerDataObj.businessBranches.length > 0 && (
-              <TextField
-                onChange={(e) => setBranch(e.target.value)}
-                id="standard-basic"
-                label="שם סניף"
-                type="text"
-                fullWidth={true}
-              />
-            )}
 
             {/* 
             <FormControl className={classesSelect.formControl}>
@@ -484,6 +475,27 @@ function AddNewLead(props) {
         {/* end --personalDetailsContainer */}
         <div className="addNewLead__form--leadDetailsContainer">
           <h3>מידע ליד</h3>
+          {props.relCustomerDataObj &&
+            props.relCustomerDataObj.businessBranches.length > 0 && (
+              <div>
+                <FormControl className={classesSelect.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    {" "}
+                    סניף רלוונטי
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={branch}
+                    onChange={(e) => setBranch(e.target.value)}
+                  >
+                    {props.relCustomerDataObj.businessBranches.map((br) => {
+                      return <MenuItem value={br}>{br}</MenuItem>;
+                    })}
+                  </Select>
+                </FormControl>
+              </div>
+            )}
           <div className="addNewLead__form--leadSource">
             <FormControl className={classesSelect.formControl}>
               <InputLabel id="demo-simple-select-label">מקור ליד</InputLabel>
@@ -493,10 +505,9 @@ function AddNewLead(props) {
                 value={leadSource}
                 onChange={handleChangeSelectLeadSource}
               >
-                <MenuItem value={"אתר"}>אתר</MenuItem>
-                <MenuItem value={"טלפוני"}>טלפוני</MenuItem>
-                <MenuItem value={"הגיע למשרד"}>הגיע למשרד</MenuItem>
-                <MenuItem value={"אחר"}>אחר</MenuItem>
+                {props.relCustomerDataObj.leadSources.map((sou) => {
+                  return <MenuItem value={sou}>{sou}</MenuItem>;
+                })}
               </Select>
             </FormControl>
           </div>{" "}
