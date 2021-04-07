@@ -5,7 +5,7 @@ export const customersData = [
     businessLogo:
       "https://www.urbanplace.co.il/wp-content/themes/urbanplacestudio-theme/images/logo.png",
     businessType: "dance-studio",
-    businessBranches: ["צורן", "הדר עם"],
+    businessBranches: ["צורן", "הדר עם", "נתניה"],
     relApiUrl:
       "https://sheet.best/api/sheets/6bcc587c-20fa-4408-813c-dedf374f187b",
     funnelSteps: [
@@ -20,7 +20,8 @@ export const customersData = [
       "הרשמה כמנוי קבוע",
       "אין משימה מומלצת לשלב זה",
     ],
-    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
+    // leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
+    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר", "fb", "ig"],
     missionTypes: [
       "קביעת מועד לשיעור ניסיון",
       "לתזכר ליד",
@@ -56,7 +57,7 @@ export const customersData = [
       "חתימת חוזה",
       "אין משימה מומלצת לשלב זה",
     ],
-    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
+    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר", "fb", "ig"],
     missionTypes: [
       "קביעת מועד לפגישה",
       "לתזכר ליד",
@@ -97,7 +98,7 @@ export const customersData = [
       "הרשמה כמנוי קבוע",
       "אין משימה מומלצת לשלב זה",
     ],
-    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר"],
+    leadSources: ["אתר", "טלפוני", "הגיע למשרד", "אחר", "fb", "ig"],
     missionTypes: [
       "קביעת מועד לשיעור ניסיון",
       "לתזכר ליד",

@@ -87,6 +87,8 @@ function App() {
       } else {
         setRelDataObjToCustomer(customersData[0]);
       }
+    } else {
+      setRelDataObjToCustomer(customersData[0]);
     } // end parent condition
   }, [user]);
 

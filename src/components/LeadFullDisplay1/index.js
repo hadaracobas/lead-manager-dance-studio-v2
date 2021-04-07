@@ -1724,9 +1724,11 @@ function LeadFullDisplay1(props) {
                             value={updateBranch}
                             onChange={onChangeUpdateBranch}
                           >
-                            {props.relCustomerDataObj.leadSources.map((sou) => {
-                              return <MenuItem value={sou}>{sou}</MenuItem>;
-                            })}
+                            {props.relCustomerDataObj.businessBranches.map(
+                              (bra) => {
+                                return <MenuItem value={bra}>{bra}</MenuItem>;
+                              }
+                            )}
                           </Select>
                         </FormControl>
                       </div>

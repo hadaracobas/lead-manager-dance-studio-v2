@@ -112,6 +112,18 @@ export const filterAllLeadsAccoordingToLeadSourceOffice = (data, source) => {
   return filterLeads;
 };
 
+// return all the leads according to leadSource "fb"
+export const filterAllLeadsAccoordingToLeadSourceFb = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
+  return filterLeads;
+};
+
+// return all the leads according to leadSource "ig"
+export const filterAllLeadsAccoordingToLeadSourceIg = (data, source) => {
+  let filterLeads = data && data.filter((lead) => lead.leadSource === source);
+  return filterLeads;
+};
+
 // return all the relevant leads
 export const filterRelevantLeads = (data) => {
   let filterLeads =
@@ -133,7 +145,7 @@ export const filterAllLeadsWithOpenMissions = (data) => {
 };
 
 // convert user date format back to js date format
-export const convertDateBackInJsFormat = (dateUserFormat) => {
+/*export const convertDateBackInJsFormat = (dateUserFormat) => {
   if (dateUserFormat !== null) {
     let dateSplitToArr = dateUserFormat.split("/");
     let dateNewOrderValuesInArr = [
@@ -145,6 +157,30 @@ export const convertDateBackInJsFormat = (dateUserFormat) => {
     return dateInJsFormat;
   }
   return null;
+};
+*/
+
+// convert user date format back to js date format
+export const convertDateBackInJsFormat = (dateUserFormat) => {
+  if (dateUserFormat !== null) {
+    if (dateUserFormat.indexOf("/") > -1) {
+      let dateSplitToArr = dateUserFormat.split("/");
+      let dateNewOrderValuesInArr = [
+        dateSplitToArr[1],
+        dateSplitToArr[0],
+        dateSplitToArr[2],
+      ];
+      let dateInJsFormat = dateNewOrderValuesInArr.join("/");
+      return dateInJsFormat;
+    } else if (dateUserFormat.indexOf("T") > -1) {
+      let fbDateWithoutHour = checkIfFbDateAndRemoveHour(dateUserFormat);
+      return fbDateWithoutHour;
+    } else {
+      return dateUserFormat;
+    }
+  } else {
+    return null;
+  }
 };
 
 // return all the manual mission with deadline in - 5 days
@@ -570,3 +606,13 @@ export const sortLeadsAccordingToAddedDate = (data) => {
     return sortedAddedDateArr;
   } // end condition
 };
+
+export function checkIfFbDateAndRemoveHour(date) {
+  if (date.indexOf("T") > -1) {
+    let slicedFbDate = date.split("T");
+    let getOnlyDate = slicedFbDate[0];
+    return getOnlyDate;
+  } else {
+    return date;
+  }
+}

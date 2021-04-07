@@ -18,6 +18,9 @@ import {
   filterAllLeadsAccoordingToLeadSourceWeb,
   filterAllLeadsAccoordingToLeadSourceOffice,
   filterAllLeadsAccoordingToLeadSourceDifferent,
+  filterAllLeadsAccoordingToLeadSourceFb,
+  filterAllLeadsAccoordingToLeadSourceIg,
+  checkIfFbDateAndRemoveHour,
 } from "../../functions";
 
 import {
@@ -66,6 +69,8 @@ function GeneralLeadsList(props) {
     allLeadsFromSourceDifferent,
     setAllLeadsFromSourceDifferent,
   ] = useState(false);
+  const [allLeadsFromSourceFb, setAllLeadsFromSourceFb] = useState(false);
+  const [allLeadsFromSourceIg, setAllLeadsFromSourceIg] = useState(false);
 
   useEffect(() => {
     console.log(
@@ -110,6 +115,18 @@ function GeneralLeadsList(props) {
       filterAllLeadsAccoordingToLeadSourceDifferent(
         props.data,
         props.relCustomerDataObj.leadSources[3]
+      )
+    );
+    setAllLeadsFromSourceFb(
+      filterAllLeadsAccoordingToLeadSourceFb(
+        props.data,
+        props.relCustomerDataObj.leadSources[4]
+      )
+    );
+    setAllLeadsFromSourceIg(
+      filterAllLeadsAccoordingToLeadSourceIg(
+        props.data,
+        props.relCustomerDataObj.leadSources[5]
       )
     );
     setAllLeadsWithManualMissionDeadlineSoon(
@@ -244,6 +261,8 @@ function GeneralLeadsList(props) {
           <DoughnutChart
             relCustomerDataObj={props.relCustomerDataObj}
             arrOfDataNum={[
+              allLeadsFromSourceIg.length,
+              allLeadsFromSourceFb.length,
               allLeadsFromSourceDifferent.length,
               allLeadsFromSourceOffice.length,
               allLeadsFromSourceTel.length,

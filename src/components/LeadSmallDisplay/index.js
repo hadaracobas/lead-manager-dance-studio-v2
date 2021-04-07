@@ -150,13 +150,13 @@ export default function LeadSmallDisplay(props) {
               </Tooltip>
             ) : checkIfLeadWithManualMission === "mission-is-open" ? (
               <Tooltip
-                title={`משימה פתוחה: ${props.leadManualMissionDescription} | דדליין: ${props.DeadlineDateManualMission}`}
+                title={`משימה פתוחה: ${props.leadManualMissionDescription} `}
               >
                 <AssignmentLateIcon />
               </Tooltip>
             ) : checkIfLeadWithManualMission === "mission-performed" ? (
               <Tooltip
-                title={`משימה בוצעה: ${props.leadManualMissionDescription} | תאריך ביצוע: ${props.DateManualMissionPerformed}`}
+                title={`משימה בוצעה: ${props.leadManualMissionDescription} `}
               >
                 <AssignmentTurnedInIcon />
               </Tooltip>

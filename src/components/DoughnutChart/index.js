@@ -3,6 +3,7 @@ import "./index.scss";
 import { Doughnut } from "react-chartjs-2";
 
 function DoughnutChart(props) {
+  console.log("source!: ", props.relCustomerDataObj.leadSources[5]);
   return (
     <div className="doughnutChart">
       <Doughnut
@@ -10,6 +11,8 @@ function DoughnutChart(props) {
           //labels: ["אחר", "הגיע למשרד", "טלפוני", "אתר"],
           //labels: props.relCustomerDataObj.leadSources,
           labels: [
+            props.relCustomerDataObj.leadSources[5],
+            props.relCustomerDataObj.leadSources[4],
             props.relCustomerDataObj.leadSources[3],
             props.relCustomerDataObj.leadSources[2],
             props.relCustomerDataObj.leadSources[1],
@@ -20,10 +23,12 @@ function DoughnutChart(props) {
               data: props.arrOfDataNum,
 
               backgroundColor: [
-                "gray",
-                "rgba(54, 162, 235, 0.8)",
-                "rgba(255, 206, 86, 0.8)",
-                "rgba(255, 99, 132, 0.8)",
+                "#003f5c",
+                "#58508d",
+                "#bc5090",
+                "#ff6361",
+                "#000000",
+                "#ffa600",
               ],
             },
           ],
