@@ -1725,7 +1725,7 @@ function LeadFullDisplay1(props) {
                             onChange={onChangeUpdateBranch}
                           >
                             {props.relCustomerDataObj.leadSources.map((sou) => {
-                              <MenuItem value={sou}>{sou}</MenuItem>;
+                              return <MenuItem value={sou}>{sou}</MenuItem>;
                             })}
                           </Select>
                         </FormControl>
@@ -1777,7 +1777,7 @@ function LeadFullDisplay1(props) {
                         onChange={onChangeUpdateLeadSource}
                       >
                         {props.relCustomerDataObj.leadSources.map((sou) => {
-                          <MenuItem value={sou}>{sou}</MenuItem>;
+                          return <MenuItem value={sou}>{sou}</MenuItem>;
                         })}
                       </Select>
                     </FormControl>
