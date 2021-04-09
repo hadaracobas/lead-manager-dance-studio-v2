@@ -14,6 +14,7 @@ import SimpleTabs from "../SimpleTabs";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import NotificationImportantIcon from "@material-ui/icons/NotificationImportant";
 // modal material ui
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -1379,6 +1380,30 @@ function LeadFullDisplay1(props) {
     }
   };
 
+  //DISPLAY MESSAGE MISSION WITHOUT DEADLINE DATE
+  const [
+    dispalayWarningMessageMissionWithoutDeadline,
+    setDispalayWarningMessageMissionWithoutDeadline,
+  ] = useState(false);
+  useEffect(() => {
+    // display message conditionaly
+    if (manualMissionDescription !== "" && manualMissionDeadlineDate === "") {
+      setDispalayWarningMessageMissionWithoutDeadline(true);
+    } else {
+      setDispalayWarningMessageMissionWithoutDeadline(false);
+    }
+    if (manualMissionDescription === "") {
+      setManualMissionDeadlineDate("");
+    }
+  }, [manualMissionDescription, manualMissionDeadlineDate]);
+
+  // RESET-REMOVE NaN/NaN/NaN IN DEADLINE MISSION TEXT
+  useEffect(() => {
+    if (manualMissionDeadlineDateNewFormat === "NaN/NaN/NaN") {
+      setManualMissionDeadlineDateNewFormat("");
+    }
+  }, [manualMissionDeadlineDateNewFormat]);
+
   // FILTER AND GET DATA ACCORDING TO ID NUMBER
   const filterAndGetRelevantLead = () => {
     if (props.data) {
@@ -1563,10 +1588,6 @@ function LeadFullDisplay1(props) {
       });
   };
 
-  console.log(
-    "bbb: ",
-    props.relCustomerDataObj && props.relCustomerDataObj.events[0]
-  );
   return (
     <>
       <div className="leadFullDisplay">
@@ -2002,10 +2023,24 @@ function LeadFullDisplay1(props) {
                     />
                   </div>
                   <div className="leadFullDisplay__modalInputContainer">
+                    {dispalayWarningMessageMissionWithoutDeadline && (
+                      <div
+                        id="leadFullDisplay__deadlineMissionMessageWrapper"
+                        style={{
+                          color: "red",
+                          margin: "18px 0 10px 0",
+                        }}
+                      >
+                        <NotificationImportantIcon />
+                        <p>לא מומלץ לעדכן משימה ללא דדליין</p>
+                      </div>
+                    )}
+
                     <TextField
                       id="date"
                       label="מועד אחרון לביצוע משימה"
                       type="date"
+                      required
                       defaultValue="2021-01-1"
                       todayLabel="היום"
                       value={manualMissionDeadlineDate}

@@ -311,6 +311,7 @@ function Home(props) {
       manualTypeMission: "לתזכר ליד",
       dateManualMissionCreated: "",
       DeadlineDateManualMission: "2021-04-01T17:41:09.000Z",
+
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
