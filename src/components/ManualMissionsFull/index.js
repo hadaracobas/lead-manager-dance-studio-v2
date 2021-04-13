@@ -685,7 +685,11 @@ function ManualMissionsFull(props) {
                         {row.manualMissionDescription}
                       </TableCell>
                       <TableCell align="left">
-                        {row.DeadlineDateManualMission}
+                        {row.DeadlineDateManualMission === ""
+                          ? "לא עודכן דדליין"
+                          : row.DeadlineDateManualMission === "NaN/NaN/NaN"
+                          ? "לא עודכן דדליין"
+                          : row.DeadlineDateManualMission}
                       </TableCell>
 
                       <TableCell align="left">
