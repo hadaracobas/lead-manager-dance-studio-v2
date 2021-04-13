@@ -144,6 +144,19 @@ export const filterAllLeadsWithOpenMissions = (data) => {
   return LeadsWithOpenMissions;
 };
 
+// return all the leads with closed manual missions
+export const filterAllLeadsWithClosedMissions = (data) => {
+  let LeadsWithClosedMissions =
+    data &&
+    data.filter(
+      (lead) =>
+        lead.manualMissionDescription !== null &&
+        lead.manualMissionDescription !== "" &&
+        lead.manualMissionPerformed === "TRUE"
+    );
+  return LeadsWithClosedMissions;
+};
+
 // convert user date format back to js date format
 /*export const convertDateBackInJsFormat = (dateUserFormat) => {
   if (dateUserFormat !== null) {
@@ -183,7 +196,134 @@ export const convertDateBackInJsFormat = (dateUserFormat) => {
   }
 };
 
-// return all the manual mission with deadline in - 5 days
+// return all the manual missions with deadline last 7 days
+export function filterAllLeadsWithOpenMissionsWithDeadlineLast7Days(data) {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+
+  let today = new Date(getTodayDate);
+  let dateBefore7Days = new Date(today);
+  dateBefore7Days.setDate(dateBefore7Days.getDate() - 7);
+
+  let todayMs = today.getTime();
+  let dateBefore7DaysMs = dateBefore7Days.getTime();
+
+  let arrFilterAllLeadsWithDeadlineLast7Days =
+    data &&
+    data.filter((lead) => {
+      let getDeadlineDateOfLead = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let deadlineDate = new Date(getDeadlineDateOfLead);
+      let deadlineDateMs = deadlineDate.getTime();
+      return deadlineDateMs < todayMs && deadlineDateMs > dateBefore7DaysMs;
+    });
+
+  return arrFilterAllLeadsWithDeadlineLast7Days;
+}
+
+// return all manual missions with deadline to yesterday
+export function filterAllLeadsWithOpenMissionsWithDeadlineToYesterday(data) {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+
+  let today = new Date(getTodayDate);
+  let dateYesterday = new Date(today);
+  dateYesterday.setDate(dateYesterday.getDate() - 1);
+
+  let todayMs = today.getTime();
+  let dateYesterdayMs = dateYesterday.getTime();
+
+  let arrFilterAllLeadsWithDeadlineYesterday =
+    data &&
+    data.filter((lead) => {
+      let getDeadlineDateOfLead = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let deadlineDate = new Date(getDeadlineDateOfLead);
+      let deadlineDateMs = deadlineDate.getTime();
+      return deadlineDateMs < todayMs && deadlineDateMs >= dateYesterdayMs;
+    });
+  return arrFilterAllLeadsWithDeadlineYesterday;
+}
+
+//return all manual missions with deadline for today
+export function filterAllLeadsWithOpenMissionsWithDeadlineForToday(data) {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+  let today = new Date(getTodayDate);
+  let todayMs = today.getTime();
+
+  let dateTomorrow = new Date(today);
+  dateTomorrow.setDate(dateTomorrow.getDate() + 1);
+  let dateTomorrowMs = dateTomorrow.getTime();
+
+  let arrFilterAllLeadsWithDeadlineForToday =
+    data &&
+    data.filter((lead) => {
+      let getDeadlineDateOfLead = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let deadlineDate = new Date(getDeadlineDateOfLead);
+      let deadlineDateMs = deadlineDate.getTime();
+      return deadlineDateMs < dateTomorrowMs && deadlineDateMs >= todayMs;
+    });
+  return arrFilterAllLeadsWithDeadlineForToday;
+}
+
+//return all manual missions with deadline for tomorrow
+export function filterAllLeadsWithOpenMissionsWithDeadlineForTomorrow(data) {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+  let today = new Date(getTodayDate);
+  let todayMs = today.getTime();
+
+  let dateTomorrow = new Date(today);
+  dateTomorrow.setDate(dateTomorrow.getDate() + 1);
+  let dateTomorrowMs = dateTomorrow.getTime();
+
+  let dateIn2Days = new Date(today);
+  dateIn2Days.setDate(dateIn2Days.getDate() + 2);
+  let dateIn2DaysMs = dateIn2Days.getTime();
+
+  let arrFilterAllLeadsWithDeadlineForTomorrow =
+    data &&
+    data.filter((lead) => {
+      let getDeadlineDateOfLead = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let deadlineDate = new Date(getDeadlineDateOfLead);
+      let deadlineDateMs = deadlineDate.getTime();
+      return deadlineDateMs < dateIn2DaysMs && deadlineDateMs >= dateTomorrowMs;
+    });
+  return arrFilterAllLeadsWithDeadlineForTomorrow;
+}
+
+//return all manual missions with deadline for next 7 days
+export function filterAllLeadsWithOpenMissionsWithDeadlineForNext7Days(data) {
+  let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
+  let today = new Date(getTodayDate);
+  let todayMs = today.getTime();
+
+  let dateTomorrow = new Date(today);
+  dateTomorrow.setDate(dateTomorrow.getDate() + 1);
+  let dateTomorrowMs = dateTomorrow.getTime();
+
+  let dateIn8Days = new Date(today);
+  dateIn8Days.setDate(dateIn8Days.getDate() + 8);
+  let dateIn8DaysMs = dateIn8Days.getTime();
+
+  let arrFilterAllLeadsWithDeadlineForNext7Days =
+    data &&
+    data.filter((lead) => {
+      let getDeadlineDateOfLead = convertDateBackInJsFormat(
+        lead.DeadlineDateManualMission
+      );
+      let deadlineDate = new Date(getDeadlineDateOfLead);
+      let deadlineDateMs = deadlineDate.getTime();
+
+      return deadlineDateMs < dateIn8DaysMs && deadlineDateMs >= dateTomorrowMs;
+    });
+  return arrFilterAllLeadsWithDeadlineForNext7Days;
+}
+
+// return all the manual mission with deadline in - 5 days ( -- works? -- )
 export const filterAllManualMissionWithDeadlineSoon = (data) => {
   let getTodayDate = convertDateBackInJsFormat(getCurrentDate());
 
@@ -234,185 +374,6 @@ export const checkIfAddedDateLast3Days = (addedDate) => {
   }
 };
 
-/*
-const exampleData = [
-  {
-    ID: "1",
-    addedDate: "1/1/2021",
-    addedHour: "15:9",
-    leadSource: "טלפוני",
-    name: "הדר אקובס",
-    email: "hadarsites1@gmail.com",
-    tel: "054-889756365",
-    age: "ב",
-    releventBranch: "הדר עם, צורן",
-    relevantDanceType: "היפ הופ,מודרני,בלט",
-    lastUpdateDate: "24/12/2020",
-    lastUpdateHour: "16:33",
-    leadStep: "מתעניין",
-    recommendedSystemMission: "לרשום כמנוי קבוע",
-    manualMissionDescription: "להתקשר בשבוע הבא על מנת לקחת פרטי כרטיס אשראי",
-    manualTypeMission: "תזכורת",
-    dateManualMissionCreated: "18/12/2020",
-    DeadlineDateManualMission: "29/12/2020",
-    manualMissionCreateByTeamMember: "רועי כהן",
-    manualMissionAssociatedToTeamMember: "לירון לוי",
-    manualMissionPerformed: "TRUE",
-    DateManualMissionPerformed: "27/6/2020",
-    isTheLeadRelevant: "TRUE",
-    leadPurchased: "TRUE",
-    PurchasedAmount: "2200",
-    LeadRate: "10",
-    LeadCost: "44",
-    event1Interest: "התקשרנו ונקבע שיעור ניסיון",
-    dateEvent1: "2020-05-24",
-    statusEvent1: "קנה",
-    event2WasTrialLesson: "הגיע לשיעור ניסיון",
-    dateEvent2: null,
-    statusEvent2: null,
-  },
-  {
-    ID: "2",
-    addedDate: "2/1/2021",
-    addedHour: "15:12",
-    leadSource: "אתר",
-    name: "julia piringer  levi acobas",
-    email: "julia@gmail.com",
-    tel: "547896985",
-    age: "5",
-    releventBranch: "הדר עם",
-    relevantDanceType: "היפ הופ,מודרני",
-    lastUpdateDate: "13/12/2020",
-    lastUpdateHour: "",
-    leadStep: "היה בשיעור ניסיון",
-    recommendedSystemMission: "לקבוע מועד שיעור ניסיון",
-    manualMissionDescription: " משימה לדוגמא תיאור משימה לדוגמא תיאור",
-    manualTypeMission: null,
-    dateManualMissionCreated: null,
-    DeadlineDateManualMission: "31/12/2020",
-    manualMissionCreateByTeamMember: null,
-    manualMissionAssociatedToTeamMember: null,
-    manualMissionPerformed: "TRUE",
-    DateManualMissionPerformed: null,
-    isTheLeadRelevant: null,
-    leadPurchased: null,
-    PurchasedAmount: "223",
-    LeadRate: null,
-    LeadCost: "44",
-    event1Interest: null,
-    dateEvent1: null,
-    statusEvent1: null,
-    event2WasTrialLesson: null,
-    dateEvent2: null,
-    statusEvent2: null,
-  },
-  {
-    ID: "3",
-    addedDate: "9/8/2020",
-    addedHour: "15:14",
-    leadSource: "אחר",
-    name: "רונן שלורנטיין 2",
-    email: "ronen@gmail.com",
-    tel: "5475545",
-    age: "ב",
-    releventBranch: "הדר עם",
-    relevantDanceType: "היפ הופ,בלט",
-    lastUpdateDate: "13/12/2020",
-    lastUpdateHour: "",
-    leadStep: "היה בשיעור ניסיון",
-    recommendedSystemMission: "לרשום כמנוי קבוע",
-    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
-    manualTypeMission: null,
-    dateManualMissionCreated: null,
-    DeadlineDateManualMission: "1/1/2021",
-    manualMissionCreateByTeamMember: null,
-    manualMissionAssociatedToTeamMember: null,
-    manualMissionPerformed: null,
-    DateManualMissionPerformed: null,
-    isTheLeadRelevant: null,
-    leadPurchased: null,
-    PurchasedAmount: null,
-    LeadRate: null,
-    LeadCost: null,
-    event1Interest: null,
-    dateEvent1: null,
-    statusEvent1: null,
-    event2WasTrialLesson: null,
-    dateEvent2: null,
-    statusEvent2: null,
-  },
-  {
-    ID: "4",
-    addedDate: "2/1/2021",
-    addedHour: "15:14",
-    leadSource: "אחר",
-    name: "רונן שלורנטיין 2",
-    email: "ronen@gmail.com",
-    tel: "5475545",
-    age: "ב",
-    releventBranch: "הדר עם",
-    relevantDanceType: "היפ הופ,בלט",
-    lastUpdateDate: "13/12/2020",
-    lastUpdateHour: "",
-    leadStep: "היה בשיעור ניסיון",
-    recommendedSystemMission: "לרשום כמנוי קבוע",
-    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
-    manualTypeMission: null,
-    dateManualMissionCreated: null,
-    DeadlineDateManualMission: "1/1/2021",
-    manualMissionCreateByTeamMember: null,
-    manualMissionAssociatedToTeamMember: null,
-    manualMissionPerformed: null,
-    DateManualMissionPerformed: null,
-    isTheLeadRelevant: null,
-    leadPurchased: null,
-    PurchasedAmount: null,
-    LeadRate: null,
-    LeadCost: null,
-    event1Interest: null,
-    dateEvent1: null,
-    statusEvent1: null,
-    event2WasTrialLesson: null,
-    dateEvent2: null,
-    statusEvent2: null,
-  },
-  {
-    ID: "5",
-    addedDate: "3/1/2021",
-    addedHour: "15:14",
-    leadSource: "אחר",
-    name: "רונן שלורנטיין 2",
-    email: "ronen@gmail.com",
-    tel: "5475545",
-    age: "ב",
-    releventBranch: "הדר עם",
-    relevantDanceType: "היפ הופ,בלט",
-    lastUpdateDate: "13/12/2020",
-    lastUpdateHour: "",
-    leadStep: "היה בשיעור ניסיון",
-    recommendedSystemMission: "לרשום כמנוי קבוע",
-    manualMissionDescription: "להתקשר פעם נוספת בשבוע הבא",
-    manualTypeMission: null,
-    dateManualMissionCreated: null,
-    DeadlineDateManualMission: "1/1/2021",
-    manualMissionCreateByTeamMember: null,
-    manualMissionAssociatedToTeamMember: null,
-    manualMissionPerformed: null,
-    DateManualMissionPerformed: null,
-    isTheLeadRelevant: null,
-    leadPurchased: null,
-    PurchasedAmount: null,
-    LeadRate: null,
-    LeadCost: null,
-    event1Interest: null,
-    dateEvent1: null,
-    statusEvent1: null,
-    event2WasTrialLesson: null,
-    dateEvent2: null,
-    statusEvent2: null,
-  },
-];
-*/
 // return all new lead - joined before number of days
 export const filterAllNewLeadsPerTime = (data, numOfDaysAgo) => {
   if (data) {

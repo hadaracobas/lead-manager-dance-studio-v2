@@ -17,6 +17,7 @@ import Header from "../Header";
 import Account from "../Account";
 import Settings from "../Settings";
 import LeadsInProgTable from "../LeadsInProgTable";
+import ManualMissionsFull from "../ManualMissionsFull";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -103,7 +104,7 @@ function Home(props) {
     },
     {
       ID: "2",
-      addedDate: "14/3/2021",
+      addedDate: "08/04/2021",
       addedHour: "11:51",
       leadSource: "טלפוני",
       name: "אלמוג טל",
@@ -117,7 +118,7 @@ function Home(props) {
       manualMissionDescription: "להתקשר להזמין לשיעור הקרוב של היפ הופ א-ב",
       manualTypeMission: "קביעת מועד לשיעור ניסיון",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "15/03/2021",
+      DeadlineDateManualMission: "09/04/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
@@ -176,13 +177,13 @@ function Home(props) {
       branch: "הדר עם",
       lastUpdateDate: "1/4/2021",
       lastUpdateHour: "18:56",
-      leadStep: "נרשם כמנוי",
+      leadStep: "מתעניין",
       recommendedSystemMission: "",
       manualMissionDescription:
         "היה בשיעור היפ הופ בנים פעמיים. פעם ראשונה היה טוב ופעם שניה לא. מחכה לשיחה עם האמא",
       manualTypeMission: "",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "15/03/2021",
+      DeadlineDateManualMission: "09/04/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
@@ -310,9 +311,8 @@ function Home(props) {
       manualMissionDescription: "דוברת רוסית. שלחתי הודעה ועוד לא ענתה",
       manualTypeMission: "לתזכר ליד",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "2021-04-01T17:41:09.000Z",
-
-      manualMissionCreateByTeamMember: "",
+      DeadlineDateManualMission: "2021-04-13T17:41:09.000Z",
+      manualMissionCreateByTeamMember: "liron",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
       DateManualMissionPerformed: "",
@@ -372,10 +372,10 @@ function Home(props) {
       lastUpdateHour: "",
       leadStep: "מתעניין",
       recommendedSystemMission: "",
-      manualMissionDescription: "",
+      manualMissionDescription: "dd",
       manualTypeMission: "",
-      dateManualMissionCreated: "",
-      DeadlineDateManualMission: "",
+      dateManualMissionCreated: "10/4/2021",
+      DeadlineDateManualMission: "19/4/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
@@ -436,13 +436,13 @@ function Home(props) {
       lastUpdateHour: "",
       leadStep: "מתעניין",
       recommendedSystemMission: "",
-      manualMissionDescription: "",
+      manualMissionDescription: "sssdd",
       manualTypeMission: "",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "",
+      DeadlineDateManualMission: "19/4/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
-      manualMissionPerformed: "",
+      manualMissionPerformed: "TRUE",
       DateManualMissionPerformed: "",
       isTheLeadRelevant: "",
       leadPurchased: "",
@@ -495,7 +495,7 @@ function Home(props) {
       name: "Limor Hannah Darmon",
       email: "",
       tel: "972547505978",
-      branch: "צורן",
+      branch: "צורן_",
       lastUpdateDate: "6/4/2021",
       lastUpdateHour: "19:45",
       leadStep: "מתעניין",
@@ -503,9 +503,9 @@ function Home(props) {
       manualMissionDescription: "שיעור ניסיון כיתה ד׳ צורן 8.4",
       manualTypeMission: "לתזכר ליד",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "",
+      DeadlineDateManualMission: "11/04/2021",
       manualMissionCreateByTeamMember: "",
-      manualMissionAssociatedToTeamMember: "",
+      manualMissionAssociatedToTeamMember: "hadar",
       manualMissionPerformed: "",
       DateManualMissionPerformed: "",
       isTheLeadRelevant: "",
@@ -564,10 +564,10 @@ function Home(props) {
       lastUpdateHour: "",
       leadStep: "מתעניין",
       recommendedSystemMission: "",
-      manualMissionDescription: "",
+      manualMissionDescription: "jjj",
       manualTypeMission: "",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "",
+      DeadlineDateManualMission: "11/4/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
@@ -623,15 +623,15 @@ function Home(props) {
       name: "Lori Friedler",
       email: "",
       tel: "972586620669",
-      branch: "נתניה_",
+      branch: "הדר_עם",
       lastUpdateDate: "6/4/2021",
       lastUpdateHour: "19:51",
       leadStep: "מתעניין",
       recommendedSystemMission: "",
-      manualMissionDescription: "",
+      manualMissionDescription: "xxx",
       manualTypeMission: "",
       dateManualMissionCreated: "",
-      DeadlineDateManualMission: "",
+      DeadlineDateManualMission: "11/04/2021",
       manualMissionCreateByTeamMember: "",
       manualMissionAssociatedToTeamMember: "",
       manualMissionPerformed: "",
@@ -983,6 +983,17 @@ function Home(props) {
           <Route path="/manual-missions">
             {data ? (
               <ManualMissions data={data} />
+            ) : (
+              <CircularProgress color="secondary" />
+            )}
+          </Route>
+          <Route path="/manual-missions-full">
+            {data ? (
+              <ManualMissionsFull
+                data={data}
+                relCustomerDataObj={props.relCustomerDataObj}
+                relCrudApiUrl={props.relCrudApiUrl}
+              />
             ) : (
               <CircularProgress color="secondary" />
             )}

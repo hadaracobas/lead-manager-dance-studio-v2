@@ -118,6 +118,20 @@ function NavMobile() {
             <ListItemText style={menuLiStyles} primary="ראשי" />
           </StyledMenuItem>
         </Link>
+
+        <Link
+          to="/manual-missions-full"
+          style={{ textDecoration: "none", color: "#000000DE" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <AssignmentLateIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="משימות" />
+          </StyledMenuItem>
+        </Link>
+
         <Link
           to="/leads-in-progress-table"
           style={{ textDecoration: "none", color: "#000000DE" }}
@@ -142,20 +156,6 @@ function NavMobile() {
             <ListItemText style={menuLiStyles} primary="ביצעו רכישה" />
           </StyledMenuItem>
         </Link>
-        {/*
-           <Link
-          to="/manual-missions"
-          style={{ textDecoration: "none", color: "#000000DE" }}
-          onClick={() => handleClickMenuButtonClose()}
-        >
-          <StyledMenuItem>
-            <ListItemIcon>
-              <AssignmentLateIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText style={menuLiStyles} primary="משימות" />
-          </StyledMenuItem>
-        </Link>
-          */}
 
         <Link
           to="/statistics"

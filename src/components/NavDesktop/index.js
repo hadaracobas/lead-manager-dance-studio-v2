@@ -70,6 +70,19 @@ function NavDesktop(props) {
                 <ListItemText primary="ראשי" />
               </ListItem>
             </Link>
+
+            <Link
+              to="/manual-missions-full"
+              style={{ textDecoration: "none", color: "#000000DE" }}
+            >
+              <ListItem button>
+                <ListItemIcon style={iconStyles}>
+                  <AssignmentLateIcon fontSize="large" />
+                </ListItemIcon>
+                <ListItemText primary="משימות" />
+              </ListItem>
+            </Link>
+
             <Link
               to="/leads-in-progress-table"
               style={{ textDecoration: "none", color: "#000000DE" }}
@@ -89,22 +102,9 @@ function NavDesktop(props) {
                 <ListItemIcon style={iconStyles}>
                   <AttachMoneyIcon fontSize="large" />
                 </ListItemIcon>
-                <ListItemText primary="מנויים קבועים" />
+                <ListItemText primary="לידים שרכשו" />
               </ListItem>
             </Link>
-            {/*
-                        <Link
-              to="/manual-missions"
-              style={{ textDecoration: "none", color: "#000000DE" }}
-            >
-              <ListItem button>
-                <ListItemIcon style={iconStyles}>
-                  <AssignmentLateIcon fontSize="large" />
-                </ListItemIcon>
-                <ListItemText primary="משימות" />
-              </ListItem>
-            </Link>
-            */}
 
             <Link
               to="/statistics"

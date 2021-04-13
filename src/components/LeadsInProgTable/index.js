@@ -149,8 +149,6 @@ function LeadsInProgTable(props) {
     setToggleShowJustRelevantLeadsAfterFilter("allLeads");
   };
 
-  console.log("ggzzuu: ", displayRelLeads);
-
   useEffect(() => {
     if (toggleShowJustRelevantLeadsAfterFilter === "allLeads") {
       setDisplayLeads(

@@ -73,11 +73,6 @@ function GeneralLeadsList(props) {
   const [allLeadsFromSourceIg, setAllLeadsFromSourceIg] = useState(false);
 
   useEffect(() => {
-    console.log(
-      "deadline 5 days arr: ",
-      // filterAllManualMissionWithDeadlineSoon(props.data)
-      props.data
-    );
     setData(props.data);
     /* setAllLeadsInStep1(filterAllLeadsInStep1(props.data));
     setAllLeadsInStep2(filterAllLeadsInStep2(props.data));

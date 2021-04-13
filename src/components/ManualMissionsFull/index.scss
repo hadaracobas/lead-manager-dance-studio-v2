@@ -1,0 +1,88 @@
+.manualMissionsFull {
+  &__title {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+  }
+  &__amount {
+    margin: 0.8rem 0;
+  }
+  &__table {
+    height: 36rem;
+    overflow: auto;
+    &Row {
+    }
+  }
+
+  &__noMissionsWrapper {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
+
+  .manualMissionsFull__btnsBox {
+    text-align: center;
+
+    .manualMissionsFull__btn {
+      min-width: 14rem;
+      margin: 0.3rem 1rem;
+      padding: 0.4rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+
+      &:focus {
+        outline: none;
+      }
+
+      &LeadsAmount {
+        position: absolute;
+        top: -3px;
+        left: -4px;
+        display: block;
+        background-color: #f50057;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        color: #fff;
+        height: 15px;
+        width: 15px;
+        line-height: 15px;
+      }
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  .manualMissionsFull__btnsBox {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .manualMissionsFull {
+    .manualMissionsFull__btnsBox {
+      .manualMissionsFull__btn {
+        padding: 1.2rem;
+        &:hover {
+          outline: 1px solid #000;
+        }
+      }
+    }
+
+    &__filtersWrapper {
+      text-align: center;
+    }
+    &__radioBtns {
+      display: flex;
+      flex-direction: row !important;
+    }
+
+    &__noMissionsWrapper {
+      margin-top: 5rem;
+    }
+  }
+}
+/*
+       display: flex;
+        flex-direction: row !important;
+  */

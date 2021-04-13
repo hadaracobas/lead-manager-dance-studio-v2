@@ -3,7 +3,6 @@ import "./index.scss";
 import { Doughnut } from "react-chartjs-2";
 
 function DoughnutChart(props) {
-  console.log("source!: ", props.relCustomerDataObj.leadSources[5]);
   return (
     <div className="doughnutChart">
       <Doughnut
