@@ -21,6 +21,7 @@ import {
   filterAllLeadsAccoordingToLeadSourceFb,
   filterAllLeadsAccoordingToLeadSourceIg,
   checkIfFbDateAndRemoveHour,
+  filterAllLeadsWithOpenMissionsWithDeadlineForToday,
 } from "../../functions";
 
 import {
@@ -33,6 +34,7 @@ import {
   FormLabel,
 } from "@material-ui/core";
 import DataCard from "../DataCard";
+import workingFromAnywhereSvg from "../../img/working_from_anywhere.svg";
 
 function GeneralLeadsList(props) {
   const [data, setData] = useState(false);
@@ -249,7 +251,34 @@ function GeneralLeadsList(props) {
 
       <div className="generalLeadsList__missionsAndLeadSourcePie">
         <div className="generalLeadsList__missionsAndLeadSourcePie--missions">
-          <ManualMissions data={props.data} />
+          <h2>משימות להיום</h2>
+          {props.data &&
+          filterAllLeadsWithOpenMissionsWithDeadlineForToday(props.data)
+            .length === 0 ? (
+            <div className="generalLeadsList__noMissionsMessageContainer">
+              <h4>אין משימות להיום</h4>
+              <div className="generalLeadsList__noMissionsMessageContainer--imgContainer">
+                <img src={workingFromAnywhereSvg} alt="הוסף משימות" />
+              </div>
+            </div>
+          ) : (
+            <ManualMissions
+              data={filterAllLeadsWithOpenMissionsWithDeadlineForToday(
+                props.data
+              )}
+            />
+          )}
+
+          {/*
+          filterAllLeadsWithOpenMissionsWithDeadlineForToday
+           <ManualMissions data={props.data} />
+          <h2>משימות</h2>
+
+                    <h2 class="MuiTypography-root MuiTypography-h5">
+            פתוחות להיום: 4 | פתוחות למחר: 0 | פתוחות 7 ימים הבאים: 9 <br></br>{" "}
+            פתוחות 7 ימים אחרונים: 6 | כל הפתוחות: 45 | משימות שבוצעו: 148
+          </h2>
+          */}
         </div>
         <div className="generalLeadsList__missionsAndLeadSourcePie--leadSurce">
           <h2>מקור ליד</h2>

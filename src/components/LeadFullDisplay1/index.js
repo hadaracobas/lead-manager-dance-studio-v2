@@ -234,6 +234,12 @@ function LeadFullDisplay1(props) {
     setUpdateLeadStep(event.target.value);
   };
 
+  // UPDATE LEAD GROUP
+  const [updateLeadGroup, setUpdateLeadGroup] = useState("");
+  const onchangeUpdateLeadGroup = (event) => {
+    setUpdateLeadGroup(event.target.value);
+  };
+
   // UPDATE RECOMMENDED MISSION ACCORDING TO LEAD STEP
   const [updateRecommendedMission, setUpdateRecommendedMission] = useState("");
   const updateRocommendedMissionAccordingToLeadStep = () => {
@@ -483,6 +489,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog2 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog2]);
 
@@ -546,6 +557,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog3 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog3]);
 
@@ -609,6 +625,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog4 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog4]);
 
@@ -672,6 +693,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog5 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog5]);
 
@@ -735,6 +761,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog6 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog6]);
 
@@ -798,6 +829,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog7 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog7]);
 
@@ -861,6 +897,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog8 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog8]);
 
@@ -924,6 +965,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog9 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog9]);
 
@@ -987,6 +1033,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog10 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog10]);
 
@@ -1050,6 +1101,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog11 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog11]);
 
@@ -1113,6 +1169,11 @@ function LeadFullDisplay1(props) {
       setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[3]);
       setUpdateLeadPurchased(true);
       setUpdateIsTheLeadRelevant(true);
+    } else if (
+      updateEventHappendToActivityLog12 === props.relCustomerDataObj.events[8]
+    ) {
+      setUpdateLeadStep(props.relCustomerDataObj.funnelSteps[0]);
+      setUpdateIsTheLeadRelevant(false);
     }
   }, [updateEventHappendToActivityLog12]);
 
@@ -1218,6 +1279,7 @@ function LeadFullDisplay1(props) {
         setUpdateEmail(filterTheLead[0].email);
         setUpdateTel(filterTheLead[0].tel);
         setUpdateBranch(filterTheLead[0].branch);
+        setUpdateLeadGroup(filterTheLead[0].Group);
 
         //setUpdateRelevantBranch(filterTheLead[0].releventBranch);
         setUpdateLeadSource(filterTheLead[0].leadSource);
@@ -1327,6 +1389,7 @@ function LeadFullDisplay1(props) {
         */
         leadStep: updateLeadStep,
         isTheLeadRelevant: updateIsTheLeadRelevant,
+        recommendedSystemMission: updateRecommendedMission,
         lastUpdateDate: getCurrentDate(),
         lastUpdateHour: getCurrentHour(),
         dateManualMissionCreated: manulMissionCreatedDate,
@@ -1987,6 +2050,14 @@ function LeadFullDisplay1(props) {
                           >
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem
+                            value={
+                              props.relCustomerDataObj &&
+                              props.relCustomerDataObj.events[8]
+                            }
+                          >
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2056,6 +2127,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2122,6 +2196,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
+                          </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2190,6 +2267,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2256,6 +2336,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
+                          </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2324,6 +2407,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2391,6 +2477,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2457,6 +2546,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
+                          </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2526,6 +2618,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2594,6 +2689,9 @@ function LeadFullDisplay1(props) {
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
                           </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </div>
@@ -2661,6 +2759,9 @@ function LeadFullDisplay1(props) {
                           </MenuItem>
                           <MenuItem value={props.relCustomerDataObj.events[7]}>
                             {props.relCustomerDataObj.events[7]}
+                          </MenuItem>
+                          <MenuItem value={props.relCustomerDataObj.events[8]}>
+                            {props.relCustomerDataObj.events[8]}
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -2830,6 +2931,15 @@ function LeadFullDisplay1(props) {
                 <p className="leadFullDisplay__content--title">טלפון</p>
                 <p className="leadFullDisplay__content--text">{updateTel}</p>
               </div>
+              {/* ------------ */}
+              <div className="leadFullDisplay__content">
+                <p className="leadFullDisplay__content--title">קבוצה</p>
+                <p className="leadFullDisplay__content--text">
+                  {updateLeadGroup}
+                </p>
+              </div>
+
+              {/* ------------ */}
               {props.relCustomerDataObj &&
                 props.relCustomerDataObj.businessBranches.length > 0 && (
                   <div className="leadFullDisplay__content">

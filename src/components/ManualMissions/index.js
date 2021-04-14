@@ -51,7 +51,10 @@ function ManualMissions(props) {
   );*/
   return (
     <div className="manualMissions">
+      {/*
       <h2 className="manualMissions__title">משימות פתוחות</h2>
+      */}
+
       <p className="manualMissions__amount">
         סה"כ{" "}
         {openMissionsInDeadlineDateOrder &&

@@ -174,7 +174,12 @@ function LeadsInProgTable(props) {
     ) {
       let relBranchesAccordingToBranchVar1 = saveOriginalDisplayRelLeadsArr.filter(
         (lead) => {
-          return lead.branch === props.relCustomerDataObj.businessBranches[0];
+          // return lead.branch === props.relCustomerDataObj.businessBranches[0];
+          return (
+            lead.branch.indexOf(
+              props.relCustomerDataObj.businessBranches[0].split(" ")[0]
+            ) > -1
+          );
         }
       );
       setDisplayLeads(relBranchesAccordingToBranchVar1);
@@ -184,7 +189,12 @@ function LeadsInProgTable(props) {
     ) {
       let relBranchesAccordingToBranchVar2 = saveOriginalDisplayRelLeadsArr.filter(
         (lead) => {
-          return lead.branch === props.relCustomerDataObj.businessBranches[1];
+          // return lead.branch === props.relCustomerDataObj.businessBranches[1];
+          return (
+            lead.branch.indexOf(
+              props.relCustomerDataObj.businessBranches[1].split(" ")[0]
+            ) > -1
+          );
         }
       );
       setDisplayLeads(relBranchesAccordingToBranchVar2);
@@ -194,7 +204,12 @@ function LeadsInProgTable(props) {
     ) {
       let relBranchesAccordingToBranchVar3 = saveOriginalDisplayRelLeadsArr.filter(
         (lead) => {
-          return lead.branch === props.relCustomerDataObj.businessBranches[2];
+          //return lead.branch === props.relCustomerDataObj.businessBranches[2];
+          return (
+            lead.branch.indexOf(
+              props.relCustomerDataObj.businessBranches[2].split(" ")[0]
+            ) > -1
+          );
         }
       );
       setDisplayLeads(relBranchesAccordingToBranchVar3);
@@ -204,7 +219,11 @@ function LeadsInProgTable(props) {
     ) {
       let relBranchesAccordingToBranchVar4 = saveOriginalDisplayRelLeadsArr.filter(
         (lead) => {
-          return lead.branch === props.relCustomerDataObj.businessBranches[3];
+          return (
+            lead.branch.indexOf(
+              props.relCustomerDataObj.businessBranches[3].split(" ")[0]
+            ) > -1
+          );
         }
       );
       setDisplayLeads(relBranchesAccordingToBranchVar4);
@@ -219,12 +238,22 @@ function LeadsInProgTable(props) {
           <button
             className="leadsInProgTable__btn"
             onClick={handleOnClickBtnStep1}
+            style={
+              displayNameOfData === props.relCustomerDataObj.funnelSteps[0]
+                ? { outline: "1px solid #000" }
+                : { outline: "none" }
+            }
           >
             {props.relCustomerDataObj.funnelSteps[0]}
           </button>
           <button
             className="leadsInProgTable__btn"
             onClick={handleOnClickBtnStep2}
+            style={
+              displayNameOfData === props.relCustomerDataObj.funnelSteps[1]
+                ? { outline: "1px solid #000" }
+                : { outline: "none" }
+            }
           >
             {props.relCustomerDataObj.funnelSteps[1]}
           </button>
@@ -233,12 +262,22 @@ function LeadsInProgTable(props) {
           <button
             className="leadsInProgTable__btn"
             onClick={handleOnClickBtnStep3}
+            style={
+              displayNameOfData === props.relCustomerDataObj.funnelSteps[2]
+                ? { outline: "1px solid #000" }
+                : { outline: "none" }
+            }
           >
             {props.relCustomerDataObj.funnelSteps[2]}
           </button>
           <button
             className="leadsInProgTable__btn"
             onClick={handleOnClickBtnAllLeadsInPros}
+            style={
+              displayNameOfData === "כל לידים בתהליך מכירה"
+                ? { outline: "1px solid #000" }
+                : { outline: "none" }
+            }
           >
             כל הלידים בתהליך
           </button>
@@ -306,7 +345,7 @@ function LeadsInProgTable(props) {
               </TableCell>
 
               <TableCell style={{ fontWeight: "bold" }} align="left">
-                תאריך התווספות
+                קבוצה
               </TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">
                 תיאור משימה
@@ -346,7 +385,7 @@ function LeadsInProgTable(props) {
                   <TableCell align="left">{row.email}</TableCell>
                   <TableCell align="left">{row.branch}</TableCell>
 
-                  <TableCell align="left">{row.addedDate}</TableCell>
+                  <TableCell align="left">{row.Group}</TableCell>
                   <TableCell align="left">
                     {row.manualMissionDescription}
                   </TableCell>
