@@ -276,9 +276,8 @@ function LeadFullDisplay1(props) {
   const [lastCurrentUpdateHour, setLastCurrentUpdateHour] = useState("");
 
   // MANUAL MISSION TYPE OF MISSION
-  const [manualMissionTypeOfMission, setManualMissionTypeOfMission] = useState(
-    ""
-  );
+  const [manualMissionTypeOfMission, setManualMissionTypeOfMission] =
+    useState("");
   const onChangeManualMissionTypeOfMission = (event) => {
     setManualMissionTypeOfMission(event.target.value);
   };
@@ -300,9 +299,8 @@ function LeadFullDisplay1(props) {
 
   // MANUAL MISSION DEADLINE DATE
   const classesDatePicker = useStylesDatePicker();
-  const [manualMissionDeadlineDate, setManualMissionDeadlineDate] = useState(
-    ""
-  );
+  const [manualMissionDeadlineDate, setManualMissionDeadlineDate] =
+    useState("");
   const [
     manualMissionDeadlineDateNewFormat,
     setManualMissionDeadlineDateNewFormat,
@@ -325,9 +323,8 @@ function LeadFullDisplay1(props) {
   };
 
   // MANUAL MISSION PERFORMED DATE
-  const [manualMissionPerformedDate, setManualMissionPerformedDate] = useState(
-    ""
-  );
+  const [manualMissionPerformedDate, setManualMissionPerformedDate] =
+    useState("");
   const onchangeManualMissionPerformedDate = (event) => {
     setManualMissionPerformedDate(event.target.value);
   };
@@ -1399,7 +1396,8 @@ function LeadFullDisplay1(props) {
         DeadlineDateManualMission: manualMissionDeadlineDateNewFormat,
         manualMissionPerformed: manualMissionPerformed,
         DateManualMissionPerformed: manualMissionPerformedDateNewFormat,
-        manualMissionAssociatedToTeamMember: manualMissionAssociatedToTeamMember,
+        manualMissionAssociatedToTeamMember:
+          manualMissionAssociatedToTeamMember,
         leadPurchased: updateLeadPurchased,
         PurchasedAmount: updatePurchasedAmount,
         LeadCost: updateLeadCost,
@@ -1816,10 +1814,10 @@ function LeadFullDisplay1(props) {
                   <div className="leadFullDisplay__modalInputContainer">
                     <a
                       href="#"
-                      style={{ color: "gray" }}
+                      style={{ color: "#0a84ae" }}
                       onClick={onClickResetManualMissionAndSetNewCreatedDate}
                     >
-                      לחץ כאן לפני יצירת משימה חדשה
+                      לחץ על מנת למחוק משימה קיימת ולעדכן משימה חדשה
                     </a>
                   </div>
                   <div className="leadFullDisplay__modalInputContainer">
@@ -2890,7 +2888,11 @@ function LeadFullDisplay1(props) {
                       className="leadFullDisplay__modalInputContainer"
                       style={{ margin: "1rem 0" }}
                     >
-                      <Button variant="contained" onClick={updateTheLeadReq}>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={updateTheLeadReq}
+                      >
                         עדכון ליד
                       </Button>
                     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./index.scss";
 
 import axios from "axios";
@@ -108,6 +109,7 @@ function Alert(props) {
 }
 
 function ManualMissionsFull(props) {
+  const history = useHistory();
   const classesTable = useStylesTable();
   const classesModal = useStylesModal();
   const classesDatePicker = useStylesDatePicker();
@@ -135,7 +137,9 @@ function ManualMissionsFull(props) {
 
   // link to rel lead page
   const onClickToLeadPage = (leadPage) => {
-    window.location.href = `/${leadPage}`;
+    let path = `/${leadPage}`;
+    history.push(path);
+    // window.location.href = `/${leadPage}`;
   };
 
   //get and store id of lead - quick editing
@@ -147,10 +151,8 @@ function ManualMissionsFull(props) {
   const [updateTypeOfMission, setUpdateTypeOfMission] = useState("");
   const [updateMissionDescription, setUpdateMissionDescription] = useState("");
   const [updateDeadlineMission, setUpdateDeadlineMission] = useState("");
-  const [
-    updateDeadlineMissionNewFormat,
-    setUpdateDeadlineMissionNewFormat,
-  ] = useState("");
+  const [updateDeadlineMissionNewFormat, setUpdateDeadlineMissionNewFormat] =
+    useState("");
 
   const [
     updateMissionCreatedByTeamMember,
@@ -280,10 +282,8 @@ function ManualMissionsFull(props) {
   }, [allOpenMissions]);
 
   //filter and set all open missions deadline for today
-  const [
-    allOpenMissionsDeadlineForToday,
-    setAllOpenMissionsDeadlineForToday,
-  ] = useState([]);
+  const [allOpenMissionsDeadlineForToday, setAllOpenMissionsDeadlineForToday] =
+    useState([]);
   useEffect(() => {
     setAllOpenMissionsDeadlineForToday(
       filterAllLeadsWithOpenMissionsWithDeadlineForToday(allOpenMissions)
@@ -291,10 +291,8 @@ function ManualMissionsFull(props) {
   }, [allOpenMissions]);
 
   //filter and set all open missions deadline for tomorrow
-  const [
-    allOpenMissionsDeadlineTomorrow,
-    setAllOpenMissionsDeadlineTomorrow,
-  ] = useState([]);
+  const [allOpenMissionsDeadlineTomorrow, setAllOpenMissionsDeadlineTomorrow] =
+    useState([]);
   useEffect(() => {
     setAllOpenMissionsDeadlineTomorrow(
       filterAllLeadsWithOpenMissionsWithDeadlineForTomorrow(allOpenMissions)
@@ -368,65 +366,142 @@ function ManualMissionsFull(props) {
 
   //let the user filter missions according to branch
   const [displayMissionsBranch, setDisplayMissionsBranch] = useState("");
+
   useEffect(() => {
-    let splitedDisplayMissionBranch = displayMissionsBranch.split(" ");
+    //  let splitedDisplayMissionBranch = displayMissionsBranch.split(" ");
     if (
-      displayMissionsBranch.indexOf(
-        props.relCustomerDataObj.businessBranches[0]
-      ) > -1
+      displayMissionsBranch
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[0] &&
+            props.relCustomerDataObj.businessBranches[0]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
       let relMissionsBranch1 =
         displayRelMissionsCopy &&
         displayRelMissionsCopy.filter((mission) => {
           return (
-            mission.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[0].split(" ")[0]
-            ) > -1
+            mission.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[0]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
         });
       setDisplayRelMissions(relMissionsBranch1);
     } else if (
-      displayMissionsBranch.indexOf(
-        props.relCustomerDataObj.businessBranches[1]
-      ) > -1
+      displayMissionsBranch
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[1] &&
+            props.relCustomerDataObj.businessBranches[1]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
       let relMissionsBranch2 =
         displayRelMissionsCopy &&
         displayRelMissionsCopy.filter((mission) => {
           return (
-            mission.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[1].split(" ")[0]
-            ) > -1
+            mission.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[1]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
         });
       setDisplayRelMissions(relMissionsBranch2);
     } else if (
-      displayMissionsBranch.indexOf(
-        props.relCustomerDataObj.businessBranches[2]
-      ) > -1
+      displayMissionsBranch
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[2] &&
+            props.relCustomerDataObj.businessBranches[2]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
       let relMissionsBranch3 =
         displayRelMissionsCopy &&
         displayRelMissionsCopy.filter((mission) => {
           return (
-            mission.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[2].split(" ")[0]
-            ) > -1
+            mission.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[2]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
         });
       setDisplayRelMissions(relMissionsBranch3);
     } else if (
-      displayMissionsBranch.indexOf(
-        props.relCustomerDataObj.businessBranches[3]
-      ) > -1
+      displayMissionsBranch
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[3] &&
+            props.relCustomerDataObj.businessBranches[3]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
       let relMissionsBranch4 =
         displayRelMissionsCopy &&
         displayRelMissionsCopy.filter((mission) => {
           return (
-            mission.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[3].split(" ")[0]
-            ) > -1
+            mission.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[3]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
         });
       setDisplayRelMissions(relMissionsBranch4);
@@ -448,9 +523,8 @@ function ManualMissionsFull(props) {
   }, [allOpenMissionsDeadlineForToday]);
 
   //display name of data/missions on the title
-  const [displayNameOfMissionsData, setDisplayNameOfMissionsData] = useState(
-    ""
-  );
+  const [displayNameOfMissionsData, setDisplayNameOfMissionsData] =
+    useState("");
 
   // API UPDATE MISSION REQUEST FUNCTION
   const updateTheLeadReq = async () => {
@@ -601,7 +675,7 @@ function ManualMissionsFull(props) {
             onChange={(e) => setDisplayMissionsBranch(e.target.value)}
             className="manualMissionsFull__radioBtns"
           >
-            {props.relCustomerDataObj.businessBranches.length > 0 &&
+            {props.relCustomerDataObj.businessBranches[0] != "" &&
               props.relCustomerDataObj.businessBranches.map((branch, index) => (
                 <FormControlLabel
                   key={index}

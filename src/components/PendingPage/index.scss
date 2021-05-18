@@ -1,0 +1,12 @@
+.pending-page {
+  text-align: center;
+  padding: 3rem 0 0 0;
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__emailP {
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+}

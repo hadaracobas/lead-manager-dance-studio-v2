@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./index.scss";
 import {
   Table,
@@ -24,6 +25,7 @@ import {
   filterAllLeadsInStep3,
   filterAllLeadsInSellProcess,
   filterRelevantLeads,
+  filterNotRelevantLeads,
   sortLeadsAccordingToAddedDate,
 } from "../../functions";
 
@@ -34,11 +36,10 @@ const useStylesTable = makeStyles({
 });
 
 function LeadsInProgTable(props) {
+  const history = useHistory();
   const [displayRelLeads, setDisplayLeads] = useState(false);
-  const [
-    saveOriginalDisplayRelLeadsArr,
-    setSaveOriginalDisplayRelLeadsArr,
-  ] = useState(false);
+  const [saveOriginalDisplayRelLeadsArr, setSaveOriginalDisplayRelLeadsArr] =
+    useState(false);
 
   const [displayNameOfData, setDisplayNameOfData] = useState(
     "כל לידים בתהליך מכירה"
@@ -46,7 +47,7 @@ function LeadsInProgTable(props) {
   const [
     toggleShowJustRelevantLeadsAfterFilter,
     setToggleShowJustRelevantLeadsAfterFilter,
-  ] = useState(false);
+  ] = useState("");
 
   useEffect(() => {
     setDisplayLeads(
@@ -88,7 +89,9 @@ function LeadsInProgTable(props) {
   const classesTable = useStylesTable();
 
   const onClickToLeadPage = (leadPage) => {
-    window.location.href = `/${leadPage}`;
+    let path = `/${leadPage}`;
+    history.push(path);
+    //window.location.href = `/${leadPage}`;
   };
 
   const handleOnClickBtnStep1 = () => {
@@ -163,69 +166,153 @@ function LeadsInProgTable(props) {
       //filterRelevantLeads
       setDisplayLeads(filterRelevantLeads(saveOriginalDisplayRelLeadsArr));
     } else if (
+      toggleShowJustRelevantLeadsAfterFilter === "justNotRelevantLeads"
+    ) {
+      setDisplayLeads(filterNotRelevantLeads(saveOriginalDisplayRelLeadsArr));
+    } else if (
       toggleShowJustRelevantLeadsAfterFilter === "accordingToAddedDate"
     ) {
       setDisplayLeads(
         sortLeadsAccordingToAddedDate(saveOriginalDisplayRelLeadsArr)
       );
     } else if (
-      toggleShowJustRelevantLeadsAfterFilter ===
-      props.relCustomerDataObj.businessBranches[0]
+      toggleShowJustRelevantLeadsAfterFilter
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[0] &&
+            props.relCustomerDataObj.businessBranches[0]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
-      let relBranchesAccordingToBranchVar1 = saveOriginalDisplayRelLeadsArr.filter(
-        (lead) => {
+      let relBranchesAccordingToBranchVar1 =
+        saveOriginalDisplayRelLeadsArr &&
+        saveOriginalDisplayRelLeadsArr.filter((lead) => {
           // return lead.branch === props.relCustomerDataObj.businessBranches[0];
           return (
-            lead.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[0].split(" ")[0]
-            ) > -1
+            lead.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[0]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
-        }
-      );
+        });
       setDisplayLeads(relBranchesAccordingToBranchVar1);
     } else if (
-      toggleShowJustRelevantLeadsAfterFilter ===
-      props.relCustomerDataObj.businessBranches[1]
+      toggleShowJustRelevantLeadsAfterFilter
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[1] &&
+            props.relCustomerDataObj.businessBranches[1]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
-      let relBranchesAccordingToBranchVar2 = saveOriginalDisplayRelLeadsArr.filter(
-        (lead) => {
+      let relBranchesAccordingToBranchVar2 =
+        saveOriginalDisplayRelLeadsArr &&
+        saveOriginalDisplayRelLeadsArr.filter((lead) => {
           // return lead.branch === props.relCustomerDataObj.businessBranches[1];
           return (
-            lead.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[1].split(" ")[0]
-            ) > -1
+            lead.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[1]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
-        }
-      );
+        });
       setDisplayLeads(relBranchesAccordingToBranchVar2);
     } else if (
-      toggleShowJustRelevantLeadsAfterFilter ===
-      props.relCustomerDataObj.businessBranches[2]
+      toggleShowJustRelevantLeadsAfterFilter
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[2] &&
+            props.relCustomerDataObj.businessBranches[2]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
-      let relBranchesAccordingToBranchVar3 = saveOriginalDisplayRelLeadsArr.filter(
-        (lead) => {
+      let relBranchesAccordingToBranchVar3 =
+        saveOriginalDisplayRelLeadsArr &&
+        saveOriginalDisplayRelLeadsArr.filter((lead) => {
           //return lead.branch === props.relCustomerDataObj.businessBranches[2];
           return (
-            lead.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[2].split(" ")[0]
-            ) > -1
+            lead.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[2]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
-        }
-      );
+        });
       setDisplayLeads(relBranchesAccordingToBranchVar3);
     } else if (
-      toggleShowJustRelevantLeadsAfterFilter ===
-      props.relCustomerDataObj.businessBranches[3]
+      toggleShowJustRelevantLeadsAfterFilter
+        .replace(/ /g, "")
+        .replace(/-/g, "")
+        .replace(/_/g, "")
+        .replace(/"/g, "")
+        .indexOf(
+          props.relCustomerDataObj.businessBranches[3] &&
+            props.relCustomerDataObj.businessBranches[3]
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+        ) > -1
     ) {
-      let relBranchesAccordingToBranchVar4 = saveOriginalDisplayRelLeadsArr.filter(
-        (lead) => {
+      let relBranchesAccordingToBranchVar4 =
+        saveOriginalDisplayRelLeadsArr &&
+        saveOriginalDisplayRelLeadsArr.filter((lead) => {
           return (
-            lead.branch.indexOf(
-              props.relCustomerDataObj.businessBranches[3].split(" ")[0]
-            ) > -1
+            lead.branch
+              .replace(/ /g, "")
+              .replace(/-/g, "")
+              .replace(/_/g, "")
+              .replace(/"/g, "")
+              .indexOf(
+                props.relCustomerDataObj.businessBranches[3]
+                  .replace(/ /g, "")
+                  .replace(/-/g, "")
+                  .replace(/_/g, "")
+                  .replace(/"/g, "")
+              ) > -1
           );
-        }
-      );
+        });
       setDisplayLeads(relBranchesAccordingToBranchVar4);
     }
   }, [toggleShowJustRelevantLeadsAfterFilter]);
@@ -294,7 +381,7 @@ function LeadsInProgTable(props) {
             }
             className="leadsInProgTable__radioBtns"
           >
-            {props.relCustomerDataObj.businessBranches.length > 0 &&
+            {props.relCustomerDataObj.businessBranches[0] != "" &&
               props.relCustomerDataObj.businessBranches.map((branch, index) => (
                 <FormControlLabel
                   key={index}
@@ -313,6 +400,11 @@ function LeadsInProgTable(props) {
               value="justRelevantLeads"
               control={<Radio />}
               label="הצג רק לידים שסומנו כרלוונטיים"
+            />
+            <FormControlLabel
+              value="justNotRelevantLeads"
+              control={<Radio />}
+              label="הצג רק לידים שעדיין בסטטוס לא רלוונטיים"
             />
             <FormControlLabel
               value="accordingToAddedDate"

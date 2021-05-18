@@ -25,6 +25,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,10 +63,10 @@ function NavDesktop(props) {
       <div className="navDesktop__bottom">
         <div className={classes.root}>
           <List component="nav" aria-label="main mailbox folders">
-            <Link to="/" style={{ textDecoration: "none", color: "#000000DE" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "#1e212a" }}>
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <HomeIcon fontSize="large" />
+                  <HomeIcon fontSize="large" style={{ color: "#1e212a" }} />
                 </ListItemIcon>
                 <ListItemText primary="ראשי" />
               </ListItem>
@@ -73,11 +74,14 @@ function NavDesktop(props) {
 
             <Link
               to="/manual-missions-full"
-              style={{ textDecoration: "none", color: "#000000DE" }}
+              style={{ textDecoration: "none", color: "#1e212a" }}
             >
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <AssignmentLateIcon fontSize="large" />
+                  <AssignmentLateIcon
+                    fontSize="large"
+                    style={{ color: "#1e212a" }}
+                  />
                 </ListItemIcon>
                 <ListItemText primary="משימות" />
               </ListItem>
@@ -85,22 +89,25 @@ function NavDesktop(props) {
 
             <Link
               to="/leads-in-progress-table"
-              style={{ textDecoration: "none", color: "#000000DE" }}
+              style={{ textDecoration: "none", color: "#1e212a" }}
             >
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <FaceIcon fontSize="large" />
+                  <FaceIcon fontSize="large" style={{ color: "#1e212a" }} />
                 </ListItemIcon>
                 <ListItemText primary="לידים בתהליך מכירה" />
               </ListItem>
             </Link>
             <Link
               to="/active-subscribers"
-              style={{ textDecoration: "none", color: "#000000DE" }}
+              style={{ textDecoration: "none", color: "#1e212a" }}
             >
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <AttachMoneyIcon fontSize="large" />
+                  <AttachMoneyIcon
+                    fontSize="large"
+                    style={{ color: "#1e212a" }}
+                  />
                 </ListItemIcon>
                 <ListItemText primary="לידים שרכשו" />
               </ListItem>
@@ -108,22 +115,41 @@ function NavDesktop(props) {
 
             <Link
               to="/statistics"
-              style={{ textDecoration: "none", color: "#000000DE" }}
+              style={{ textDecoration: "none", color: "#1e212a" }}
             >
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <TrendingUpIcon fontSize="large" />
+                  <TrendingUpIcon
+                    fontSize="large"
+                    style={{ color: "#1e212a" }}
+                  />
                 </ListItemIcon>
                 <ListItemText primary="תמונת מצב" />
               </ListItem>
             </Link>
+
             <Link
-              to="/my-account"
-              style={{ textDecoration: "none", color: "#000000DE" }}
+              to="/settings"
+              style={{ textDecoration: "none", color: "#1e212a" }}
             >
               <ListItem button>
                 <ListItemIcon style={iconStyles}>
-                  <AccountBoxIcon fontSize="large" />
+                  <SettingsIcon fontSize="large" style={{ color: "#1e212a" }} />
+                </ListItemIcon>
+                <ListItemText primary="הגדרות " />
+              </ListItem>
+            </Link>
+
+            <Link
+              to="/my-account"
+              style={{ textDecoration: "none", color: "#1e212a" }}
+            >
+              <ListItem button>
+                <ListItemIcon style={iconStyles}>
+                  <AccountBoxIcon
+                    fontSize="large"
+                    style={{ color: "#1e212a" }}
+                  />
                 </ListItemIcon>
                 <ListItemText primary="חשבון " />
               </ListItem>

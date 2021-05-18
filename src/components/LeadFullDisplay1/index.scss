@@ -57,7 +57,7 @@
   &__modalInputContainer {
     h4 {
       font-size: 1.8rem;
-      color: $color-secondary-dark;
+      color: #212121;
     }
   }
 }
@@ -91,7 +91,7 @@
     width: 100rem;
     &__subtitle {
       margin: 2rem 0;
-      color: $color-primary-dark;
+      // color: $color-primary-dark;
     }
 
     &__section {

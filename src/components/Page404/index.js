@@ -15,7 +15,7 @@ function Page404() {
       <div className="page404__btns">
         <Link to="/" style={{ textDecoration: "none" }}>
           <Button variant="contained" color="primary">
-            חזור לעמוד הלידים
+            חזור לעמוד ראשי
           </Button>
         </Link>
 

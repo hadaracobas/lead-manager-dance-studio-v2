@@ -49,10 +49,8 @@ export default function LeadSmallDisplay(props) {
   const classesCard = useStylesCard();
   const bull = <span className={classesCard.bullet}>•</span>;
 
-  const [
-    checkIfLeadWithManualMission,
-    setCheckIfLeadWithManualMission,
-  ] = useState("no-mission");
+  const [checkIfLeadWithManualMission, setCheckIfLeadWithManualMission] =
+    useState("no-mission");
   const checkIfLeadWithManualMissionFunc = () => {
     if (
       props.manualMissionPerformed === "TRUE" ||
@@ -136,7 +134,9 @@ export default function LeadSmallDisplay(props) {
         <div className="leadSmallDisplay__bottom">
           <CardActions>
             <Link style={{ textDecoration: "none" }} to={`/${props.leadId}`}>
-              <Button size="small">כרטיס ליד</Button>
+              <Button style={{ color: "#0a84ae" }} size="small">
+                כרטיס ליד
+              </Button>
             </Link>
           </CardActions>
           {/*

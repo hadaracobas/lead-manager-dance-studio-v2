@@ -94,7 +94,7 @@ function NavMobile() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        color="secondary"
         onClick={handleClickMenuButtonOpen}
       >
         {menuToggle ? <MenuOpenIcon /> : <MenuIcon />}
@@ -108,12 +108,12 @@ function NavMobile() {
       >
         <Link
           to="/"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <HomeIcon fontSize="small" />
+              <HomeIcon fontSize="small" style={{ color: "#1e212a" }} />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="ראשי" />
           </StyledMenuItem>
@@ -121,12 +121,15 @@ function NavMobile() {
 
         <Link
           to="/manual-missions-full"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <AssignmentLateIcon fontSize="small" />
+              <AssignmentLateIcon
+                fontSize="small"
+                style={{ color: "#1e212a" }}
+              />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="משימות" />
           </StyledMenuItem>
@@ -134,24 +137,24 @@ function NavMobile() {
 
         <Link
           to="/leads-in-progress-table"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <FaceIcon fontSize="small" />
+              <FaceIcon fontSize="small" style={{ color: "#1e212a" }} />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="לידים בתהליך מכירה" />
           </StyledMenuItem>
         </Link>
         <Link
           to="/active-subscribers"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <AttachMoneyIcon fontSize="small" />
+              <AttachMoneyIcon fontSize="small" style={{ color: "#1e212a" }} />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="ביצעו רכישה" />
           </StyledMenuItem>
@@ -159,24 +162,38 @@ function NavMobile() {
 
         <Link
           to="/statistics"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <TrendingUpIcon fontSize="small" />
+              <TrendingUpIcon fontSize="small" style={{ color: "#1e212a" }} />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="תמונת מצב" />
           </StyledMenuItem>
         </Link>
+
         <Link
-          to="/my-account"
-          style={{ textDecoration: "none", color: "#000000DE" }}
+          to="/settings"
+          style={{ textDecoration: "none", color: "#1e212a" }}
           onClick={() => handleClickMenuButtonClose()}
         >
           <StyledMenuItem>
             <ListItemIcon>
-              <AccountBoxIcon fontSize="small" />
+              <SettingsIcon fontSize="small" style={{ color: "#1e212a" }} />
+            </ListItemIcon>
+            <ListItemText style={menuLiStyles} primary="הגדרות" />
+          </StyledMenuItem>
+        </Link>
+
+        <Link
+          to="/my-account"
+          style={{ textDecoration: "none", color: "#1e212a" }}
+          onClick={() => handleClickMenuButtonClose()}
+        >
+          <StyledMenuItem>
+            <ListItemIcon>
+              <AccountBoxIcon fontSize="small" style={{ color: "#1e212a" }} />
             </ListItemIcon>
             <ListItemText style={menuLiStyles} primary="חשבון" />
           </StyledMenuItem>

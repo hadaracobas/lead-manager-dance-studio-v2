@@ -18,6 +18,7 @@ import Account from "../Account";
 import Settings from "../Settings";
 import LeadsInProgTable from "../LeadsInProgTable";
 import ManualMissionsFull from "../ManualMissionsFull";
+import RegisterForm from "../RegisterForm";
 
 import Page404 from "../Page404";
 import { CircularProgress } from "@material-ui/core";
@@ -1045,11 +1046,7 @@ function Home(props) {
           </Route>
           <Route path="/settings">
             {data ? (
-              <Settings
-                relBranchesAccordingToAccount={
-                  props.relBranchesAccordingToAccount
-                }
-              />
+              <Settings getTheUserObj={props.getTheUserObj} />
             ) : (
               <CircularProgress color="secondary" />
             )}
@@ -1082,6 +1079,10 @@ function Home(props) {
             ) : (
               <CircularProgress color="secondary" />
             )}
+          </Route>
+
+          <Route path="/register-form">
+            <RegisterForm />
           </Route>
         </Switch>
       </div>

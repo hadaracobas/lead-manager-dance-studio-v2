@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { customersData } from "./pData";
@@ -12,6 +13,11 @@ import NavDesktop from "./components/NavDesktop";
 
 import LogInPage from "./components/LogInPage";
 import LandingPage from "./components/LandingPage";
+import RegisterForm from "./components/RegisterForm";
+import PendingPage from "./components/PendingPage";
+
+//import images
+import LoadingSvg from "../src/img/loading.svg";
 
 // import material ui
 import { create } from "jss";
@@ -39,6 +45,14 @@ const {
 const theme = createMuiTheme(
   {
     direction: "rtl", // Both here and <body dir="rtl">
+    palette: {
+      primary: {
+        main: "#1e212a",
+      },
+      secondary: {
+        main: "#eb5424",
+      },
+    },
   },
   heIL
 );
@@ -67,12 +81,86 @@ function App() {
   const [relBusinessLogo, setRelBusinessLogo] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  // **START USERS NEW FUNCTIONALITY**
+  const [usersDoneLoading, setUsersDoneLoading] = useState(false);
+  const [usersArrFromUsersCollection, setUsersArrFromUsersCollection] =
+    useState([]);
+  const [getTheUserObj, setGetTheUserObj] = useState({});
+  const [
+    userEmailFitToOneOfEmailInUsersCollectionBool,
+    setUserEmailFitToOneOfEmailInUsersCollectionBool,
+  ] = useState();
+  const [userHasRelApiBool, setUserHasRelApiBool] = useState();
+
+  // 1.  get api request users collection
+  const getUsersFromSheet = () => {
+    const usersDataSheet = axios
+      .get("https://sheet.best/api/sheets/766a22f4-2885-46bb-a273-1244747817bb")
+      .then((res) => {
+        setUsersArrFromUsersCollection(res.data);
+        setUsersDoneLoading(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // 2. check if user exist in users collection google sheet
+  const checkIfUserInUsersCollection = (arrOfUsers) => {
+    if (arrOfUsers.some((u) => u.userEmailAddress === user.email)) {
+      setUserEmailFitToOneOfEmailInUsersCollectionBool(true);
+      const getUserObj = arrOfUsers.find(
+        (el) => el.userEmailAddress === user.email
+      );
+      setGetTheUserObj(getUserObj);
+      // check if user has rel api ready
+      if (getUserObj.relApiUrl === null || getUserObj.relApiUrl === "") {
+        setUserHasRelApiBool(false);
+      } else {
+        setUserHasRelApiBool(true);
+        setRelApiUrlForCrud(getUserObj.relApiUrl);
+        setRelDataObjToCustomer({
+          businessName: getUserObj.businessName,
+          emailAddress: getUserObj.userEmailAddress,
+          businessLogo: getUserObj.businessLogoUrl,
+          businessType: getUserObj.businessType,
+          businessBranches: getUserObj.businessBranches.split(","), //array
+          relApiUrl: "",
+          funnelSteps: getUserObj.funnelSteps.split(","), //array
+          leadSources: getUserObj.leadSources.split(","), //array
+          missionTypes: getUserObj.missionTypes.split(","), //array
+          events: getUserObj.events.split(","), //array
+          recommendedMissionBySystemToLeadStep:
+            getUserObj.recommendedMissionBySystemToLeadStep.split(","),
+        });
+      }
+    } else {
+      setUserEmailFitToOneOfEmailInUsersCollectionBool(false);
+      setUserHasRelApiBool(false);
+    }
+  };
+  useEffect(() => {
+    checkIfUserInUsersCollection(usersArrFromUsersCollection);
+  }, [usersArrFromUsersCollection]);
+
   useEffect(() => {
     if (isAuthenticated) {
+      // get users collection from sheet.best api
+      getUsersFromSheet();
+    }
+  }, [user]);
+
+  // **END USERS NEW FUNCTIONALITY**
+
+  /*
+  useEffect(() => {
+    if (isAuthenticated) {
+      // get users collection from sheet.best api
+      getUsersFromSheet();
       if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1) {
         setRelApiUrlForCrud(REACT_APP_API_URL_DEMO1);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2) {
-        setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
+        //setRelApiUrlForCrud(REACT_APP_API_URL_DEMO2);
       } else if (user.email == REACT_APP_EMAIL_ADDRESS_REFAEL_ATIA) {
         setRelApiUrlForCrud(REACT_APP_API_URL_REFAEL_ATIA);
         setRelDataObjToCustomer(customersData[1]);
@@ -91,39 +179,45 @@ function App() {
       setRelDataObjToCustomer(customersData[0]);
     } // end parent condition
   }, [user]);
+*/
 
-  // DYNAMIC STATES ACCORDING TO ACCOUNT
-  const [
-    relBranchesAccordingToAccount,
-    setRelBranchesAccordingToAccount,
-  ] = useState(false);
-  useEffect(() => {
-    if (isAuthenticated) {
-      if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO1) {
-        setRelBranchesAccordingToAccount("הדר עם, צורן");
-      } else if (user.email == REACT_APP_EMAIL_ADDRESS_CONNECT_API_URL_DEMO2) {
-        setRelBranchesAccordingToAccount("רמת השרון, פתח תקווה, כפר סבא");
-      }
-    } // end parent condition
-  }, [user]);
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <div style={{ marginTop: "5rem" }}>
+          <img style={{ width: "200px" }} src={LoadingSvg} />
+        </div>
+        <p
+          dir="rtl"
+          style={{
+            fontWeight: "bold",
+            fontSize: "2rem",
+            marginTop: "2rem",
+          }}
+        >
+          טוען אפליקציה..
+        </p>
+      </div>
+    );
+  }
 
-  if (isLoading) return <div>loading..</div>;
   return (
     <StylesProvider jss={jss}>
       <div className="app" dir="rtl">
         {/* {inDevModeState ? ( */}
         {/*  */}
-        {isAuthenticated ? (
+        {isAuthenticated &&
+        userEmailFitToOneOfEmailInUsersCollectionBool &&
+        userHasRelApiBool &&
+        usersDoneLoading ? (
           <div className="app__appAfterAuth">
             <Router>
               <ThemeProvider theme={theme}>
-                <Header />
+                <Header user={user} />
                 <div className="app__mainContainer">
                   <main className="app__main">
                     <Home
-                      relBranchesAccordingToAccount={
-                        relBranchesAccordingToAccount
-                      }
+                      getTheUserObj={getTheUserObj}
                       relCrudApiUrl={relApiUrlForCrud}
                       user={user}
                       relCustomerDataObj={relDataObjToCustomer}
@@ -140,8 +234,40 @@ function App() {
               </ThemeProvider>
             </Router>
           </div>
-        ) : (
+        ) : isAuthenticated &&
+          !userEmailFitToOneOfEmailInUsersCollectionBool &&
+          !userHasRelApiBool &&
+          usersDoneLoading ? (
+          <ThemeProvider theme={theme}>
+            <RegisterForm
+              userEmail={user.email}
+              usersCollection={usersArrFromUsersCollection}
+            />
+          </ThemeProvider>
+        ) : isAuthenticated &&
+          userEmailFitToOneOfEmailInUsersCollectionBool &&
+          !userHasRelApiBool &&
+          usersDoneLoading ? (
+          <ThemeProvider theme={theme}>
+            <PendingPage />
+          </ThemeProvider>
+        ) : !isAuthenticated ? (
           <LogInPage />
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <div style={{ marginTop: "5rem" }}>
+              <img style={{ width: "200px" }} src={LoadingSvg} />
+            </div>
+            <p
+              style={{
+                fontWeight: "bold",
+                fontSize: "2rem",
+                marginTop: "2rem",
+              }}
+            >
+              טוען נתוני משתמש..
+            </p>
+          </div>
         )}
       </div>
     </StylesProvider>

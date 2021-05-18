@@ -34,7 +34,7 @@ import {
   FormLabel,
 } from "@material-ui/core";
 import DataCard from "../DataCard";
-import workingFromAnywhereSvg from "../../img/working_from_anywhere.svg";
+import workingFromAnywhereSvg from "../../img/freelance-illustration.svg";
 
 function GeneralLeadsList(props) {
   const [data, setData] = useState(false);
@@ -57,20 +57,15 @@ function GeneralLeadsList(props) {
     allLeadsWithManualMissionDeadlineSoon,
     setAllLeadsWithManualMissionDeadlineSoon,
   ] = useState(false);
-  const [
-    toggleShowJustRelevantLeads,
-    setToggleShowJustRelevantLeads,
-  ] = useState(false);
+  const [toggleShowJustRelevantLeads, setToggleShowJustRelevantLeads] =
+    useState(false);
 
   const [allLeadsFromSourceWeb, setAllLeadsFromSourceWeb] = useState(false);
   const [allLeadsFromSourceTel, setAllLeadsFromSourceTel] = useState(false);
-  const [allLeadsFromSourceOffice, setAllLeadsFromSourceOffice] = useState(
-    false
-  );
-  const [
-    allLeadsFromSourceDifferent,
-    setAllLeadsFromSourceDifferent,
-  ] = useState(false);
+  const [allLeadsFromSourceOffice, setAllLeadsFromSourceOffice] =
+    useState(false);
+  const [allLeadsFromSourceDifferent, setAllLeadsFromSourceDifferent] =
+    useState(false);
   const [allLeadsFromSourceFb, setAllLeadsFromSourceFb] = useState(false);
   const [allLeadsFromSourceIg, setAllLeadsFromSourceIg] = useState(false);
 

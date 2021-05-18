@@ -131,6 +131,16 @@ export const filterRelevantLeads = (data) => {
   return filterLeads;
 };
 
+// return all the not relevant leads
+export const filterNotRelevantLeads = (data) => {
+  let filterLeads =
+    data &&
+    data.filter(
+      (lead) => lead.isTheLeadRelevant === "" || lead.isTheLeadRelevant === null
+    );
+  return filterLeads;
+};
+
 // return all the leads with open manual missions
 export const filterAllLeadsWithOpenMissions = (data) => {
   let LeadsWithOpenMissions =
@@ -495,11 +505,10 @@ export const sortManualMissionAccordingToDeadlineDate = (data) => {
 
     // loop change to js format and sort
     for (let i = 0; i < sortedManualMissionArr.length; i++) {
-      sortedManualMissionArr[
-        i
-      ].DeadlineDateManualMission = convertDateBackInJsFormat(
-        sortedManualMissionArr[i].DeadlineDateManualMission
-      );
+      sortedManualMissionArr[i].DeadlineDateManualMission =
+        convertDateBackInJsFormat(
+          sortedManualMissionArr[i].DeadlineDateManualMission
+        );
       sortedManualMissionArr[i].DeadlineDateManualMission = new Date(
         sortedManualMissionArr[i].DeadlineDateManualMission
       ).getTime();

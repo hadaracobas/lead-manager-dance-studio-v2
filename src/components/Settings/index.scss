@@ -1,0 +1,22 @@
+.settings {
+  text-align: center;
+
+  &__content {
+    text-align: right;
+    margin-top: 3rem;
+  }
+
+  &__sectionWrapper {
+    margin-bottom: 2.4rem;
+    font-size: 1.3rem;
+  }
+
+  &__setting {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    p {
+      margin-left: 1rem;
+    }
+  }
+}

@@ -8,6 +8,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 0 1rem;
+  background-color: #1e212a;
 
   &__center {
     //border: 1px solid brown;
@@ -20,6 +21,22 @@
     align-items: center;
     //flex: 0.7;
     // border: 1px solid red;
+
+    .MuiButton-outlinedSecondary {
+      color: #fff;
+      border: 1px solid #fff;
+    }
+    .MuiButton-outlinedSecondary:hover {
+      background-color: #96989d;
+      border: 1px solid #fff;
+    }
+
+    #logout-header-btn {
+      .MuiButton-outlinedSecondary {
+        color: #c9cace;
+        border: 1px solid #c9cace;
+      }
+    }
   }
 
   &__addLeadWrapper {
@@ -28,6 +45,10 @@
 
   &__logginWrapper {
     margin-right: 7px;
+  }
+
+  &__avatar-container {
+    display: none;
   }
 }
 
@@ -42,6 +63,7 @@
 @media (min-width: 1200px) {
   .header {
     justify-content: space-evenly;
+    position: relative;
 
     &__right {
       visibility: hidden;
@@ -50,6 +72,12 @@
 
     &__center {
       flex: 0.4;
+    }
+
+    &__avatar-container {
+      position: absolute;
+      right: 20px;
+      display: block;
     }
   }
 }

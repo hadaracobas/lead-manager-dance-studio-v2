@@ -8,12 +8,38 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import SearchIcon from "@material-ui/icons/Search";
 
 //materiel ui imports:
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Avatar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-function Header() {
+const useStylesAvatar = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+}));
+
+function Header(props) {
   const { logout } = useAuth0();
+  const classesAvatar = useStylesAvatar();
   return (
     <header className="header">
+      <div style={{ color: "#fff" }} className="header__avatar-container">
+        <Avatar
+          alt="Remy Sharp"
+          src={props.user.picture}
+          className={classesAvatar.small}
+        />
+      </div>
       <div className="header__right">
         <NavMobile />
       </div>
@@ -29,21 +55,21 @@ function Header() {
       <div className="header__left">
         <div className="header__searchLeadWrapper">
           <Link to="/search-lead">
-            <Button variant="contained" color="secondary">
+            <Button variant="outlined" color="secondary">
               <SearchIcon />
             </Button>
           </Link>
         </div>
         <div className="header__addLeadWrapper">
           <Link to="/add-new-lead">
-            <Button variant="contained" color="secondary">
+            <Button variant="outlined" color="secondary">
               <AddCircleIcon />
             </Button>
           </Link>
         </div>
 
-        <div className="header__logginWrapper">
-          <Button variant="contained" onClick={() => logout()}>
+        <div className="header__logginWrapper" id="logout-header-btn">
+          <Button variant="outlined" color="secondary" onClick={() => logout()}>
             התנתק
           </Button>
         </div>

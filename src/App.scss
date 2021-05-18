@@ -13,7 +13,7 @@ $white: #fff;
 
 // mixins
 @mixin sectionTitle {
-  color: $color-primary-dark;
+  color: #212121;
   padding: 3px 0;
   margin-bottom: 10px;
 }
@@ -62,4 +62,9 @@ html {
       width: 15%;
     }
   }
+}
+
+// increase font size in table cells
+.MuiTableCell-root {
+  font-size: 1.2rem !important;
 }
