@@ -46,6 +46,7 @@ const useStylesModal = makeStyles((theme) => ({
 
 function RegisterForm(props) {
   const classesModal = useStylesModal();
+  const [loadingAfterSubmit, setLoadingAfterSubmit] = useState(false);
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [openModal, setOpenModal] = useState(false);
@@ -146,11 +147,15 @@ function RegisterForm(props) {
       }
     } else if (businessLogoUrlSourceType === "other") {
       setBusinessLogoUrlAfterHandleUrl(businessLogoUrl);
+    } else if (businessLogoUrlSourceType === "placeholder") {
+      setBusinessLogoUrlAfterHandleUrl(
+        "https://drive.google.com/uc?export=view&id=1JvmTTXA5j1ZgRAh94uXIixnfpAFJs3vI"
+      );
     }
   };
   useEffect(() => {
     handleReworkLogoUrlFromDrive();
-  }, [businessLogoUrl]);
+  }, [businessLogoUrl, businessLogoUrlSourceType]);
 
   const [businessType, setBusinessType] = useState("");
   const handleOnChangeBusinessType = (e) => {
@@ -237,6 +242,7 @@ function RegisterForm(props) {
   // 3. SEND DATA TO USERS COLLECTION
 
   const updateUserDateToUsersCollection = async () => {
+    setLoadingAfterSubmit(true);
     const updateUsersDataSheet = await axios
       .patch(
         `https://sheet.best/api/sheets/766a22f4-2885-46bb-a273-1244747817bb/${nextEmptyRowNum}`,
@@ -245,9 +251,11 @@ function RegisterForm(props) {
       .then((res) => {
         console.log(res);
         window.location.reload();
+        setLoadingAfterSubmit(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoadingAfterSubmit(false);
       });
   };
 
@@ -387,29 +395,33 @@ function RegisterForm(props) {
                     control={<Radio />}
                     label="גוגל דרייב"
                   />
-
+                  {businessLogoUrlSourceType === "drive" ? (
+                    <div>
+                      <span
+                        style={{
+                          color: "#0a84ae",
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                        }}
+                        onClick={handleOpenModal}
+                      >
+                        איך להעלות את הלוגו לגוגל דרייב ולקבל קישור
+                      </span>
+                    </div>
+                  ) : null}
                   <FormControlLabel
                     value="other"
                     control={<Radio />}
                     label="מקור חיצוני אחר"
                   />
+
+                  <FormControlLabel
+                    value="placeholder"
+                    control={<Radio />}
+                    label="אין לי לוגו"
+                  />
                 </RadioGroup>
               </FormControl>
-
-              {businessLogoUrlSourceType === "drive" ? (
-                <div>
-                  <span
-                    style={{
-                      color: "#0a84ae",
-                      cursor: "pointer",
-                      textDecoration: "underline",
-                    }}
-                    onClick={handleOpenModal}
-                  >
-                    איך להעלות את הלוגו לגוגל דרייב ולקבל קישור
-                  </span>
-                </div>
-              ) : null}
 
               {businessLogoUrlNotValid &&
               businessLogoUrl.length >= 1 &&
@@ -419,36 +431,44 @@ function RegisterForm(props) {
                 </p>
               ) : null}
 
-              <TextField
-                onChange={handleChangeBusinessLogoUrl}
-                id="standard-basic"
-                label="קישור לוגו"
-                value={businessLogoUrl}
-                style={{ width: "100%" }}
-              />
+              {businessLogoUrlSourceType != "placeholder" && (
+                <TextField
+                  onChange={handleChangeBusinessLogoUrl}
+                  id="standard-basic"
+                  label="קישור לוגו"
+                  value={businessLogoUrl}
+                  style={{ width: "100%" }}
+                />
+              )}
             </div>
-            <div className="registerForm__formSection">
-              <Button
-                onClick={checkFielsRequiredAndSendData}
-                variant="contained"
-                color="secondary"
-                style={{ fontSize: "1.7rem" }}
-              >
-                הגדר את נתוני העסק בחשבון
-              </Button>
-            </div>
-            <div className="registerForm__formSection">
-              <p
-                onClick={() => logout()}
-                style={{
-                  cursor: "pointer",
-                  color: "#0a84ae",
-                  textDecoration: "underline",
-                }}
-              >
-                התנתק והגדר את פרטי העסק מאוחר יותר
-              </p>
-            </div>
+            {loadingAfterSubmit ? (
+              <div>טוען נתונים..</div>
+            ) : (
+              <div>
+                <div className="registerForm__formSection">
+                  <Button
+                    onClick={checkFielsRequiredAndSendData}
+                    variant="contained"
+                    color="secondary"
+                    style={{ fontSize: "1.7rem" }}
+                  >
+                    הגדר את נתוני העסק בחשבון
+                  </Button>
+                </div>
+                <div className="registerForm__formSection">
+                  <p
+                    onClick={() => logout()}
+                    style={{
+                      cursor: "pointer",
+                      color: "#0a84ae",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    התנתק והגדר את פרטי העסק מאוחר יותר
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
           {/*
         <button onClick={updateUserDateToUsersCollection} type="button">

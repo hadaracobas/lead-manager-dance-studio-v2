@@ -14,6 +14,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import axios from "axios";
 
 function Settings(props) {
+  const [loadingAfterSubmit, setLoadingAfterSubmit] = useState(false);
   const [businessName, setBusinessName] = useState(
     props.getTheUserObj.businessName
   );
@@ -61,13 +62,19 @@ function Settings(props) {
       }
     } else if (businessLogoUrlSourceType === "other") {
       setBusinessLogoUrlAfterHandleUrl(businessLogoUrl);
+    } else if (businessLogoUrlSourceType === "placeholder") {
+      setBusinessLogoUrlAfterHandleUrl(
+        "https://drive.google.com/uc?export=view&id=1JvmTTXA5j1ZgRAh94uXIixnfpAFJs3vI"
+      );
     }
   };
+
   useEffect(() => {
     handleReworkLogoUrlFromDrive();
-  }, [businessLogoUrl]);
+  }, [businessLogoUrl, businessLogoUrlSourceType]);
 
   const updateUserDataPatchReq = async () => {
+    setLoadingAfterSubmit(true);
     const updateData = await axios
       .patch(
         `https://sheet.best/api/sheets/766a22f4-2885-46bb-a273-1244747817bb/${
@@ -88,10 +95,12 @@ function Settings(props) {
       .then((res) => {
         console.log(res);
         window.location.reload();
+        setLoadingAfterSubmit(false);
       })
       .catch((err) => {
         console.log(err);
-        alert("שגיאה, השינויים לא נשמרו");
+        alert("שגיאה, הנתונים לא נשמרו");
+        setLoadingAfterSubmit(false);
       });
   };
 
@@ -279,6 +288,12 @@ function Settings(props) {
                     control={<Radio />}
                     label="מקור חיצוני אחר"
                   />
+
+                  <FormControlLabel
+                    value="placeholder"
+                    control={<Radio />}
+                    label="אין לי לוגו"
+                  />
                 </RadioGroup>
               </FormControl>
               <div>
@@ -286,20 +301,26 @@ function Settings(props) {
                   <p style={{ color: "red" }}>קישור דרייב לא תקין</p>
                 )}
 
-                <TextField
-                  id="standard-basic"
-                  label="הזן כתובת לוגו"
-                  style={{ width: "70%" }}
-                  onChange={(e) => setBusinessLogoUrl(e.target.value)}
-                />
+                {businessLogoUrlSourceType != "placeholder" && (
+                  <TextField
+                    id="standard-basic"
+                    label="הזן כתובת לוגו"
+                    style={{ width: "70%" }}
+                    onChange={(e) => setBusinessLogoUrl(e.target.value)}
+                  />
+                )}
               </div>
             </div>
           )}
         </div>
         <div className="settings__sectionWrapper">
-          <Button onClick={handleSaveSettingsOnClick} variant="contained">
-            שמור
-          </Button>
+          {loadingAfterSubmit ? (
+            <div>טוען נתונים...</div>
+          ) : (
+            <Button onClick={handleSaveSettingsOnClick} variant="contained">
+              שמור
+            </Button>
+          )}
         </div>
       </div>
     </div>

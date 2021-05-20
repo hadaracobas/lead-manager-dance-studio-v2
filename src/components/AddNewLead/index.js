@@ -217,10 +217,8 @@ function AddNewLead(props) {
 */
 
   // auto recommended mission by system state and function
-  const [
-    recommendedMissionByApplication,
-    setRecommendedMissionByApplication,
-  ] = useState("");
+  const [recommendedMissionByApplication, setRecommendedMissionByApplication] =
+    useState("");
   const handleAutoRecommendedMission = () => {
     if (leadStep === "מתעניין") {
       setRecommendedMissionByApplication("לתאם פגישה");
@@ -475,7 +473,7 @@ function AddNewLead(props) {
         <div className="addNewLead__form--leadDetailsContainer">
           <h3>מידע ליד</h3>
           {props.relCustomerDataObj &&
-            props.relCustomerDataObj.businessBranches.length > 0 && (
+            props.relCustomerDataObj.businessBranches[0] != "" && (
               <div>
                 <FormControl className={classesSelect.formControl}>
                   <InputLabel id="demo-simple-select-label">

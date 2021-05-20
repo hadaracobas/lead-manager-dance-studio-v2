@@ -1581,7 +1581,7 @@ function LeadFullDisplay1(props) {
                     />
                   </div>
                   {props.relCustomerDataObj &&
-                    props.relCustomerDataObj.businessBranches.length > 0 && (
+                    props.relCustomerDataObj.businessBranches[0] != "" && (
                       <div className="leadFullDisplay__modalInputContainer">
                         {/* 
                         <TextField
